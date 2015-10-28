@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "REFrostedViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate,REFrostedViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -17,9 +18,10 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic,retain) UINavigationController *NavigationController;
+
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-
 
 @end
 

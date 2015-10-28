@@ -4,6 +4,22 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MyriadPro-Bold.otf</string>
+		<string>MyriadPro-BoldCond.otf</string>
+		<string>MyriadPro-BoldCondIt.otf</string>
+		<string>MyriadPro-BoldIt.otf</string>
+		<string>MyriadPro-Cond.otf</string>
+		<string>MyriadPro-CondIt.otf</string>
+		<string>MyriadPro-It.otf</string>
+		<string>MyriadPro-Semibold.otf</string>
+		<string>MyriadPro-Regular.otf</string>
+		<string>MyriadPro-SemiboldIt.otf</string>
+		<string>Roboto-Bold_0.ttf</string>
+		<string>Roboto-Medium_0.ttf</string>
+		<string>Roboto-Regular_0.ttf</string>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,19 +38,22 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>

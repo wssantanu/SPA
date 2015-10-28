@@ -7,6 +7,12 @@
 //
 
 #import "AppDelegate.h"
+#import "StoryBoardUtilities.h"
+#import "Constant.h"
+
+#import "DEMONavigationController.h"
+#import "DEMOHomeViewController.h"
+#import "DEMOMenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -14,10 +20,74 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self AssignMenu];
     return YES;
+}
+
+-(void)DefaultNavigationController
+{
+    self.NavigationController = [[UINavigationController alloc] initWithRootViewController:Constant.LandingController];
+    [[self window] setRootViewController:self.NavigationController];
+    [self.NavigationController setHidesBottomBarWhenPushed:YES];
+    [[self.NavigationController navigationBar] setHidden:YES];
+    [self.window makeKeyAndVisible];
+}
+
+-(void)LogoutUser
+{
+    [self DefaultNavigationController];
+}
+
+-(void)AssignMenu
+{
+    // Create content and menu controllers
+    //
+    DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[DEMOHomeViewController alloc] init]];
+    DEMOMenuViewController *menuController = [[DEMOMenuViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    // Create frosted view controller
+    //
+    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
+    frostedViewController.direction = REFrostedViewControllerDirectionLeft;
+    frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+    frostedViewController.liveBlur = YES;
+    frostedViewController.delegate = self;
+    
+    // Make it a root controller
+    //
+    self.window.rootViewController = frostedViewController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    [frostedViewController presentMenuViewController];
+}
+
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer
+{
+    
+}
+
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController willShowMenuViewController:(UIViewController *)menuViewController
+{
+    NSLog(@"willShowMenuViewController");
+}
+
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController didShowMenuViewController:(UIViewController *)menuViewController
+{
+    NSLog(@"didShowMenuViewController");
+}
+
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController willHideMenuViewController:(UIViewController *)menuViewController
+{
+    NSLog(@"willHideMenuViewController");
+}
+
+- (void)frostedViewController:(REFrostedViewController *)frostedViewController didHideMenuViewController:(UIViewController *)menuViewController
+{
+    NSLog(@"didHideMenuViewController");
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -42,6 +112,23 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+}
+
+#pragma mark -
+#pragma mark App Style Setup Methods
+
+- (void)setupNavigationTitleLabelStyle
+{
+    NSMutableDictionary *titleBarAttributes = [NSMutableDictionary dictionaryWithDictionary: [[UINavigationBar appearance] titleTextAttributes]];
+    [titleBarAttributes setValue:[UIFont fontWithName:@"GillSans-Light" size:20] forKey:NSFontAttributeName];
+    [titleBarAttributes setValue:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    [[UINavigationBar appearance] setTitleTextAttributes:titleBarAttributes];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+}
+
+- (void)setupStatusBarStyle
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 #pragma mark - Core Data stack
@@ -89,7 +176,6 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
     return _persistentStoreCoordinator;
 }
 
