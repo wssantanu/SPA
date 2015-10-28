@@ -27,6 +27,10 @@
     return YES;
 }
 
+/**
+ * Default Navigation Controller
+ */
+
 -(void)DefaultNavigationController
 {
     self.NavigationController = [[UINavigationController alloc] initWithRootViewController:Constant.LandingController];
@@ -40,6 +44,10 @@
 {
     [self DefaultNavigationController];
 }
+
+/**
+ * Implement Custom Menu width 80.0f defined in pch file
+ */
 
 -(void)AssignMenu
 {
