@@ -83,6 +83,7 @@
 		9BAD9EF71BE0CEB8004E6C7C /* Roboto-Bold_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BAD9EC31BE0CDD1004E6C7C /* Roboto-Bold_0.ttf */; };
 		9BAD9EF81BE0CEB8004E6C7C /* Roboto-Medium_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BAD9EC41BE0CDD1004E6C7C /* Roboto-Medium_0.ttf */; };
 		9BAD9EF91BE0CEB8004E6C7C /* Roboto-Regular_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BAD9EC51BE0CDD1004E6C7C /* Roboto-Regular_0.ttf */; };
+		9BAD9EFC1BE0FA18004E6C7C /* AddMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAD9EFB1BE0FA18004E6C7C /* AddMoreView.m */; };
 		9BCA09F31BD0E44700A78D71 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA09F21BD0E44700A78D71 /* Constant.m */; };
 		9BDE42DD1BCE764F0089CA68 /* SignupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE42DC1BCE764F0089CA68 /* SignupController.m */; };
 		9BEC2CBB1BCFA91500360904 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC2CBA1BCFA91500360904 /* LoginViewController.xib */; };
@@ -226,6 +227,8 @@
 		9BAD9EE31BE0CE06004E6C7C /* MenuCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuCellTableViewCell.h; sourceTree = "<group>"; };
 		9BAD9EE41BE0CE06004E6C7C /* MenuCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuCellTableViewCell.m; sourceTree = "<group>"; };
 		9BAD9EE51BE0CE06004E6C7C /* MenuCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCellTableViewCell.xib; sourceTree = "<group>"; };
+		9BAD9EFA1BE0FA18004E6C7C /* AddMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMoreView.h; sourceTree = "<group>"; };
+		9BAD9EFB1BE0FA18004E6C7C /* AddMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMoreView.m; sourceTree = "<group>"; };
 		9BCA09F11BD0E44700A78D71 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		9BCA09F21BD0E44700A78D71 /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
 		9BDE42DB1BCE764F0089CA68 /* SignupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupController.h; sourceTree = "<group>"; };
@@ -475,6 +478,8 @@
 				9B6A68D41BCBF32300C284CB /* LoginController */,
 				9B6A68CB1BCBF0E800C284CB /* AppDelegate */,
 				9B6A68CC1BCBF0F200C284CB /* ViewController */,
+				9BAD9EFA1BE0FA18004E6C7C /* AddMoreView.h */,
+				9BAD9EFB1BE0FA18004E6C7C /* AddMoreView.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -793,6 +798,7 @@
 				9BAD9ED41BE0CDE9004E6C7C /* REFrostedContainerViewController.m in Sources */,
 				9B6A688B1BCBD8F800C284CB /* KM_NSDictionary+SafeValues.m in Sources */,
 				9B6A68DF1BCBFCBA00C284CB /* UserDetails.m in Sources */,
+				9BAD9EFC1BE0FA18004E6C7C /* AddMoreView.m in Sources */,
 				9B6A68781BCBD8E300C284CB /* KMNetworkLoadingViewController.m in Sources */,
 				9BAD9ED71BE0CDE9004E6C7C /* UIView+REFrostedViewController.m in Sources */,
 				9B6A68A61BCBD9D300C284CB /* EGOImageLoader.m in Sources */,

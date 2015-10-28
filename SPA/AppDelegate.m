@@ -20,8 +20,7 @@
 
 @implementation AppDelegate
 
-#pragma mark -
-#pragma mark App state declearation
+#pragma mark - App state declearation
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -54,8 +53,7 @@
     [self saveContext];
 }
 
-#pragma mark -
-#pragma mark Navigation controller decleration
+#pragma mark - Navigation controller decleration
 
 /**
  * Default Navigation Controller
@@ -103,8 +101,7 @@
     [frostedViewController presentMenuViewController];
 }
 
-#pragma mark -
-#pragma mark FostedViewController delegate details
+#pragma mark - FostedViewController delegate details
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController didRecognizePanGesture:(UIPanGestureRecognizer *)recognizer
 {
@@ -131,8 +128,7 @@
     NSLog(@"didHideMenuViewController");
 }
 
-#pragma mark -
-#pragma mark App Style Setup Methods
+#pragma mark - App Style Setup Methods
 
 - (void)setupNavigationTitleLabelStyle
 {

@@ -21,5 +21,12 @@ blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
 alpha:1.0]
 
 #define MenuWidth 80.0f
-
+#define HeaderHeight 70.0f
+#define AddmoreViewHeight 100
+#define AddmoreViewTag 1564
+#define DeleteButtonAddTag 1209
+#define AddViewNotification @"add-more-view-notification"
+#define DeleteViewNotification @"delete-more-view-notification"
+#define TextfiledStartEditingNotification @"textfield-start-editing-notification"
+#define TextfiledEndEditingNotification @"textfield-end-editing-notification"
 #endif

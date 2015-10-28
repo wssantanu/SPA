@@ -86,7 +86,7 @@
         [self addChildViewController:self.frostedViewController.menuViewController];
         self.frostedViewController.menuViewController.view.frame = self.containerView.bounds;
         
-        NSLog(@"self.frostedViewController.menuViewController.view.frame === %f",self.frostedViewController.menuViewController.view.frame.size.width);
+//        NSLog(@"self.frostedViewController.menuViewController.view.frame === %f",self.frostedViewController.menuViewController.view.frame.size.width);
         
         [self.containerView addSubview:self.frostedViewController.menuViewController.view];
        // [self.frostedViewController.menuViewController didMoveToParentViewController:self];
