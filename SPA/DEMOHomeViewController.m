@@ -10,6 +10,7 @@
 #import "DEMONavigationController.h"
 #import "UINavigationBar+Customnavigation.h"
 #import "AddMoreView.h"
+#import <HMSegmentedControl/HMSegmentedControl.h>
 
 typedef enum {
     buttonrepostiontypenone,
@@ -17,10 +18,21 @@ typedef enum {
     buttonrepostiontypedown
 } buttonrepostiontype;
 
+typedef enum {
+    DayselectionTypeSunday = 1,
+    DayselectionTypeMonday,
+    DayselectionTypeTuesday,
+    DayselectionTypeWednesday,
+    DayselectionTypeThirsday,
+    DayselectionTypeFriday,
+    DayselectionTypeSaturday
+} DayselectionType;
+
 @interface DEMOHomeViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic,retain) UIScrollView *MainScrollView;
 @property (assign) buttonrepostiontype Buttonrepostiontype;
+@property (assign) DayselectionType WeakDayselectionType;
 @end
 
 @implementation DEMOHomeViewController
@@ -37,7 +49,8 @@ int addMoreViewTag = (int)AddmoreViewTag;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    _Buttonrepostiontype = buttonrepostiontypenone;
+    _Buttonrepostiontype    = buttonrepostiontypenone;
+    _WeakDayselectionType   = DayselectionTypeSunday;
     
     [self CustomizeHeaderwithTitle:@"Header Data" WithFontName:@"Arial" WithFontSize:36 withButton:YES withSelecter:@selector(adddata) WithButtonBgImage:@"Header_PlusIcon_White"];
 
@@ -52,10 +65,37 @@ int addMoreViewTag = (int)AddmoreViewTag;
     [SaveButton setTitle:@"Save" forState:UIControlStateNormal];
     [_MainScrollView addSubview:SaveButton];
     
+    HMSegmentedControl *segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Sun", @"Mon", @"Tues",@"Wed",@"Th",@"Fri",@"Sat"]];
+    [segmentedControl1 setBackgroundColor:[UIColor blackColor]];
+    segmentedControl1.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
+    segmentedControl1.frame = CGRectMake(0, 0, _MainScrollView.frame.size.width, 40);
+    segmentedControl1.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    segmentedControl1.selectionStyle = HMSegmentedControlSelectionStyleBox;
+    segmentedControl1.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
+    segmentedControl1.verticalDividerEnabled = YES;
+    segmentedControl1.verticalDividerColor = [UIColor whiteColor];
+    segmentedControl1.verticalDividerWidth = 1.0f;
+    [segmentedControl1 setTitleFormatter:^NSAttributedString *(HMSegmentedControl *segmentedControl, NSString *title, NSUInteger index, BOOL selected) {
+        NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        return attString;
+    }];
+    [segmentedControl1 addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    [_MainScrollView addSubview:segmentedControl1];
+    
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewAddedWithResponce) name:AddViewNotification object:nil];
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewDeletedWithResponceWithObject:) name:DeleteViewNotification object:nil];
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextfiledStartEditingNotificationWithObject:) name:TextfiledStartEditingNotification object:nil];
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextfiledEndEditingNotificationWithObject:) name:TextfiledEndEditingNotification object:nil];
+}
+
+#pragma mark - Segment Control Delegate
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+}
+
+- (void)uisegmentedControlChangedValue:(UISegmentedControl *)segmentedControl {
+    NSLog(@"Selected index %ld", (long)segmentedControl.selectedSegmentIndex);
 }
 
 -(void)CustomizeHeaderwithTitle:(NSString *)Title WithFontName:(NSString *)FontName WithFontSize:(float)Size withButton:(BOOL)button withSelecter:(SEL)selecter WithButtonBgImage:(NSString *)WithButtonBgImage
