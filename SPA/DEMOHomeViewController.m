@@ -19,20 +19,27 @@ typedef enum {
 } buttonrepostiontype;
 
 typedef enum {
-    DayselectionTypeSunday = 1,
-    DayselectionTypeMonday,
-    DayselectionTypeTuesday,
-    DayselectionTypeWednesday,
-    DayselectionTypeThirsday,
-    DayselectionTypeFriday,
-    DayselectionTypeSaturday
-} DayselectionType;
+    weakdaytypesunday,
+    weakdaytypemonday,
+    weakdaytypetuesday,
+    weakdaytypewednesday,
+    weakdaytypethirsday,
+    weakdaytypefriday,
+    weakdaytypesaturday
+} weakdaytype;
+
+typedef enum {
+    aditionTypenormal,
+    aditionTypeSegment
+} aditionType;
 
 @interface DEMOHomeViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic,retain) UIScrollView *MainScrollView;
+@property (nonatomic,retain) NSMutableArray *GlobalTagArray;
 @property (assign) buttonrepostiontype Buttonrepostiontype;
-@property (assign) DayselectionType WeakDayselectionType;
+@property (assign) weakdaytype Weakdaytype;
+@property (assign) aditionType AditionType;
 @end
 
 @implementation DEMOHomeViewController
@@ -42,6 +49,9 @@ typedef enum {
 
 int addMoreViewTag = (int)AddmoreViewTag;
 
+float scrollViewBasicHeight = 0.0f;
+float saveButtonYposition = 0.0f;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -49,8 +59,11 @@ int addMoreViewTag = (int)AddmoreViewTag;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    _Buttonrepostiontype    = buttonrepostiontypenone;
-    _WeakDayselectionType   = DayselectionTypeSunday;
+    _Buttonrepostiontype = buttonrepostiontypenone;
+    _Weakdaytype = weakdaytypesunday;
+    _AditionType = aditionTypenormal;
+    
+    _GlobalTagArray = [[NSMutableArray alloc] initWithObjects:[[NSMutableArray alloc] initWithObjects:@1557, nil],[[NSMutableArray alloc] initWithObjects:@1558, nil],[[NSMutableArray alloc] initWithObjects:@1559, nil],[[NSMutableArray alloc] initWithObjects:@1560, nil],[[NSMutableArray alloc] initWithObjects:@1561, nil],[[NSMutableArray alloc] initWithObjects:@1562, nil],[[NSMutableArray alloc] initWithObjects:@1563, nil], nil];
     
     [self CustomizeHeaderwithTitle:@"Header Data" WithFontName:@"Arial" WithFontSize:36 withButton:YES withSelecter:@selector(adddata) WithButtonBgImage:@"Header_PlusIcon_White"];
 
@@ -81,17 +94,77 @@ int addMoreViewTag = (int)AddmoreViewTag;
     }];
     [segmentedControl1 addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     [_MainScrollView addSubview:segmentedControl1];
+    [self segmentedControlChangedValue:segmentedControl1];
     
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewAddedWithResponce) name:AddViewNotification object:nil];
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewDeletedWithResponceWithObject:) name:DeleteViewNotification object:nil];
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextfiledStartEditingNotificationWithObject:) name:TextfiledStartEditingNotification object:nil];
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextfiledEndEditingNotificationWithObject:) name:TextfiledEndEditingNotification object:nil];
+    
+    scrollViewBasicHeight   = _MainScrollView.contentSize.height;
+    saveButtonYposition     = SaveButton.frame.origin.y;
 }
 
 #pragma mark - Segment Control Delegate
 
-- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
-    NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl{
+
+    switch (segmentedControl.selectedSegmentIndex)
+    {
+        case 0:
+            _Weakdaytype = weakdaytypesunday;
+            break;
+        case 1:
+            _Weakdaytype = weakdaytypemonday;
+            break;
+        case 2:
+            _Weakdaytype = weakdaytypetuesday;
+            break;
+        case 3:
+            _Weakdaytype = weakdaytypewednesday;
+            break;
+        case 4:
+            _Weakdaytype = weakdaytypethirsday;
+            break;
+        case 5:
+            _Weakdaytype = weakdaytypefriday;
+            break;
+        case 6:
+            _Weakdaytype = weakdaytypesaturday;
+            break;
+    }
+    
+    for (id AllsubView in [_MainScrollView subviews])
+    {
+        if ([AllsubView isKindOfClass:[AddMoreView class]])
+        {
+            [AllsubView removeFromSuperview];
+            [_MainScrollView setContentSize:CGSizeMake(_MainScrollView.frame.size.width,_MainScrollView.contentSize.height-AddmoreViewHeight)];
+        }
+    }
+    
+    SaveButton.frame     = CGRectMake(10, _MainScrollView.frame.size.height-50, _MainScrollView.frame.size.width-20, 40);
+    
+    //NSLog(@"[[_GlobalTagArray objectAtIndex:_Weakdaytype] count ===== %lu",(unsigned long)[[_GlobalTagArray objectAtIndex:_Weakdaytype] count]);
+    
+    if ([[_GlobalTagArray objectAtIndex:_Weakdaytype] count]>0)
+    {
+        for (int rr = 0 ; rr<[[_GlobalTagArray objectAtIndex:_Weakdaytype] count]; rr++)
+        {
+            [_MainScrollView setContentSize:CGSizeMake(_MainScrollView.frame.size.width,_MainScrollView.contentSize.height+AddmoreViewHeight)];
+            
+            NSMutableArray *DataObjectArray = [_GlobalTagArray objectAtIndex:_Weakdaytype];
+            
+            _AditionType = aditionTypeSegment;
+            
+            AddMoreView *moreView = [[AddMoreView alloc] initWithFrame:CGRectMake(0, _MainScrollView.contentSize.height-(AddmoreViewHeight+45), _MainScrollView.contentSize.width, AddmoreViewHeight-15) WithTag:[[DataObjectArray objectAtIndex:rr] intValue] WithDeleteButtonTag:(int)DeleteButtonAddTag WithSelecter:@selector(deletedata:)];
+            [_MainScrollView addSubview:moreView];
+            
+            CGRect frame         = SaveButton.frame;
+            frame.origin.y       = frame.origin.y+AddmoreViewHeight;
+            SaveButton.frame     = frame;
+        }
+    }
 }
 
 - (void)uisegmentedControlChangedValue:(UISegmentedControl *)segmentedControl {
@@ -129,9 +202,36 @@ int addMoreViewTag = (int)AddmoreViewTag;
     }
 }
 
+-(void)deletedataWithTag:(int)TagVal
+{
+    _Buttonrepostiontype = buttonrepostiontypeup;
+    
+    //NSLog(@"ObjectArray after deletion %@",_GlobalTagArray);
+    
+    for (id AllsubView in [_MainScrollView subviews])
+    {
+        if ([AllsubView isKindOfClass:[AddMoreView class]])
+        {
+            AddMoreView *AddmoreView = (AddMoreView *)AllsubView;
+            if ((int)AddmoreView.tag > TagVal)
+            {
+                CGRect frame        = AddmoreView.frame;
+                frame.origin.y      = frame.origin.y-AddmoreViewHeight;
+                AddmoreView.frame   = frame;
+            }
+        }
+    }
+    [self RepositioningScroollView];
+}
+
 -(void)deletedata:(UIButton *)Selecter
 {
     _Buttonrepostiontype = buttonrepostiontypeup;
+    
+    NSMutableArray *ObjectArray = [_GlobalTagArray objectAtIndex:_Weakdaytype];
+    [ObjectArray removeObject:[NSString stringWithFormat:@"%d",(int)Selecter.tag-(int)DeleteButtonAddTag]];
+    
+    //NSLog(@"ObjectArray after deletion %@",_GlobalTagArray);
     
     for (id AllsubView in [_MainScrollView subviews])
     {
@@ -179,27 +279,36 @@ int addMoreViewTag = (int)AddmoreViewTag;
 
 -(void)ViewAddedWithResponce
 {
-    addMoreViewTag = addMoreViewTag +1;
+    if (_AditionType == aditionTypenormal) {
+        
+        NSMutableArray *ObjectArray = [_GlobalTagArray objectAtIndex:_Weakdaytype];
+        [ObjectArray addObject:[NSString stringWithFormat:@"%d",addMoreViewTag]];
+        
+       // NSLog(@"ObjectArray after addition %@",_GlobalTagArray);
+        
+        addMoreViewTag = addMoreViewTag +1;
+    } else {
+        _AditionType = aditionTypenormal;
+    }
 }
 
 -(void)ViewDeletedWithResponceWithObject:(NSNotification*)Obj
 {
     UIButton *ObjectButton = (UIButton *)Obj.object;
     [self deletedata:ObjectButton];
-    
 }
 
 -(void)TextfiledStartEditingNotificationWithObject:(NSNotification*)Obj
 {
     AddMoreView *AddmoreView = (AddMoreView *)[_MainScrollView viewWithTag:[Obj.object intValue]];
-    NSLog(@"AddmoreView.frame.origin.y === %f",AddmoreView.frame.origin.y);
+//    NSLog(@"AddmoreView.frame.origin.y === %f",AddmoreView.frame.origin.y);
     [UIView animateWithDuration:1.2 animations:^{_MainScrollView.contentOffset = CGPointMake(0, AddmoreView.frame.origin.y);}];
 }
 
 -(void)TextfiledEndEditingNotificationWithObject:(NSNotification*)Obj
 {
     AddMoreView *AddmoreView = (AddMoreView *)[_MainScrollView viewWithTag:[Obj.object intValue]];
-    NSLog(@"AddmoreView.frame.origin.y === %f",AddmoreView.frame.origin.y);
+//    NSLog(@"AddmoreView.frame.origin.y === %f",AddmoreView.frame.origin.y);
     [UIView animateWithDuration:1.2 animations:^{_MainScrollView.contentOffset = CGPointMake(0, AddmoreView.frame.origin.y-500);}];
 }
 
