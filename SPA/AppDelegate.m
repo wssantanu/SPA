@@ -13,6 +13,7 @@
 #import "DEMONavigationController.h"
 #import "DEMOHomeViewController.h"
 #import "DEMOMenuViewController.h"
+#import "AddClassViewController.h"
 
 @interface AppDelegate ()
 
@@ -81,7 +82,7 @@
 {
     // Create content and menu controllers
     //
-    DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[DEMOHomeViewController alloc] init]];
+    DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[AddClassViewController alloc] init]];
     DEMOMenuViewController *menuController = [[DEMOMenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
     // Create frosted view controller
