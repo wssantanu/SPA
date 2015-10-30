@@ -121,11 +121,7 @@ bool IscolorPickerVisiable = NO;
             NSLog(@"color ===> %@",[self hexStringFromColor:color]);
             [_ColorView setBackgroundColor:color];
             
-        } completion:^(BOOL finished){
-            
-           // [_colorPickerView setHidden:YES];
-           // IscolorPickerVisiable = NO;
-        }];
+        } completion:nil];
     };
     
     _colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(80, _MainScrollView.frame.origin.y+100, _MainScrollView.contentSize.width, 340) color:[UIColor blueColor] andDidChangeColorBlock:colorDidChangeBlock];
