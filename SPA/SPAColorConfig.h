@@ -10,4 +10,22 @@
 
 @interface SPAColorConfig : NSObject
 
+/*
+ Color White
+ */
+@property (nonatomic,retain) NSString *SPAWhite;
+/*
+ Color Black
+ */
+@property (nonatomic,retain) NSString *SPABlack;
+/*
+ Color Yellow
+ */
+@property (nonatomic,retain) NSString *SPAYellow;
+/*
+ Color Green
+ */
+@property (nonatomic,retain) NSString *SPAGreen;
+
++ (SPAColorConfig *)config;
 @end

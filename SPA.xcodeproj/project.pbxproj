@@ -54,6 +54,57 @@
 		9B6A68DF1BCBFCBA00C284CB /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68DE1BCBFCBA00C284CB /* UserDetails.m */; };
 		9B6A68E21BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68E11BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m */; };
 		9B6A68E51BCC02D600C284CB /* CommonReturns.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68E41BCC02D600C284CB /* CommonReturns.m */; };
+		9B8C3A901BE9E84800BABA05 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3A8F1BE9E84800BABA05 /* BaseViewController.m */; };
+		9B8C3A941BE9EC1D00BABA05 /* AddScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3A921BE9EC1D00BABA05 /* AddScheduleViewController.m */; };
+		9B8C3A951BE9EC1D00BABA05 /* AddScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3A931BE9EC1D00BABA05 /* AddScheduleViewController.xib */; };
+		9B8C3A9A1BE9ED6A00BABA05 /* TaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3A981BE9ED6A00BABA05 /* TaskListViewController.m */; };
+		9B8C3A9B1BE9ED6A00BABA05 /* TaskListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3A991BE9ED6A00BABA05 /* TaskListViewController.xib */; };
+		9B8C3A9F1BE9ED7900BABA05 /* AddTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3A9D1BE9ED7900BABA05 /* AddTaskViewController.m */; };
+		9B8C3AA01BE9ED7900BABA05 /* AddTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3A9E1BE9ED7900BABA05 /* AddTaskViewController.xib */; };
+		9B8C3AA51BEA0FA100BABA05 /* AgendaListDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3AA31BEA0FA100BABA05 /* AgendaListDayViewController.m */; };
+		9B8C3AA61BEA0FA100BABA05 /* AgendaListDayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3AA41BEA0FA100BABA05 /* AgendaListDayViewController.xib */; };
+		9B8C3AAA1BEA0FBE00BABA05 /* AgendaListFiveDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3AA81BEA0FBE00BABA05 /* AgendaListFiveDayViewController.m */; };
+		9B8C3AAB1BEA0FBE00BABA05 /* AgendaListFiveDayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3AA91BEA0FBE00BABA05 /* AgendaListFiveDayViewController.xib */; };
+		9B8C3AAF1BEA0FCE00BABA05 /* AgendaListMonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3AAD1BEA0FCE00BABA05 /* AgendaListMonthViewController.m */; };
+		9B8C3AB01BEA0FCE00BABA05 /* AgendaListMonthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3AAE1BEA0FCE00BABA05 /* AgendaListMonthViewController.xib */; };
+		9B8C3AB51BEA131D00BABA05 /* MaterialsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3AB31BEA131D00BABA05 /* MaterialsListViewController.m */; };
+		9B8C3AB61BEA131D00BABA05 /* MaterialsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3AB41BEA131D00BABA05 /* MaterialsListViewController.xib */; };
+		9B8C3ABB1BEA133A00BABA05 /* StudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3AB91BEA133A00BABA05 /* StudentsViewController.m */; };
+		9B8C3ABC1BEA133A00BABA05 /* StudentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3ABA1BEA133A00BABA05 /* StudentsViewController.xib */; };
+		9B8C3AC11BEA135800BABA05 /* AlertStudentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3ABF1BEA135800BABA05 /* AlertStudentsViewController.m */; };
+		9B8C3AC21BEA135800BABA05 /* AlertStudentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3AC01BEA135800BABA05 /* AlertStudentsViewController.xib */; };
+		9B8C3AC71BEA13A000BABA05 /* ClassInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3AC51BEA13A000BABA05 /* ClassInfoViewController.m */; };
+		9B8C3AC81BEA13A000BABA05 /* ClassInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3AC61BEA13A000BABA05 /* ClassInfoViewController.xib */; };
+		9B8C3ACD1BEA140600BABA05 /* ClassTasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3ACB1BEA140600BABA05 /* ClassTasksViewController.m */; };
+		9B8C3ACE1BEA140600BABA05 /* ClassTasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3ACC1BEA140600BABA05 /* ClassTasksViewController.xib */; };
+		9B8C63521BE7C2C50049705B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C63511BE7C2C50049705B /* AVFoundation.framework */; };
+		9B8C63541BE7C2CC0049705B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C63531BE7C2CC0049705B /* QuartzCore.framework */; };
+		9B8C63561BE7C2EE0049705B /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C63551BE7C2EE0049705B /* PEPhotoCropEditor.bundle */; };
+		9B8C63611BE7C2F60049705B /* PECropViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C63581BE7C2F60049705B /* PECropViewController.m */; };
+		9B8C63621BE7C2F60049705B /* PECropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C635A1BE7C2F60049705B /* PECropView.m */; };
+		9B8C63631BE7C2F60049705B /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C635C1BE7C2F60049705B /* PECropRectView.m */; };
+		9B8C63641BE7C2F60049705B /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C635E1BE7C2F60049705B /* PEResizeControl.m */; };
+		9B8C63651BE7C2F60049705B /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C63601BE7C2F60049705B /* UIImage+PECrop.m */; };
+		9BAAD1991BE892480006C209 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1971BE892480006C209 /* EditProfileViewController.m */; };
+		9BAAD19A1BE892480006C209 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BAAD1981BE892480006C209 /* EditProfileViewController.xib */; };
+		9BAAD19E1BE8F8F00006C209 /* ClassListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD19C1BE8F8F00006C209 /* ClassListTableViewCell.m */; };
+		9BAAD19F1BE8F8F00006C209 /* ClassListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BAAD19D1BE8F8F00006C209 /* ClassListTableViewCell.xib */; };
+		9BAAD1A51BE905EC0006C209 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1A31BE905EC0006C209 /* ScheduleViewController.m */; };
+		9BAAD1A61BE905EC0006C209 /* ScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BAAD1A41BE905EC0006C209 /* ScheduleViewController.xib */; };
+		9BAAD1BD1BE90B550006C209 /* KalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1AD1BE90B550006C209 /* KalDataSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BAAD1BE1BE90B550006C209 /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1AF1BE90B550006C209 /* KalDate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BAAD1BF1BE90B550006C209 /* KalGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1B11BE90B550006C209 /* KalGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BAAD1C01BE90B550006C209 /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1B31BE90B550006C209 /* KalLogic.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BAAD1C11BE90B550006C209 /* KalMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1B51BE90B550006C209 /* KalMonthView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BAAD1C21BE90B550006C209 /* KalTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1B81BE90B550006C209 /* KalTileView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BAAD1C31BE90B550006C209 /* KalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1BA1BE90B550006C209 /* KalView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BAAD1C41BE90B550006C209 /* KalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1BC1BE90B550006C209 /* KalViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BAAD1C61BE90B600006C209 /* Kal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9BAAD1C51BE90B600006C209 /* Kal.bundle */; };
+		9BAAD1CB1BE90B690006C209 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1C81BE90B690006C209 /* NSDateAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BAAD1CC1BE90B690006C209 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1CA1BE90B690006C209 /* UIViewAdditions.m */; };
+		9BAAD1CF1BE90B8D0006C209 /* EventKitDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1CE1BE90B8D0006C209 /* EventKitDataSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9BAAD1D11BE90C030006C209 /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BAAD1D01BE90C030006C209 /* EventKitUI.framework */; };
+		9BAAD1D31BE90C080006C209 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BAAD1D21BE90C080006C209 /* EventKit.framework */; };
 		9BAD64671BD5083700FF65C1 /* ForgetPasswordControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAD64651BD5083700FF65C1 /* ForgetPasswordControllerViewController.m */; };
 		9BAD64681BD5083700FF65C1 /* ForgetPasswordControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BAD64661BD5083700FF65C1 /* ForgetPasswordControllerViewController.xib */; };
 		9BAD646A1BD50F9000FF65C1 /* ParametersConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9BAD64691BD50F9000FF65C1 /* ParametersConfig.plist */; };
@@ -193,6 +244,90 @@
 		9B6A68E11BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+STTwitter.m"; sourceTree = "<group>"; };
 		9B6A68E31BCC02D600C284CB /* CommonReturns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonReturns.h; sourceTree = "<group>"; };
 		9B6A68E41BCC02D600C284CB /* CommonReturns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonReturns.m; sourceTree = "<group>"; };
+		9B8C3A8E1BE9E84800BABA05 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		9B8C3A8F1BE9E84800BABA05 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		9B8C3A911BE9EC1D00BABA05 /* AddScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddScheduleViewController.h; sourceTree = "<group>"; };
+		9B8C3A921BE9EC1D00BABA05 /* AddScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddScheduleViewController.m; sourceTree = "<group>"; };
+		9B8C3A931BE9EC1D00BABA05 /* AddScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddScheduleViewController.xib; sourceTree = "<group>"; };
+		9B8C3A971BE9ED6A00BABA05 /* TaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListViewController.h; sourceTree = "<group>"; };
+		9B8C3A981BE9ED6A00BABA05 /* TaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListViewController.m; sourceTree = "<group>"; };
+		9B8C3A991BE9ED6A00BABA05 /* TaskListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskListViewController.xib; sourceTree = "<group>"; };
+		9B8C3A9C1BE9ED7900BABA05 /* AddTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTaskViewController.h; sourceTree = "<group>"; };
+		9B8C3A9D1BE9ED7900BABA05 /* AddTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTaskViewController.m; sourceTree = "<group>"; };
+		9B8C3A9E1BE9ED7900BABA05 /* AddTaskViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTaskViewController.xib; sourceTree = "<group>"; };
+		9B8C3AA21BEA0FA100BABA05 /* AgendaListDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaListDayViewController.h; sourceTree = "<group>"; };
+		9B8C3AA31BEA0FA100BABA05 /* AgendaListDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaListDayViewController.m; sourceTree = "<group>"; };
+		9B8C3AA41BEA0FA100BABA05 /* AgendaListDayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AgendaListDayViewController.xib; sourceTree = "<group>"; };
+		9B8C3AA71BEA0FBE00BABA05 /* AgendaListFiveDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaListFiveDayViewController.h; sourceTree = "<group>"; };
+		9B8C3AA81BEA0FBE00BABA05 /* AgendaListFiveDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaListFiveDayViewController.m; sourceTree = "<group>"; };
+		9B8C3AA91BEA0FBE00BABA05 /* AgendaListFiveDayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AgendaListFiveDayViewController.xib; sourceTree = "<group>"; };
+		9B8C3AAC1BEA0FCE00BABA05 /* AgendaListMonthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaListMonthViewController.h; sourceTree = "<group>"; };
+		9B8C3AAD1BEA0FCE00BABA05 /* AgendaListMonthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaListMonthViewController.m; sourceTree = "<group>"; };
+		9B8C3AAE1BEA0FCE00BABA05 /* AgendaListMonthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AgendaListMonthViewController.xib; sourceTree = "<group>"; };
+		9B8C3AB21BEA131D00BABA05 /* MaterialsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaterialsListViewController.h; sourceTree = "<group>"; };
+		9B8C3AB31BEA131D00BABA05 /* MaterialsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaterialsListViewController.m; sourceTree = "<group>"; };
+		9B8C3AB41BEA131D00BABA05 /* MaterialsListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaterialsListViewController.xib; sourceTree = "<group>"; };
+		9B8C3AB81BEA133A00BABA05 /* StudentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsViewController.h; sourceTree = "<group>"; };
+		9B8C3AB91BEA133A00BABA05 /* StudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsViewController.m; sourceTree = "<group>"; };
+		9B8C3ABA1BEA133A00BABA05 /* StudentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudentsViewController.xib; sourceTree = "<group>"; };
+		9B8C3ABE1BEA135800BABA05 /* AlertStudentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertStudentsViewController.h; sourceTree = "<group>"; };
+		9B8C3ABF1BEA135800BABA05 /* AlertStudentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertStudentsViewController.m; sourceTree = "<group>"; };
+		9B8C3AC01BEA135800BABA05 /* AlertStudentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertStudentsViewController.xib; sourceTree = "<group>"; };
+		9B8C3AC41BEA13A000BABA05 /* ClassInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassInfoViewController.h; sourceTree = "<group>"; };
+		9B8C3AC51BEA13A000BABA05 /* ClassInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassInfoViewController.m; sourceTree = "<group>"; };
+		9B8C3AC61BEA13A000BABA05 /* ClassInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassInfoViewController.xib; sourceTree = "<group>"; };
+		9B8C3ACA1BEA140600BABA05 /* ClassTasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassTasksViewController.h; sourceTree = "<group>"; };
+		9B8C3ACB1BEA140600BABA05 /* ClassTasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassTasksViewController.m; sourceTree = "<group>"; };
+		9B8C3ACC1BEA140600BABA05 /* ClassTasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassTasksViewController.xib; sourceTree = "<group>"; };
+		9B8C63511BE7C2C50049705B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9B8C63531BE7C2CC0049705B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		9B8C63551BE7C2EE0049705B /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PEPhotoCropEditor.bundle; sourceTree = "<group>"; };
+		9B8C63571BE7C2F60049705B /* PECropViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropViewController.h; sourceTree = "<group>"; };
+		9B8C63581BE7C2F60049705B /* PECropViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropViewController.m; sourceTree = "<group>"; };
+		9B8C63591BE7C2F60049705B /* PECropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropView.h; sourceTree = "<group>"; };
+		9B8C635A1BE7C2F60049705B /* PECropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropView.m; sourceTree = "<group>"; };
+		9B8C635B1BE7C2F60049705B /* PECropRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PECropRectView.h; sourceTree = "<group>"; };
+		9B8C635C1BE7C2F60049705B /* PECropRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PECropRectView.m; sourceTree = "<group>"; };
+		9B8C635D1BE7C2F60049705B /* PEResizeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PEResizeControl.h; sourceTree = "<group>"; };
+		9B8C635E1BE7C2F60049705B /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEResizeControl.m; sourceTree = "<group>"; };
+		9B8C635F1BE7C2F60049705B /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
+		9B8C63601BE7C2F60049705B /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PECrop.m"; sourceTree = "<group>"; };
+		9BAAD1961BE892480006C209 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		9BAAD1971BE892480006C209 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		9BAAD1981BE892480006C209 /* EditProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
+		9BAAD19B1BE8F8F00006C209 /* ClassListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassListTableViewCell.h; sourceTree = "<group>"; };
+		9BAAD19C1BE8F8F00006C209 /* ClassListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassListTableViewCell.m; sourceTree = "<group>"; };
+		9BAAD19D1BE8F8F00006C209 /* ClassListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassListTableViewCell.xib; sourceTree = "<group>"; };
+		9BAAD1A21BE905EC0006C209 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		9BAAD1A31BE905EC0006C209 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		9BAAD1A41BE905EC0006C209 /* ScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleViewController.xib; sourceTree = "<group>"; };
+		9BAAD1AB1BE90B550006C209 /* Kal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kal.h; sourceTree = "<group>"; };
+		9BAAD1AC1BE90B550006C209 /* KalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDataSource.h; sourceTree = "<group>"; };
+		9BAAD1AD1BE90B550006C209 /* KalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDataSource.m; sourceTree = "<group>"; };
+		9BAAD1AE1BE90B550006C209 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
+		9BAAD1AF1BE90B550006C209 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
+		9BAAD1B01BE90B550006C209 /* KalGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalGridView.h; sourceTree = "<group>"; };
+		9BAAD1B11BE90B550006C209 /* KalGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalGridView.m; sourceTree = "<group>"; };
+		9BAAD1B21BE90B550006C209 /* KalLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalLogic.h; sourceTree = "<group>"; };
+		9BAAD1B31BE90B550006C209 /* KalLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalLogic.m; sourceTree = "<group>"; };
+		9BAAD1B41BE90B550006C209 /* KalMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalMonthView.h; sourceTree = "<group>"; };
+		9BAAD1B51BE90B550006C209 /* KalMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalMonthView.m; sourceTree = "<group>"; };
+		9BAAD1B61BE90B550006C209 /* KalPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalPrivate.h; sourceTree = "<group>"; };
+		9BAAD1B71BE90B550006C209 /* KalTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalTileView.h; sourceTree = "<group>"; };
+		9BAAD1B81BE90B550006C209 /* KalTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalTileView.m; sourceTree = "<group>"; };
+		9BAAD1B91BE90B550006C209 /* KalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalView.h; sourceTree = "<group>"; };
+		9BAAD1BA1BE90B550006C209 /* KalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalView.m; sourceTree = "<group>"; };
+		9BAAD1BB1BE90B550006C209 /* KalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalViewController.h; sourceTree = "<group>"; };
+		9BAAD1BC1BE90B550006C209 /* KalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalViewController.m; sourceTree = "<group>"; };
+		9BAAD1C51BE90B600006C209 /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kal.bundle; sourceTree = "<group>"; };
+		9BAAD1C71BE90B690006C209 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateAdditions.h; sourceTree = "<group>"; };
+		9BAAD1C81BE90B690006C209 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
+		9BAAD1C91BE90B690006C209 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
+		9BAAD1CA1BE90B690006C209 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
+		9BAAD1CD1BE90B8D0006C209 /* EventKitDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventKitDataSource.h; sourceTree = "<group>"; };
+		9BAAD1CE1BE90B8D0006C209 /* EventKitDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventKitDataSource.m; sourceTree = "<group>"; };
+		9BAAD1D01BE90C030006C209 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
+		9BAAD1D21BE90C080006C209 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		9BAD64641BD5083700FF65C1 /* ForgetPasswordControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordControllerViewController.h; sourceTree = "<group>"; };
 		9BAD64651BD5083700FF65C1 /* ForgetPasswordControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordControllerViewController.m; sourceTree = "<group>"; };
 		9BAD64661BD5083700FF65C1 /* ForgetPasswordControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPasswordControllerViewController.xib; sourceTree = "<group>"; };
@@ -265,12 +400,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BAAD1D31BE90C080006C209 /* EventKit.framework in Frameworks */,
+				9BAAD1D11BE90C030006C209 /* EventKitUI.framework in Frameworks */,
+				9B6A68681BCBD82700C284CB /* CoreGraphics.framework in Frameworks */,
+				9B8C63541BE7C2CC0049705B /* QuartzCore.framework in Frameworks */,
+				9B8C63521BE7C2C50049705B /* AVFoundation.framework in Frameworks */,
 				9B6A68721BCBD84F00C284CB /* SystemConfiguration.framework in Frameworks */,
 				9B6A68701BCBD84600C284CB /* Security.framework in Frameworks */,
 				9B6A686E1BCBD84000C284CB /* MobileCoreServices.framework in Frameworks */,
 				9B6A686B1BCBD83600C284CB /* CoreFoundation.framework in Frameworks */,
 				9B6A686C1BCBD83600C284CB /* Foundation.framework in Frameworks */,
-				9B6A68681BCBD82700C284CB /* CoreGraphics.framework in Frameworks */,
 				5007383DA4A5FAE9EDEF0911 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +427,10 @@
 		016D2C10D222CF6E1F108891 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9BAAD1D21BE90C080006C209 /* EventKit.framework */,
+				9BAAD1D01BE90C030006C209 /* EventKitUI.framework */,
+				9B8C63531BE7C2CC0049705B /* QuartzCore.framework */,
+				9B8C63511BE7C2C50049705B /* AVFoundation.framework */,
 				9B6A68711BCBD84F00C284CB /* SystemConfiguration.framework */,
 				9B6A686F1BCBD84600C284CB /* Security.framework */,
 				9B6A686D1BCBD84000C284CB /* MobileCoreServices.framework */,
@@ -331,6 +474,31 @@
 		9B5897971BC7DBD8000AD6B3 /* SPA */ = {
 			isa = PBXGroup;
 			children = (
+				9BAAD1C71BE90B690006C209 /* NSDateAdditions.h */,
+				9BAAD1C81BE90B690006C209 /* NSDateAdditions.m */,
+				9BAAD1C91BE90B690006C209 /* UIViewAdditions.h */,
+				9BAAD1CD1BE90B8D0006C209 /* EventKitDataSource.h */,
+				9BAAD1CE1BE90B8D0006C209 /* EventKitDataSource.m */,
+				9BAAD1CA1BE90B690006C209 /* UIViewAdditions.m */,
+				9BAAD1C51BE90B600006C209 /* Kal.bundle */,
+				9BAAD1AB1BE90B550006C209 /* Kal.h */,
+				9BAAD1AC1BE90B550006C209 /* KalDataSource.h */,
+				9BAAD1AD1BE90B550006C209 /* KalDataSource.m */,
+				9BAAD1AE1BE90B550006C209 /* KalDate.h */,
+				9BAAD1AF1BE90B550006C209 /* KalDate.m */,
+				9BAAD1B01BE90B550006C209 /* KalGridView.h */,
+				9BAAD1B11BE90B550006C209 /* KalGridView.m */,
+				9BAAD1B21BE90B550006C209 /* KalLogic.h */,
+				9BAAD1B31BE90B550006C209 /* KalLogic.m */,
+				9BAAD1B41BE90B550006C209 /* KalMonthView.h */,
+				9BAAD1B51BE90B550006C209 /* KalMonthView.m */,
+				9BAAD1B61BE90B550006C209 /* KalPrivate.h */,
+				9BAAD1B71BE90B550006C209 /* KalTileView.h */,
+				9BAAD1B81BE90B550006C209 /* KalTileView.m */,
+				9BAAD1B91BE90B550006C209 /* KalView.h */,
+				9BAAD1BA1BE90B550006C209 /* KalView.m */,
+				9BAAD1BB1BE90B550006C209 /* KalViewController.h */,
+				9BAAD1BC1BE90B550006C209 /* KalViewController.m */,
 				9BBBFC971BE3583200BBC6EF /* ColorPicker */,
 				9BAD9EC61BE0CDDB004E6C7C /* REFrostedViewController */,
 				9BAD9EB81BE0CDC8004E6C7C /* Fonts */,
@@ -498,6 +666,14 @@
 		9B6A68C71BCBF07600C284CB /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				9B8C3AC91BEA13F600BABA05 /* Class Tasks */,
+				9B8C3AC31BEA138C00BABA05 /* Class Info */,
+				9B8C3ABD1BEA134500BABA05 /* Alert Students */,
+				9B8C3AB71BEA132500BABA05 /* Students */,
+				9B8C3AB11BEA130A00BABA05 /* Materials */,
+				9B8C3AA11BEA0F8600BABA05 /* Agenda */,
+				9B8C3A961BE9ED5B00BABA05 /* Task */,
+				9BAAD1A11BE905CE0006C209 /* Schedule */,
 				9BBBFC8A1BE353D700BBC6EF /* Class */,
 				9B6A68D61BCBF33C00C284CB /* ForgetPasswordController */,
 				9B6A68D51BCBF33200C284CB /* SignupController */,
@@ -593,6 +769,110 @@
 			name = ForgetPasswordController;
 			sourceTree = "<group>";
 		};
+		9B8C3A961BE9ED5B00BABA05 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				9B8C3A971BE9ED6A00BABA05 /* TaskListViewController.h */,
+				9B8C3A981BE9ED6A00BABA05 /* TaskListViewController.m */,
+				9B8C3A991BE9ED6A00BABA05 /* TaskListViewController.xib */,
+				9B8C3A9C1BE9ED7900BABA05 /* AddTaskViewController.h */,
+				9B8C3A9D1BE9ED7900BABA05 /* AddTaskViewController.m */,
+				9B8C3A9E1BE9ED7900BABA05 /* AddTaskViewController.xib */,
+			);
+			name = Task;
+			sourceTree = "<group>";
+		};
+		9B8C3AA11BEA0F8600BABA05 /* Agenda */ = {
+			isa = PBXGroup;
+			children = (
+				9B8C3AA21BEA0FA100BABA05 /* AgendaListDayViewController.h */,
+				9B8C3AA31BEA0FA100BABA05 /* AgendaListDayViewController.m */,
+				9B8C3AA41BEA0FA100BABA05 /* AgendaListDayViewController.xib */,
+				9B8C3AA71BEA0FBE00BABA05 /* AgendaListFiveDayViewController.h */,
+				9B8C3AA81BEA0FBE00BABA05 /* AgendaListFiveDayViewController.m */,
+				9B8C3AA91BEA0FBE00BABA05 /* AgendaListFiveDayViewController.xib */,
+				9B8C3AAC1BEA0FCE00BABA05 /* AgendaListMonthViewController.h */,
+				9B8C3AAD1BEA0FCE00BABA05 /* AgendaListMonthViewController.m */,
+				9B8C3AAE1BEA0FCE00BABA05 /* AgendaListMonthViewController.xib */,
+			);
+			name = Agenda;
+			sourceTree = "<group>";
+		};
+		9B8C3AB11BEA130A00BABA05 /* Materials */ = {
+			isa = PBXGroup;
+			children = (
+				9B8C3AB21BEA131D00BABA05 /* MaterialsListViewController.h */,
+				9B8C3AB31BEA131D00BABA05 /* MaterialsListViewController.m */,
+				9B8C3AB41BEA131D00BABA05 /* MaterialsListViewController.xib */,
+			);
+			name = Materials;
+			sourceTree = "<group>";
+		};
+		9B8C3AB71BEA132500BABA05 /* Students */ = {
+			isa = PBXGroup;
+			children = (
+				9B8C3AB81BEA133A00BABA05 /* StudentsViewController.h */,
+				9B8C3AB91BEA133A00BABA05 /* StudentsViewController.m */,
+				9B8C3ABA1BEA133A00BABA05 /* StudentsViewController.xib */,
+			);
+			name = Students;
+			sourceTree = "<group>";
+		};
+		9B8C3ABD1BEA134500BABA05 /* Alert Students */ = {
+			isa = PBXGroup;
+			children = (
+				9B8C3ABE1BEA135800BABA05 /* AlertStudentsViewController.h */,
+				9B8C3ABF1BEA135800BABA05 /* AlertStudentsViewController.m */,
+				9B8C3AC01BEA135800BABA05 /* AlertStudentsViewController.xib */,
+			);
+			name = "Alert Students";
+			sourceTree = "<group>";
+		};
+		9B8C3AC31BEA138C00BABA05 /* Class Info */ = {
+			isa = PBXGroup;
+			children = (
+				9B8C3AC41BEA13A000BABA05 /* ClassInfoViewController.h */,
+				9B8C3AC51BEA13A000BABA05 /* ClassInfoViewController.m */,
+				9B8C3AC61BEA13A000BABA05 /* ClassInfoViewController.xib */,
+			);
+			name = "Class Info";
+			sourceTree = "<group>";
+		};
+		9B8C3AC91BEA13F600BABA05 /* Class Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				9B8C3ACA1BEA140600BABA05 /* ClassTasksViewController.h */,
+				9B8C3ACB1BEA140600BABA05 /* ClassTasksViewController.m */,
+				9B8C3ACC1BEA140600BABA05 /* ClassTasksViewController.xib */,
+			);
+			name = "Class Tasks";
+			sourceTree = "<group>";
+		};
+		9BAAD1951BE892360006C209 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				9BAAD1961BE892480006C209 /* EditProfileViewController.h */,
+				9BAAD1971BE892480006C209 /* EditProfileViewController.m */,
+				9BAAD1981BE892480006C209 /* EditProfileViewController.xib */,
+			);
+			name = EditProfile;
+			sourceTree = "<group>";
+		};
+		9BAAD1A11BE905CE0006C209 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				9BAAD1A21BE905EC0006C209 /* ScheduleViewController.h */,
+				9BAAD1A31BE905EC0006C209 /* ScheduleViewController.m */,
+				9BAAD1A41BE905EC0006C209 /* ScheduleViewController.xib */,
+				9B8C3A8E1BE9E84800BABA05 /* BaseViewController.h */,
+				9B8C3A8F1BE9E84800BABA05 /* BaseViewController.m */,
+				9B8C3A911BE9EC1D00BABA05 /* AddScheduleViewController.h */,
+				9B8C3A921BE9EC1D00BABA05 /* AddScheduleViewController.m */,
+				9B8C3A931BE9EC1D00BABA05 /* AddScheduleViewController.xib */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
 		9BAD9EB81BE0CDC8004E6C7C /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +928,7 @@
 		9BBBFC8A1BE353D700BBC6EF /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				9BAAD1951BE892360006C209 /* EditProfile */,
 				9BBBFC961BE3541E00BBC6EF /* AddClass */,
 				9BBBFC951BE3540F00BBC6EF /* ClassList */,
 			);
@@ -659,6 +940,9 @@
 			children = (
 				9BBBFC8B1BE353F100BBC6EF /* ClassListViewController.h */,
 				9BBBFC8C1BE353F100BBC6EF /* ClassListViewController.m */,
+				9BAAD19B1BE8F8F00006C209 /* ClassListTableViewCell.h */,
+				9BAAD19C1BE8F8F00006C209 /* ClassListTableViewCell.m */,
+				9BAAD19D1BE8F8F00006C209 /* ClassListTableViewCell.xib */,
 				9BBBFC8D1BE353F100BBC6EF /* ClassListViewController.xib */,
 			);
 			name = ClassList;
@@ -677,6 +961,17 @@
 		9BBBFC971BE3583200BBC6EF /* ColorPicker */ = {
 			isa = PBXGroup;
 			children = (
+				9B8C63571BE7C2F60049705B /* PECropViewController.h */,
+				9B8C63581BE7C2F60049705B /* PECropViewController.m */,
+				9B8C63591BE7C2F60049705B /* PECropView.h */,
+				9B8C635A1BE7C2F60049705B /* PECropView.m */,
+				9B8C635B1BE7C2F60049705B /* PECropRectView.h */,
+				9B8C635C1BE7C2F60049705B /* PECropRectView.m */,
+				9B8C635D1BE7C2F60049705B /* PEResizeControl.h */,
+				9B8C635E1BE7C2F60049705B /* PEResizeControl.m */,
+				9B8C635F1BE7C2F60049705B /* UIImage+PECrop.h */,
+				9B8C63601BE7C2F60049705B /* UIImage+PECrop.m */,
+				9B8C63551BE7C2EE0049705B /* PEPhotoCropEditor.bundle */,
 				9BBBFC9E1BE3584A00BBC6EF /* NKOColorPickerView.h */,
 				9BBBFC9F1BE3584A00BBC6EF /* NKOColorPickerView.m */,
 				9BBBFC981BE3584200BBC6EF /* nko_brightness_guide.png */,
@@ -782,22 +1077,38 @@
 				9BAD9EF61BE0CEB8004E6C7C /* MyriadPro-SemiboldIt.otf in Resources */,
 				9BAD9EF71BE0CEB8004E6C7C /* Roboto-Bold_0.ttf in Resources */,
 				9BAD9EF81BE0CEB8004E6C7C /* Roboto-Medium_0.ttf in Resources */,
+				9B8C3AA61BEA0FA100BABA05 /* AgendaListDayViewController.xib in Resources */,
+				9B8C3AA01BE9ED7900BABA05 /* AddTaskViewController.xib in Resources */,
+				9B8C3AAB1BEA0FBE00BABA05 /* AgendaListFiveDayViewController.xib in Resources */,
+				9B8C3A9B1BE9ED6A00BABA05 /* TaskListViewController.xib in Resources */,
+				9B8C3AB61BEA131D00BABA05 /* MaterialsListViewController.xib in Resources */,
 				9BAD9EF91BE0CEB8004E6C7C /* Roboto-Regular_0.ttf in Resources */,
+				9B8C3AC21BEA135800BABA05 /* AlertStudentsViewController.xib in Resources */,
+				9BAAD19A1BE892480006C209 /* EditProfileViewController.xib in Resources */,
 				9BEC2CBB1BCFA91500360904 /* LoginViewController.xib in Resources */,
 				9B5897A71BC7DBD8000AD6B3 /* Main.storyboard in Resources */,
 				9B6A68951BCBD96000C284CB /* SourceConfig.plist in Resources */,
 				9BEC2CBD1BCFA92000360904 /* SignupController.xib in Resources */,
+				9B8C3A951BE9EC1D00BABA05 /* AddScheduleViewController.xib in Resources */,
+				9B8C63561BE7C2EE0049705B /* PEPhotoCropEditor.bundle in Resources */,
+				9BAAD1C61BE90B600006C209 /* Kal.bundle in Resources */,
 				9B6A68B71BCBE43C00C284CB /* ColorConfig.plist in Resources */,
 				9BBBFC9C1BE3584200BBC6EF /* nko_brightness_guide@2x.png in Resources */,
 				9BAD64681BD5083700FF65C1 /* ForgetPasswordControllerViewController.xib in Resources */,
+				9B8C3AB01BEA0FCE00BABA05 /* AgendaListMonthViewController.xib in Resources */,
 				9B6A68B91BCBE45E00C284CB /* FontConfig.plist in Resources */,
 				9BBBFC9B1BE3584200BBC6EF /* nko_brightness_guide.png in Resources */,
 				9B5897AC1BC7DBD8000AD6B3 /* LaunchScreen.xib in Resources */,
 				9BBBFC941BE3540A00BBC6EF /* AddClassViewController.xib in Resources */,
+				9BAAD1A61BE905EC0006C209 /* ScheduleViewController.xib in Resources */,
 				9B6A68B51BCBE42300C284CB /* StringConfig.plist in Resources */,
+				9BAAD19F1BE8F8F00006C209 /* ClassListTableViewCell.xib in Resources */,
 				9BAD646A1BD50F9000FF65C1 /* ParametersConfig.plist in Resources */,
+				9B8C3ACE1BEA140600BABA05 /* ClassTasksViewController.xib in Resources */,
+				9B8C3ABC1BEA133A00BABA05 /* StudentsViewController.xib in Resources */,
 				9B5897A91BC7DBD8000AD6B3 /* Images.xcassets in Resources */,
 				9BEC2CBF1BCFAA1300360904 /* ViewController.xib in Resources */,
+				9B8C3AC81BEA13A000BABA05 /* ClassInfoViewController.xib in Resources */,
 				9BBBFC8F1BE353F100BBC6EF /* ClassListViewController.xib in Resources */,
 				9BAD9EEC1BE0CE06004E6C7C /* MenuCellTableViewCell.xib in Resources */,
 				9B6A68D31BCBF30E00C284CB /* LoginflowStoryboard.storyboard in Resources */,
@@ -866,57 +1177,88 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B8C63651BE7C2F60049705B /* UIImage+PECrop.m in Sources */,
 				9B6A68A71BCBD9D300C284CB /* EGOImageView.m in Sources */,
+				9BAAD1CB1BE90B690006C209 /* NSDateAdditions.m in Sources */,
 				9BBBFCA01BE3584A00BBC6EF /* NKOColorPickerView.m in Sources */,
 				9BAD9ED41BE0CDE9004E6C7C /* REFrostedContainerViewController.m in Sources */,
 				9B6A688B1BCBD8F800C284CB /* KM_NSDictionary+SafeValues.m in Sources */,
 				9B6A68DF1BCBFCBA00C284CB /* UserDetails.m in Sources */,
 				9BAD9EFC1BE0FA18004E6C7C /* AddMoreView.m in Sources */,
 				9B6A68781BCBD8E300C284CB /* KMNetworkLoadingViewController.m in Sources */,
+				9BAAD1BE1BE90B550006C209 /* KalDate.m in Sources */,
 				9BAD9ED71BE0CDE9004E6C7C /* UIView+REFrostedViewController.m in Sources */,
 				9B6A68A61BCBD9D300C284CB /* EGOImageLoader.m in Sources */,
+				9BAAD1C31BE90B550006C209 /* KalView.m in Sources */,
+				9B8C3AAA1BEA0FBE00BABA05 /* AgendaListFiveDayViewController.m in Sources */,
 				9B6A68BC1BCBE78400C284CB /* SPAFontConfig.m in Sources */,
 				9BAD9ED31BE0CDE9004E6C7C /* RECommonFunctions.m in Sources */,
 				9B6A68D91BCBF36800C284CB /* LoginViewController.m in Sources */,
 				9BBBFC931BE3540A00BBC6EF /* AddClassViewController.m in Sources */,
 				9BAD9EE91BE0CE06004E6C7C /* DEMONavigationController.m in Sources */,
+				9BAAD1CF1BE90B8D0006C209 /* EventKitDataSource.m in Sources */,
 				9BAD9ED81BE0CDE9004E6C7C /* UIViewController+REFrostedViewController.m in Sources */,
 				9B6A68791BCBD8E300C284CB /* StoryBoardUtilities.m in Sources */,
 				9B6A68E21BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m in Sources */,
+				9B8C63631BE7C2F60049705B /* PECropRectView.m in Sources */,
+				9BAAD1C41BE90B550006C209 /* KalViewController.m in Sources */,
+				9B8C3AC11BEA135800BABA05 /* AlertStudentsViewController.m in Sources */,
 				9BDE42DD1BCE764F0089CA68 /* SignupController.m in Sources */,
 				9B5897A11BC7DBD8000AD6B3 /* SPA.xcdatamodeld in Sources */,
 				9B6A688C1BCBD8F800C284CB /* KM_NSString+UrlEncoding.m in Sources */,
 				9B6A68A41BCBD9D300C284CB /* EGOImageButton.m in Sources */,
+				9B8C63611BE7C2F60049705B /* PECropViewController.m in Sources */,
+				9B8C3A9F1BE9ED7900BABA05 /* AddTaskViewController.m in Sources */,
 				9B6A68931BCBD91600C284CB /* KMGillSansLabel.m in Sources */,
 				9B6A688E1BCBD8F800C284CB /* NSBundle+Loader.m in Sources */,
+				9BAAD1C01BE90B550006C209 /* KalLogic.m in Sources */,
+				9BAAD1991BE892480006C209 /* EditProfileViewController.m in Sources */,
 				9B6A68C21BCBE7C900C284CB /* SPAStringConfig.m in Sources */,
 				9BAD9EE71BE0CE06004E6C7C /* UINavigationBar+Customnavigation.m in Sources */,
+				9B8C3A941BE9EC1D00BABA05 /* AddScheduleViewController.m in Sources */,
 				9BBBFC8E1BE353F100BBC6EF /* ClassListViewController.m in Sources */,
+				9BAAD1CC1BE90B690006C209 /* UIViewAdditions.m in Sources */,
 				9BAD9EEB1BE0CE06004E6C7C /* MenuCellTableViewCell.m in Sources */,
 				9B6A68C51BCBEA9400C284CB /* KMActivityIndicator.m in Sources */,
+				9B8C3AC71BEA13A000BABA05 /* ClassInfoViewController.m in Sources */,
+				9BAAD1C11BE90B550006C209 /* KalMonthView.m in Sources */,
+				9B8C63621BE7C2F60049705B /* PECropView.m in Sources */,
 				9B6A68E51BCC02D600C284CB /* CommonReturns.m in Sources */,
 				9B6A68B11BCBDA4C00C284CB /* SPASourceConfig.m in Sources */,
 				9BAD9ED61BE0CDE9004E6C7C /* UIImage+REFrostedViewController.m in Sources */,
 				9BC17AE51BE205D900331DD5 /* Addmoreviewobject.m in Sources */,
+				9BAAD1A51BE905EC0006C209 /* ScheduleViewController.m in Sources */,
+				9B8C3A9A1BE9ED6A00BABA05 /* TaskListViewController.m in Sources */,
 				9B6A68BF1BCBE7B300C284CB /* SPAColorConfig.m in Sources */,
 				9B6A688A1BCBD8F800C284CB /* KM_NSArray+SafeValues.m in Sources */,
+				9B8C63641BE7C2F60049705B /* PEResizeControl.m in Sources */,
+				9BAAD1C21BE90B550006C209 /* KalTileView.m in Sources */,
 				9B58979E1BC7DBD8000AD6B3 /* AppDelegate.m in Sources */,
+				9B8C3AB51BEA131D00BABA05 /* MaterialsListViewController.m in Sources */,
+				9BAAD1BF1BE90B550006C209 /* KalGridView.m in Sources */,
 				9BCA09F31BD0E44700A78D71 /* Constant.m in Sources */,
 				9BAD64671BD5083700FF65C1 /* ForgetPasswordControllerViewController.m in Sources */,
 				9B6A68B01BCBDA4C00C284CB /* SPABaseSource.m in Sources */,
+				9B8C3AAF1BEA0FCE00BABA05 /* AgendaListMonthViewController.m in Sources */,
 				9BAD9EEA1BE0CE06004E6C7C /* DEMOSecondViewController.m in Sources */,
 				9BAD9ED51BE0CDE9004E6C7C /* REFrostedViewController.m in Sources */,
 				9B6A688D1BCBD8F800C284CB /* KM_NSURL+Parameters.m in Sources */,
 				9B5897A41BC7DBD8000AD6B3 /* ViewController.m in Sources */,
 				9B58979B1BC7DBD8000AD6B3 /* main.m in Sources */,
 				9B6A68AA1BCBD9DD00C284CB /* KIImagePager.m in Sources */,
+				9BAAD19E1BE8F8F00006C209 /* ClassListTableViewCell.m in Sources */,
+				9B8C3A901BE9E84800BABA05 /* BaseViewController.m in Sources */,
 				9B6A688F1BCBD8F800C284CB /* UIFont+GillSansFonts.m in Sources */,
+				9B8C3AA51BEA0FA100BABA05 /* AgendaListDayViewController.m in Sources */,
+				9BAAD1BD1BE90B550006C209 /* KalDataSource.m in Sources */,
+				9B8C3ACD1BEA140600BABA05 /* ClassTasksViewController.m in Sources */,
 				9B6A68A51BCBD9D300C284CB /* EGOImageLoadConnection.m in Sources */,
 				9B6A68DC1BCBF9C700C284CB /* DataModel.m in Sources */,
 				9BAD9EE61BE0CE06004E6C7C /* DEMOHomeViewController.m in Sources */,
 				9B6A68891BCBD8F800C284CB /* NSString+MD5.m in Sources */,
 				9B6A68A31BCBD9D300C284CB /* EGOCache.m in Sources */,
 				9BAD9EE81BE0CE06004E6C7C /* DEMOMenuViewController.m in Sources */,
+				9B8C3ABB1BEA133A00BABA05 /* StudentsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

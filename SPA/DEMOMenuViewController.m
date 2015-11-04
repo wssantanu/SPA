@@ -12,13 +12,20 @@
 #import "DEMONavigationController.h"
 #import "UIViewController+REFrostedViewController.h"
 #import "MenuCellTableViewCell.h"
+#import "Constant.h"
+#import "AppDelegate.h"
 
 int CurrentSelectedCell = 0;
+BOOL isFirstLoad = NO;
+
+@interface DEMOMenuViewController()<UIAlertViewDelegate>
+
+@end
 
 @implementation DEMOMenuViewController
 {
     NSArray *titleTireOne,*titleTireTwo,*imageClassTireOne,*imageClassTireTwo;
-   
+    AppDelegate *MainDelegate;
 }
 
 - (void)viewDidLoad
@@ -31,12 +38,27 @@ int CurrentSelectedCell = 0;
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.scrollEnabled = NO;
     
+    
+    isFirstLoad = YES;
     _menutypeorderlabel = menutypeorderfirstlabel;
+    MainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     titleTireOne = @[@"Classes",@"Schedule", @"Tasks", @"Profile", @"Sign Out"];
-    titleTireTwo = @[@"Agenda", @"Tasks", @"Materials",@"Students",@"Alert\nStudents",@"Class Info",@"Main Menu"];
+    titleTireTwo = @[@"Agenda", @"Tasks", @"Materials",@"Students",@"Alert Students",@"Class Info",@"Main Menu"];
     imageClassTireOne= @[@"menu_class",@"menu_schedule",@"menu_tasks",@"menu_profile",@"menu_signout"];
     imageClassTireTwo= @[@"menu_schedule",@"menu_tasks",@"menu_materials",@"menu_students",@"menu_alert_students",@"menu_classinfo",@"menu_mainmenu"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMenuChangesNotification) name:ClassDetailsMenuNotification object:nil];
+}
+
+-(void)receiveMenuChangesNotification
+{
+    isFirstLoad = YES;
+    _menutypeorderlabel = menutypeordersecondlabel;
+    [UIView transitionWithView:self.tableView duration:0.35f options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^(void) {
+                        [self.tableView reloadData];
+                    } completion:nil];
 }
 
 #pragma mark -
@@ -65,37 +87,60 @@ int CurrentSelectedCell = 0;
     return 100;
 }
 
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [MainDelegate LogoutUser];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    isFirstLoad = NO;
+    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     [self.tableView reloadData];
     
     MenuCellTableViewCell *cell = (MenuCellTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
+    DEMONavigationController *navigationController;
+    
+    [cell.MenuImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_selected",[(_menutypeorderlabel == menutypeorderfirstlabel)?imageClassTireOne:imageClassTireTwo objectAtIndex:indexPath.row]]]];
+    [cell.MenuName setTextColor:Constant.ColorSPAYellowColor];
+    
     if (_menutypeorderlabel == menutypeorderfirstlabel) {
         
-        if (indexPath.row == 0) {
-            
-            _menutypeorderlabel = menutypeordersecondlabel;
-            
-            [UIView transitionWithView:self.tableView duration:0.35f options:UIViewAnimationOptionTransitionCrossDissolve
-                            animations:^(void) {
-                                [self.tableView reloadData];
-                            } completion:nil];
-            
-        } else {
-            
-            [cell.MenuImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_selected",[(_menutypeorderlabel == menutypeorderfirstlabel)?imageClassTireOne:imageClassTireTwo objectAtIndex:indexPath.row]]]];
-            [cell.MenuName setTextColor:[UIColor yellowColor]];
-            
-            DEMOHomeViewController *homeViewController = [[DEMOHomeViewController alloc] init];
-            DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:homeViewController];
-            self.frostedViewController.contentViewController = navigationController;
+        switch (indexPath.row) {
+            case 0:
+                navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.ClassListViewController];
+                break;
+            case 1:
+                navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.ScheduleViewController];
+                break;
+            case 2:
+                navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.TaskListViewController];
+                break;
+            case 3:
+                navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.EditProfileViewController];
+                break;
+            case 4:
+            {
+                UIAlertView *AlertViw = [[UIAlertView alloc] initWithTitle:@"Caution" message:@"Are you sere to signout" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+                [AlertViw show];
+            }
+                break;
+            default:
+                navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.ClassListViewController];
+                break;
         }
+        if(indexPath.row!=4)
+            self.frostedViewController.contentViewController = navigationController;
+        
     } else {
         
         if (indexPath.row == 6) {
+            
             _menutypeorderlabel = menutypeorderfirstlabel;
             
             [UIView transitionWithView:self.tableView duration:0.35f options:UIViewAnimationOptionTransitionCrossDissolve
@@ -105,12 +150,29 @@ int CurrentSelectedCell = 0;
             
         } else {
             
-            [cell.MenuImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_selected",[(_menutypeorderlabel == menutypeorderfirstlabel)?imageClassTireOne:imageClassTireTwo objectAtIndex:indexPath.row]]]];
-            [cell.MenuName setTextColor:[UIColor yellowColor]];
+            switch (indexPath.row) {
+                case 0:
+                    navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.AgendaListDayViewController];
+                    break;
+                case 1:
+                    navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.ClassTasksViewController];
+                    break;
+                case 2:
+                    navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.MaterialsListViewController];
+                    break;
+                case 3:
+                    navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.StudentsViewController];
+                    break;
+                case 4:
+                    navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.AlertStudentsViewController];
+                    break;
+                case 5:
+                    navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.ClassInfoViewController];
+                    break;
+            }
             
-            DEMOSecondViewController *secondViewController = [[DEMOSecondViewController alloc] init];
-            DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:secondViewController];
-            self.frostedViewController.contentViewController = navigationController;
+            if(indexPath.row!=6)
+                self.frostedViewController.contentViewController = navigationController;
         }
     }
 }
@@ -152,8 +214,20 @@ int CurrentSelectedCell = 0;
         [cell.MenuImageView setImage:[UIImage imageNamed:[imageClassTireTwo objectAtIndex:indexPath.row]]];
         cell.MenuName.text = titleTireTwo[indexPath.row];
     }
+    
+    if (isFirstLoad && indexPath.row == 0) {
+        [cell.MenuImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@_selected",[(_menutypeorderlabel == menutypeorderfirstlabel)?imageClassTireOne:imageClassTireTwo objectAtIndex:indexPath.row]]]];
+        [cell.MenuName setTextColor:Constant.ColorSPAYellowColor];
+    }
+    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    isFirstLoad = NO;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

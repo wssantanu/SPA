@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>SPAYellowColor</key>
+	<string>0x52a63d</string>
+	<key>SPAGreenColor</key>
+	<string>0xF2BA27</string>
+	<key>SPABlackwColor</key>
+	<string>0x000000</string>
+	<key>SPAWhiteColor</key>
+	<string>0xFFFFFF</string>
+</dict>
 </plist>

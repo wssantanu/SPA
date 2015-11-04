@@ -29,8 +29,10 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.1):
     - CocoaLumberjack/Default
+  - DGActivityIndicatorView (2.0)
   - GoogleAnalytics (3.13.0)
   - HMSegmentedControl (1.5.2)
+  - JTCalendar (2.1.4)
   - MXLCalendarManager (1.0.2)
   - pop (1.0.8)
   - RMActionController (1.0.4)
@@ -47,8 +49,10 @@ DEPENDENCIES:
   - AFNetworking
   - BButton
   - CocoaLumberjack
+  - DGActivityIndicatorView
   - GoogleAnalytics
   - HMSegmentedControl
+  - JTCalendar
   - MXLCalendarManager
   - pop
   - RMDateSelectionViewController
@@ -60,8 +64,10 @@ SPEC CHECKSUMS:
   AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
   BButton: ab0f2ed3b998ae73c5188b57d270d81e4a1eeb27
   CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
+  DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
+  JTCalendar: 9b1352c7ec41cc26b19c189d6608ba48060a53d9
   MXLCalendarManager: 354bf745be28e9d8af93bd56ab1d730173a00d9b
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   RMActionController: 19423654600d40ca15132a4e548d005042d68f09

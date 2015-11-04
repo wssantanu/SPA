@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>MyriadPro-SemiboldIt</key>
+	<string>MyriadPro-SemiboldIt</string>
+	<key>MyriadPro-BoldIt</key>
+	<string>MyriadPro-BoldIt</string>
+	<key>MyriadPro-Semibold</key>
+	<string>MyriadPro-Semibold</string>
+	<key>MyriadPro-Bold</key>
+	<string>MyriadPro-Bold</string>
+	<key>MyriadPro-BoldCond</key>
+	<string>MyriadPro-BoldCond</string>
+	<key>MyriadPro-Regular</key>
+	<string>MyriadPro-Regular</string>
+	<key>MyriadPro-BoldCondIt</key>
+	<string>MyriadPro-BoldCondIt</string>
+	<key>MyriadPro-It</key>
+	<string>MyriadPro-It</string>
+	<key>MyriadPro-CondIt</key>
+	<string>MyriadPro-CondIt</string>
+	<key>MyriadPro-Cond</key>
+	<string>MyriadPro-Cond</string>
+	<key>Helvetica-Light</key>
+	<string>Helvetica-Light</string>
+	<key>Helvetica-BoldOblique</key>
+	<string>Helvetica-BoldOblique</string>
+	<key>Helvetica-Oblique</key>
+	<string>Helvetica-Oblique</string>
+	<key>Helvetica-LightOblique</key>
+	<string>Helvetica-LightOblique</string>
+	<key>Helvetica</key>
+	<string>Helvetica</string>
+	<key>Helvetica-Bold</key>
+	<string>Helvetica-Bold</string>
+	<key>Roboto-Medium</key>
+	<string>Roboto-Medium</string>
+	<key>Roboto-Regular</key>
+	<string>Roboto-Regular</string>
+	<key>Roboto-Bold</key>
+	<string>Roboto-Bold</string>
+</dict>
 </plist>

@@ -12,6 +12,8 @@
 #import "AddMoreView.h"
 #import <HMSegmentedControl/HMSegmentedControl.h>
 #import "NKOColorPickerView.h"
+#import <RMDateSelectionViewController/RMDateSelectionViewController.h>
+#import "AppDelegate.h"
 
 typedef enum {
     buttonrepostiontypenone,
@@ -124,7 +126,7 @@ bool IscolorPickerVisiable = NO;
         } completion:nil];
     };
     
-    _colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(80, _MainScrollView.frame.origin.y+100, _MainScrollView.contentSize.width, 340) color:[UIColor blueColor] andDidChangeColorBlock:colorDidChangeBlock];
+    _colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(80, _MainScrollView.frame.origin.y+100, _MainScrollView.contentSize.width, 390) color:[UIColor redColor] andDidChangeColorBlock:colorDidChangeBlock];
     [self.view addSubview:_colorPickerView];
     
     
@@ -134,11 +136,40 @@ bool IscolorPickerVisiable = NO;
     //[_ColorView setHidden:YES];
     [_colorPickerView setHidden:YES];
     
-    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openDateSelectionController:)];
     [singleFingerTap setNumberOfTapsRequired:1];
     [_ColorView setUserInteractionEnabled:YES];
     [_ColorView addGestureRecognizer:singleFingerTap];
     
+    UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"popup test" message:@"popup test mesage" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+    [a show];
+    
+}
+
+- (IBAction)openDateSelectionController:(id)sender {
+    //Create select action
+    RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+        NSLog(@"Successfully selected date: %@", ((UIDatePicker *)controller.contentView).date);
+    }];
+    
+    //Create cancel action
+    RMAction *cancelAction = [RMAction actionWithTitle:@"Cancel" style:RMActionStyleCancel andHandler:^(RMActionController *controller) {
+        NSLog(@"Date selection was canceled");
+    }];
+    
+    //Create date selection view controller
+    RMDateSelectionViewController *dateSelectionController = [RMDateSelectionViewController actionControllerWithStyle:RMActionControllerStyleWhite selectAction:selectAction andCancelAction:cancelAction];
+    dateSelectionController.title = @"Test";
+    dateSelectionController.datePicker.datePickerMode = UIDatePickerModeDate;
+    dateSelectionController.message = @"This is a test message.\nPlease choose a date and press 'Select' or 'Cancel'.";
+    
+    
+    AppDelegate *Maindelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    //Now just present the date selection controller using the standard iOS presentation method
+    [Maindelegate.window.rootViewController presentViewController:dateSelectionController animated:YES completion:nil];
+    
+    //[self.navigationController pushViewController:dateSelectionController animated:YES];
 }
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {

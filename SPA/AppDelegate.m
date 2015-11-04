@@ -21,12 +21,30 @@
 
 @implementation AppDelegate
 
+BOOL isUserLogedIn = NO;
+
 #pragma mark - App state declearation
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    [self AssignMenu];
+    
+    
+    NSUserDefaults *StanderdUserDefaults = [NSUserDefaults standardUserDefaults];
+    [StanderdUserDefaults synchronize];
+    
+    
+    // If user is already logedin, then assign menu
+//    if ((int)[StanderdUserDefaults objectForKey:@"LogedinUserId"] > 0)
+//    {
+//        [self SetupAfterLoginMenu];
+//    }
+//    // else push to loginView
+//    else
+//    {
+//        [self DefaultNavigationController];
+//    }
+    (isUserLogedIn)?[self SetupAfterLoginMenu]:[self DefaultNavigationController];
     return YES;
 }
 
@@ -62,10 +80,11 @@
 
 -(void)DefaultNavigationController
 {
-    self.NavigationController = [[UINavigationController alloc] initWithRootViewController:Constant.LandingController];
+    self.NavigationController = [[UINavigationController alloc] initWithRootViewController:Constant.LoginViewController];
     [[self window] setRootViewController:self.NavigationController];
     [self.NavigationController setHidesBottomBarWhenPushed:YES];
     [[self.NavigationController navigationBar] setHidden:YES];
+    [self.NavigationController setNavigationBarHidden:YES animated:YES];
     [self.window makeKeyAndVisible];
 }
 
@@ -78,11 +97,11 @@
  * Implement Custom Menu width 80.0f defined in pch file
  */
 
--(void)AssignMenu
+-(void)SetupAfterLoginMenu
 {
     // Create content and menu controllers
     //
-    DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:[[AddClassViewController alloc] init]];
+    DEMONavigationController *navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.ClassListViewController];
     DEMOMenuViewController *menuController = [[DEMOMenuViewController alloc] initWithStyle:UITableViewStylePlain];
     
     // Create frosted view controller

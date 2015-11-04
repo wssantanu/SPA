@@ -12,7 +12,11 @@
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
+#import "BaseViewController.h"
+#import "Constant.h"
 
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -29,4 +33,5 @@ alpha:1.0]
 #define DeleteViewNotification @"delete-more-view-notification"
 #define TextfiledStartEditingNotification @"textfield-start-editing-notification"
 #define TextfiledEndEditingNotification @"textfield-end-editing-notification"
+#define ClassDetailsMenuNotification @"class-details-menu-notification"
 #endif

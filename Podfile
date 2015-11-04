@@ -14,4 +14,5 @@ pod 'RMPickerViewController'
 pod 'RMDateSelectionViewController'
 pod 'HMSegmentedControl'
 pod 'BButton'
-
+pod 'DGActivityIndicatorView'
+pod 'JTCalendar'
