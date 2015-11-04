@@ -2,7 +2,38 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Material_of_class</key>
+	<string>uid,cid </string>
+	<key>Material_Delete</key>
+	<string>uid,tid</string>
+	<key>Upload_Material</key>
+	<string>uid,material_title,material_desc,material_file,material_file_ext,associated_class</string>
+	<key>Fetch_class_Tasklist</key>
+	<string>uid,cid</string>
+	<key>Task_Delete</key>
+	<string>uid,tid</string>
+	<key>Task_Status_Change</key>
+	<string>uid,tid,task_status</string>
+	<key>Task_Create</key>
+	<string>uid,task_note,category</string>
+	<key>Event_Edit</key>
+	<string>uid,eid,event_name,start_date,category,time_slots </string>
+	<key>Event_Create</key>
+	<string>uid,event_name,start_date,category,time_slots</string>
+	<key>Fetch_Class_list</key>
+	<string>uid</string>
+	<key>Class_Edit</key>
+	<string>uid,cid,class_name,color_code,teacher_name,location,section,semester,start_date,end_date,time_slots </string>
+	<key>Class_Create</key>
+	<string></string>
+	<key>User_Registration</key>
+	<string>email,role_id,password,userfullname,schoolname,officelocation,recieve_mail,phone_no,keep_login</string>
+	<key>logout</key>
+	<string></string>
+	<key>request_newpassword</key>
+	<string>name
+</string>
 	<key>login_parameters</key>
-	<string>username,password,apikey</string>
+	<string>username,password</string>
 </dict>
 </plist>

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '15C93C01CFDD7665E1A23604'
+               BlueprintIdentifier = '17D9D4E0843F6E8971981DBB'
                BlueprintName = 'RMDateSelectionViewController'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libRMDateSelectionViewController.a'>

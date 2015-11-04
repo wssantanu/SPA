@@ -54,61 +54,61 @@
 @implementation Constant
 
 +(ViewController *)LandingController {
-    return [[ViewController alloc] initWithNibName:@"ViewController" bundle:[NSBundle mainBundle]];
+    return [[ViewController alloc] initWithNibName:NSStringFromClass([ViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(LoginViewController *)LoginViewController {
-    return [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    return [[LoginViewController alloc] initWithNibName:NSStringFromClass([LoginViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(SignupController *)SignupController {
-    return [[SignupController alloc] initWithNibName:@"SignupController" bundle:[NSBundle mainBundle]];
+    return [[SignupController alloc] initWithNibName:NSStringFromClass([SignupController class]) bundle:[NSBundle mainBundle]];
 }
 +(ForgetPasswordControllerViewController *)ForgetPasswordControllerViewController {
-    return [[ForgetPasswordControllerViewController alloc] initWithNibName:@"ForgetPasswordControllerViewController" bundle:[NSBundle mainBundle]];
+    return [[ForgetPasswordControllerViewController alloc] initWithNibName:NSStringFromClass([ForgetPasswordControllerViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(EditProfileViewController *)EditProfileViewController {
-    return [[EditProfileViewController alloc] initWithNibName:@"EditProfileViewController" bundle:[NSBundle mainBundle]];
+    return [[EditProfileViewController alloc] initWithNibName:NSStringFromClass([EditProfileViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(ClassListViewController *)ClassListViewController {
-    return [[ClassListViewController alloc] initWithNibName:@"ClassListViewController" bundle:[NSBundle mainBundle]];
+    return [[ClassListViewController alloc] initWithNibName:NSStringFromClass([ClassListViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(AddClassViewController *)AddClassViewController {
-    return [[AddClassViewController alloc] initWithNibName:@"AddClassViewController" bundle:[NSBundle mainBundle]];
+    return [[AddClassViewController alloc] initWithNibName:NSStringFromClass([AddClassViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(ScheduleViewController *)ScheduleViewController {
-    return [[ScheduleViewController alloc] initWithNibName:@"ScheduleViewController" bundle:[NSBundle mainBundle]];
+    return [[ScheduleViewController alloc] initWithNibName:NSStringFromClass([ScheduleViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(AddScheduleViewController *)AddScheduleViewController {
-    return [[AddScheduleViewController alloc] initWithNibName:@"AddScheduleViewController" bundle:[NSBundle mainBundle]];
+    return [[AddScheduleViewController alloc] initWithNibName:NSStringFromClass([AddScheduleViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(TaskListViewController *)TaskListViewController {
-    return [[TaskListViewController alloc] initWithNibName:@"TaskListViewController" bundle:[NSBundle mainBundle]];
+    return [[TaskListViewController alloc] initWithNibName:NSStringFromClass([TaskListViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(AddTaskViewController *)AddTaskViewController {
-    return [[AddTaskViewController alloc] initWithNibName:@"AddTaskViewController" bundle:[NSBundle mainBundle]];
+    return [[AddTaskViewController alloc] initWithNibName:NSStringFromClass([AddTaskViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(AgendaListDayViewController *)AgendaListDayViewController {
-    return [[AgendaListDayViewController alloc] initWithNibName:@"AgendaListDayViewController" bundle:[NSBundle mainBundle]];
+    return [[AgendaListDayViewController alloc] initWithNibName:NSStringFromClass([AgendaListDayViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(AgendaListFiveDayViewController *)AgendaListFiveDayViewController {
-    return [[AgendaListFiveDayViewController alloc] initWithNibName:@"AgendaListFiveDayViewController" bundle:[NSBundle mainBundle]];
+    return [[AgendaListFiveDayViewController alloc] initWithNibName:NSStringFromClass([AgendaListFiveDayViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(AgendaListMonthViewController *)AgendaListMonthViewController {
-    return [[AgendaListMonthViewController alloc] initWithNibName:@"AgendaListMonthViewController" bundle:[NSBundle mainBundle]];
+    return [[AgendaListMonthViewController alloc] initWithNibName:NSStringFromClass([AgendaListMonthViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(ClassTasksViewController *)ClassTasksViewController{
-    return [[ClassTasksViewController alloc] initWithNibName:@"ClassTasksViewController" bundle:[NSBundle mainBundle]];
+    return [[ClassTasksViewController alloc] initWithNibName:NSStringFromClass([ClassTasksViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(MaterialsListViewController *)MaterialsListViewController {
-    return [[MaterialsListViewController alloc] initWithNibName:@"MaterialsListViewController" bundle:[NSBundle mainBundle]];
+    return [[MaterialsListViewController alloc] initWithNibName:NSStringFromClass([MaterialsListViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(StudentsViewController *)StudentsViewController {
-    return [[StudentsViewController alloc] initWithNibName:@"StudentsViewController" bundle:[NSBundle mainBundle]];
+    return [[StudentsViewController alloc] initWithNibName:NSStringFromClass([StudentsViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(AlertStudentsViewController *)AlertStudentsViewController {
-    return [[AlertStudentsViewController alloc] initWithNibName:@"AlertStudentsViewController" bundle:[NSBundle mainBundle]];
+    return [[AlertStudentsViewController alloc] initWithNibName:NSStringFromClass([AlertStudentsViewController class]) bundle:[NSBundle mainBundle]];
 }
 +(ClassInfoViewController *)ClassInfoViewController {
-    return [[ClassInfoViewController alloc] initWithNibName:@"ClassInfoViewController" bundle:[NSBundle mainBundle]];
+    return [[ClassInfoViewController alloc] initWithNibName:NSStringFromClass([ClassInfoViewController class]) bundle:[NSBundle mainBundle]];
 }
 
 /**
@@ -142,5 +142,18 @@
 +(UIColor *)ColorSPABlackColor { return UIColorFromRGB(0x000000); }
 +(UIColor *)ColorSPAGreenColor { return UIColorFromRGB(0x52a63d); }
 +(UIColor *)ColorSPAYellowColor { return UIColorFromRGB(0xF2BA27); }
+
+/**
+ @return service setails
+ @parm details
+ **/
+
+
+
+/**
+ @return service setails
+ @Url details
+ **/
+
 
 @end

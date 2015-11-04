@@ -77,6 +77,9 @@
 		9B8C3AC81BEA13A000BABA05 /* ClassInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3AC61BEA13A000BABA05 /* ClassInfoViewController.xib */; };
 		9B8C3ACD1BEA140600BABA05 /* ClassTasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3ACB1BEA140600BABA05 /* ClassTasksViewController.m */; };
 		9B8C3ACE1BEA140600BABA05 /* ClassTasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3ACC1BEA140600BABA05 /* ClassTasksViewController.xib */; };
+		9B8C3AD01BEA50F100BABA05 /* ServiceConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3ACF1BEA50F100BABA05 /* ServiceConfig.plist */; };
+		9B8C3AD61BEA60BC00BABA05 /* AFHTTPRequestSerializer+OAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3AD31BEA60BC00BABA05 /* AFHTTPRequestSerializer+OAuth2.m */; };
+		9B8C3AD71BEA60BC00BABA05 /* AFOAuth2Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3AD51BEA60BC00BABA05 /* AFOAuth2Manager.m */; };
 		9B8C63521BE7C2C50049705B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C63511BE7C2C50049705B /* AVFoundation.framework */; };
 		9B8C63541BE7C2CC0049705B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C63531BE7C2CC0049705B /* QuartzCore.framework */; };
 		9B8C63561BE7C2EE0049705B /* PEPhotoCropEditor.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C63551BE7C2EE0049705B /* PEPhotoCropEditor.bundle */; };
@@ -279,6 +282,11 @@
 		9B8C3ACA1BEA140600BABA05 /* ClassTasksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassTasksViewController.h; sourceTree = "<group>"; };
 		9B8C3ACB1BEA140600BABA05 /* ClassTasksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassTasksViewController.m; sourceTree = "<group>"; };
 		9B8C3ACC1BEA140600BABA05 /* ClassTasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassTasksViewController.xib; sourceTree = "<group>"; };
+		9B8C3ACF1BEA50F100BABA05 /* ServiceConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServiceConfig.plist; sourceTree = "<group>"; };
+		9B8C3AD21BEA60BC00BABA05 /* AFHTTPRequestSerializer+OAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AFHTTPRequestSerializer+OAuth2.h"; sourceTree = "<group>"; };
+		9B8C3AD31BEA60BC00BABA05 /* AFHTTPRequestSerializer+OAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AFHTTPRequestSerializer+OAuth2.m"; sourceTree = "<group>"; };
+		9B8C3AD41BEA60BC00BABA05 /* AFOAuth2Manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFOAuth2Manager.h; sourceTree = "<group>"; };
+		9B8C3AD51BEA60BC00BABA05 /* AFOAuth2Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFOAuth2Manager.m; sourceTree = "<group>"; };
 		9B8C63511BE7C2C50049705B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9B8C63531BE7C2CC0049705B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9B8C63551BE7C2EE0049705B /* PEPhotoCropEditor.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PEPhotoCropEditor.bundle; sourceTree = "<group>"; };
@@ -474,6 +482,7 @@
 		9B5897971BC7DBD8000AD6B3 /* SPA */ = {
 			isa = PBXGroup;
 			children = (
+				9B8C3AD11BEA60B200BABA05 /* AFOAuth2Manager */,
 				9BAAD1C71BE90B690006C209 /* NSDateAdditions.h */,
 				9BAAD1C81BE90B690006C209 /* NSDateAdditions.m */,
 				9BAAD1C91BE90B690006C209 /* UIViewAdditions.h */,
@@ -714,6 +723,7 @@
 				9B6A68B61BCBE43C00C284CB /* ColorConfig.plist */,
 				9B6A68B41BCBE42300C284CB /* StringConfig.plist */,
 				9B6A68941BCBD96000C284CB /* SourceConfig.plist */,
+				9B8C3ACF1BEA50F100BABA05 /* ServiceConfig.plist */,
 				9BAD64691BD50F9000FF65C1 /* ParametersConfig.plist */,
 				9B5897991BC7DBD8000AD6B3 /* Info.plist */,
 			);
@@ -846,6 +856,17 @@
 				9B8C3ACC1BEA140600BABA05 /* ClassTasksViewController.xib */,
 			);
 			name = "Class Tasks";
+			sourceTree = "<group>";
+		};
+		9B8C3AD11BEA60B200BABA05 /* AFOAuth2Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9B8C3AD21BEA60BC00BABA05 /* AFHTTPRequestSerializer+OAuth2.h */,
+				9B8C3AD31BEA60BC00BABA05 /* AFHTTPRequestSerializer+OAuth2.m */,
+				9B8C3AD41BEA60BC00BABA05 /* AFOAuth2Manager.h */,
+				9B8C3AD51BEA60BC00BABA05 /* AFOAuth2Manager.m */,
+			);
+			name = AFOAuth2Manager;
 			sourceTree = "<group>";
 		};
 		9BAAD1951BE892360006C209 /* EditProfile */ = {
@@ -1105,6 +1126,7 @@
 				9BAAD19F1BE8F8F00006C209 /* ClassListTableViewCell.xib in Resources */,
 				9BAD646A1BD50F9000FF65C1 /* ParametersConfig.plist in Resources */,
 				9B8C3ACE1BEA140600BABA05 /* ClassTasksViewController.xib in Resources */,
+				9B8C3AD01BEA50F100BABA05 /* ServiceConfig.plist in Resources */,
 				9B8C3ABC1BEA133A00BABA05 /* StudentsViewController.xib in Resources */,
 				9B5897A91BC7DBD8000AD6B3 /* Images.xcassets in Resources */,
 				9BEC2CBF1BCFAA1300360904 /* ViewController.xib in Resources */,
@@ -1214,6 +1236,7 @@
 				9BAAD1C01BE90B550006C209 /* KalLogic.m in Sources */,
 				9BAAD1991BE892480006C209 /* EditProfileViewController.m in Sources */,
 				9B6A68C21BCBE7C900C284CB /* SPAStringConfig.m in Sources */,
+				9B8C3AD71BEA60BC00BABA05 /* AFOAuth2Manager.m in Sources */,
 				9BAD9EE71BE0CE06004E6C7C /* UINavigationBar+Customnavigation.m in Sources */,
 				9B8C3A941BE9EC1D00BABA05 /* AddScheduleViewController.m in Sources */,
 				9BBBFC8E1BE353F100BBC6EF /* ClassListViewController.m in Sources */,
@@ -1240,6 +1263,7 @@
 				9BAD64671BD5083700FF65C1 /* ForgetPasswordControllerViewController.m in Sources */,
 				9B6A68B01BCBDA4C00C284CB /* SPABaseSource.m in Sources */,
 				9B8C3AAF1BEA0FCE00BABA05 /* AgendaListMonthViewController.m in Sources */,
+				9B8C3AD61BEA60BC00BABA05 /* AFHTTPRequestSerializer+OAuth2.m in Sources */,
 				9BAD9EEA1BE0CE06004E6C7C /* DEMOSecondViewController.m in Sources */,
 				9BAD9ED51BE0CDE9004E6C7C /* REFrostedViewController.m in Sources */,
 				9B6A688D1BCBD8F800C284CB /* KM_NSURL+Parameters.m in Sources */,

@@ -22,8 +22,9 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-- (void)SetDefaultNavigationController;
+- (void)DefaultNavigationController;
 - (void)SetupAfterLoginMenu;
 - (void)LogoutUser;
+
 @end
 

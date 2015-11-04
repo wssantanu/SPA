@@ -32,7 +32,9 @@ PODS:
   - DGActivityIndicatorView (2.0)
   - GoogleAnalytics (3.13.0)
   - HMSegmentedControl (1.5.2)
+  - JNKeychain (0.1.2)
   - JTCalendar (2.1.4)
+  - MBProgressHUD (0.9.1)
   - MXLCalendarManager (1.0.2)
   - pop (1.0.8)
   - RMActionController (1.0.4)
@@ -52,7 +54,9 @@ DEPENDENCIES:
   - DGActivityIndicatorView
   - GoogleAnalytics
   - HMSegmentedControl
+  - JNKeychain
   - JTCalendar
+  - MBProgressHUD
   - MXLCalendarManager
   - pop
   - RMDateSelectionViewController
@@ -67,7 +71,9 @@ SPEC CHECKSUMS:
   DGActivityIndicatorView: 52875b025a6ccf6a431a905285c12e2bb95eb559
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
+  JNKeychain: 3428e123958aca6672b55d615a8a45cdf7b82c71
   JTCalendar: 9b1352c7ec41cc26b19c189d6608ba48060a53d9
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MXLCalendarManager: 354bf745be28e9d8af93bd56ab1d730173a00d9b
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   RMActionController: 19423654600d40ca15132a4e548d005042d68f09

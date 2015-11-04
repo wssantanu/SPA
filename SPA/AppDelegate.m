@@ -29,7 +29,6 @@ BOOL isUserLogedIn = NO;
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    
     NSUserDefaults *StanderdUserDefaults = [NSUserDefaults standardUserDefaults];
     [StanderdUserDefaults synchronize];
     

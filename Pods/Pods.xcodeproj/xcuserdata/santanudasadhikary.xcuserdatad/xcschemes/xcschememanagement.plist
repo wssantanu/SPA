@@ -29,7 +29,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JNKeychain.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JTCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -77,6 +87,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0491365B9755AFBF423901447439EAA3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>12AC35F9C569FA2A4543EFEDD802D2C9</key>
 		<dict>
 			<key>primary</key>
@@ -87,17 +102,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>17D780197822A5E83C899D8B68F54439</key>
+		<key>18DBDE306049B8E2E1E3715BD33A8BAE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>2AB49797D14D57FA43A345254AFB9F18</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3D9EF143F5F6E99535CF3B74D92DA931</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,7 +127,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D65009E208AD43ABE6B5F2C516A66CF</key>
+		<key>6638BB2930C8D1C9BA8E008CB985B0C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>844287E96B46FEE21F6758263EE7E871</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C1F739276622CF6B57C525958132926C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,22 +147,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D9C563D3088A82B16577A959EFF8CA50</key>
+		<key>C8CED4B53C818F29D9BE160CB4667059</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E35BF442DFE6515CBEEA81AB9BE87FFB</key>
+		<key>D4855B0D22470C43451C16D3E5B5F124</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC979C8812B48EFD963B6773BC0E45DA</key>
+		<key>E34A97AA6A7D1C452714BBB1A4A75587</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F779C86B233A73A6C1ADA409DEEA27EF</key>
+		<key>FE2F1D7B9D9FCEA148517E4657B243F4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

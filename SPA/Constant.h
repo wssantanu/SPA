@@ -27,62 +27,187 @@
 #import "AlertStudentsViewController.h"
 #import "ClassInfoViewController.h"
 
-/**
- * SPASourceConfig const
- */
-
-#define kConfigVersionKey @"version"
-#define kConfigBuildKey @"build"
-#define kConfigTheMovieDbHostKey @"themoviedb_host"
-#define kConfigApiKey @"api_key"
-#define kConfigLoginKey @"login_parameters"
-
 @interface Constant : NSObject
 
+/**
+ Define all viewcontrollers
+ */
+
+/**
+ @return LandingController
+ */
 +(ViewController *)LandingController;
+/**
+ @return LoginViewController
+ */
 +(LoginViewController *)LoginViewController;
+/**
+ @return SignupController
+ */
 +(SignupController *)SignupController;
+/**
+ @return ForgetPasswordControllerViewController
+ */
 +(ForgetPasswordControllerViewController *)ForgetPasswordControllerViewController;
+/**
+ @return EditProfileViewController
+ */
 +(EditProfileViewController *)EditProfileViewController;
+/**
+ @return ClassListViewController
+ */
 +(ClassListViewController *)ClassListViewController;
+/**
+ @return AddClassViewController
+ */
 +(AddClassViewController *)AddClassViewController;
+/**
+ @return ScheduleViewController
+ */
 +(ScheduleViewController *)ScheduleViewController;
+/**
+ @return AddScheduleViewController
+ */
 +(AddScheduleViewController *)AddScheduleViewController;
+/**
+ @return TaskListViewController
+ */
 +(TaskListViewController *)TaskListViewController;
+/**
+ @return AddTaskViewController
+ */
 +(AddTaskViewController *)AddTaskViewController;
+/**
+ @return AgendaListDayViewController
+ */
 +(AgendaListDayViewController *)AgendaListDayViewController;
+/**
+ @return AgendaListFiveDayViewController
+ */
 +(AgendaListFiveDayViewController *)AgendaListFiveDayViewController;
+/**
+ @return AgendaListMonthViewController
+ */
 +(AgendaListMonthViewController *)AgendaListMonthViewController;
+/**
+ @return ClassTasksViewController
+ */
 +(ClassTasksViewController *)ClassTasksViewController;
+/**
+ @return MaterialsListViewController
+ */
 +(MaterialsListViewController *)MaterialsListViewController;
+/**
+ @return StudentsViewController
+ */
 +(StudentsViewController *)StudentsViewController;
+/**
+ @return AlertStudentsViewController
+ */
 +(AlertStudentsViewController *)AlertStudentsViewController;
+/**
+ @return ClassInfoViewController
+ */
 +(ClassInfoViewController *)ClassInfoViewController;
 
+
+/*
+ Define all the fonts for the application
+ */
+
+/**
+ @return MyriadPro-Semibold-It
+ */
 +(NSString *)FontMyriadProSemiboldIt;
+/**
+ @return MyriadPro-Bold-It
+ */
 +(NSString *)FontMyriadProBoldIt;
+/**
+ @return MyriadPro-Semibold
+ */
 +(NSString *)FontMyriadProSemibold;
+/**
+ @return MyriadPro-Bold
+ */
 +(NSString *)FontMyriadProBold;
+/**
+ @return MyriadPro-Bold-Cond
+ */
 +(NSString *)FontMyriadProBoldCond;
+/**
+ @return MyriadPro-Regular
+ */
 +(NSString *)FontMyriadProRegular;
+/**
+ @return MyriadPro-It
+ */
 +(NSString *)FontMyriadProIt;
+/**
+ @return MyriadPro-CondIt
+ */
 +(NSString *)FontMyriadProCondIt;
+/**
+ @return MyriadPro-Cond
+ */
 +(NSString *)FontMyriadProCond;
-
+/**
+ @return Helvetica-Bold
+ */
 +(NSString *)FontHelveticaBold;
+/**
+ @return Helvetica
+ */
 +(NSString *)FontHelvetica;
+/**
+ @return Helvetica-Light-Oblique
+ */
 +(NSString *)FontHelveticaLightOblique;
+/**
+ @return Helvetica-Oblique
+ */
 +(NSString *)FontHelveticaOblique;
+/**
+ @return Helvetica-Bold-Oblique
+ */
 +(NSString *)FontHelveticaBoldOblique;
+/**
+ @return Helvetica-Light
+ */
 +(NSString *)FontHelveticaLight;
-
+/**
+ @return Roboto-Bold
+ */
 +(NSString *)FontRobotoBold;
+/**
+ @return Roboto-Regular
+ */
 +(NSString *)FontRobotoRegular;
+/**
+ @return Roboto-Medium
+ */
 +(NSString *)FontRobotoMedium;
 
+
+/**
+ Define all the color
+ */
+
+/**
+ @return White Color
+ */
 +(UIColor *)ColorSPAWhiteColor;
+/**
+ @return Black Color
+ */
 +(UIColor *)ColorSPABlackColor;
+/**
+ @return Green Color
+ */
 +(UIColor *)ColorSPAGreenColor;
+/**
+ @return Yellow Color
+ */
 +(UIColor *)ColorSPAYellowColor;
 
 @end
