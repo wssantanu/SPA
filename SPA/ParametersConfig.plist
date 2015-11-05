@@ -31,8 +31,7 @@
 	<key>logout</key>
 	<string></string>
 	<key>request_newpassword</key>
-	<string>name
-</string>
+	<string>name</string>
 	<key>login_parameters</key>
 	<string>username,password</string>
 </dict>

@@ -24,6 +24,8 @@ green:((float)((rgbValue & 0x00FF00) >>  8))/255.0 \
 blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
 alpha:1.0]
 
+#define DEBUGMODE @"NO"
+
 #define MenuWidth 80.0f
 #define HeaderHeight 70.0f
 #define AddmoreViewHeight 100
@@ -34,4 +36,50 @@ alpha:1.0]
 #define TextfiledStartEditingNotification @"textfield-start-editing-notification"
 #define TextfiledEndEditingNotification @"textfield-end-editing-notification"
 #define ClassDetailsMenuNotification @"class-details-menu-notification"
+#endif
+
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
+#ifdef DEBUG
+#define IMFAPPPRINT(__fmt, ...) NSLog(@"%s: "__fmt, __PRETTY_FUNCTION__, ##__VA_ARGS__)
+#else
+#define IMFAPPPRINT(__fmt, ...) ((void)0)
+#endif // #ifdef DEBUG
+    
+    
+#ifdef DEBUG
+#define IMFAPPASSERT(__value) { if ( !(__value) ) { NSLog(@"%s: *ASSERT(%s)", __PRETTY_FUNCTION__, #__value); } } ((void)0)
+#else
+#define IMFAPPASSERT(__value) ((void)0)
+#endif // #ifdef DEBUG
+    
+    
+#ifdef DEBUG
+#define IMFAPPERROR(__info) NSLog(@"%s: *ERROR(%@)", __PRETTY_FUNCTION__, __info)
+#else
+#define IMFAPPERROR(__info) ((void)0)
+#endif // #ifdef DEBUG
+    
+    
+#ifdef DEBUG
+#define IMFAPPPRINTMETHOD() NSLog(@"%s", __PRETTY_FUNCTION__)
+#else
+#define IMFAPPPRINTMETHOD() ((void)0)
+#endif // #ifdef DEBUG
+    
+    
+#ifdef DEBUG
+#define IMFAPPTESTVALUE(__value, __info) { id __result = (__value) ? @"YES" : @"NO"; NSLog(@"%s: %@ is %@", __PRETTY_FUNCTION__, __info, __result); }
+#else
+#define IMFAPPTESTVALUE(__value, __info) ((void)0)
+#endif // #ifdef DEBUG
+    
+    
+#ifdef __cplusplus
+}
 #endif

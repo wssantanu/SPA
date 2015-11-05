@@ -210,4 +210,22 @@
  */
 +(UIColor *)ColorSPAYellowColor;
 
++ (BOOL) ScreenOfPlatform4m;
++ (BOOL) ScreenOfPlatform5e;
++ (BOOL) DeviceIsIphoneFive;
++ (BOOL) IsConnectedToInternet;
++ (BOOL) ShowLastExecutedMethod;
+
++ (NSString*) LastExecutedMethod;
+
++(NSString *)CleanTextField:(NSString *)TextfieldName;
++(BOOL)ValidateEmail:(NSString *)EmailValue;
+-(BOOL)ValidateSpecialCharacter:(NSString *)DataValue;
+-(BOOL)validatePhone:(NSString*)phone;
+-(NSDictionary *)executeFetch:(NSString *)query;
+-(NSString *)CallURLForServerReturn: (NSMutableDictionary *)TotalData URL:(NSString *)UrlType;
+- (NSString *) stripTags:(NSString *)s;
+-(BOOL)ValidateTextField:(NSString *)TextFieldValue;
+-(NSDictionary *)GenerateParamValueForSubmit:(NSArray *)ParamArray FieldArray:(NSArray *)FieldArray;
+
 @end

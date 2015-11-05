@@ -2,14 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>seperator_key</key>
+	<string>,</string>
 	<key>Google_Analystic</key>
 	<string>UA-68188409-1</string>
 	<key>version</key>
 	<string>0.1</string>
 	<key>build</key>
 	<string>DevBuild</string>
-	<key>themoviedb_host</key>
-	<string>http://studentplanner.test.webspiders.com/user.api/</string>
+	<key>thedb_host</key>
+	<string>http://studentplanner.dev.webspiders.com/user.api/</string>
 	<key>api_key</key>
 	<string>328c283cd27bd1877d9080ccb1604c91</string>
 </dict>

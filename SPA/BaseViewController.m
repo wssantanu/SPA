@@ -38,6 +38,14 @@
     [HeaderView addSubview:TitleLabel];
 }
 
+-(void)ShowAletviewWIthTitle:(NSString *)ParamTitle Tag:(int)ParamTag Message:(NSString *)ParamMessage CancelButtonTitle:(NSString *)ParamCancelButtonTitle OtherButtonTitle:(NSString *)ParamOtherButtonTitle
+{
+    UIAlertView *AlertView = [[UIAlertView alloc] initWithTitle:ParamTitle message:ParamMessage delegate:self cancelButtonTitle:ParamCancelButtonTitle otherButtonTitles:ParamOtherButtonTitle, nil];
+    [AlertView setTag:ParamTag];
+    [AlertView show];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

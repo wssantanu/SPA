@@ -54,6 +54,10 @@
 		9B6A68DF1BCBFCBA00C284CB /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68DE1BCBFCBA00C284CB /* UserDetails.m */; };
 		9B6A68E21BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68E11BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m */; };
 		9B6A68E51BCC02D600C284CB /* CommonReturns.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68E41BCC02D600C284CB /* CommonReturns.m */; };
+		9B87DEAF1BEB2E2A00BA3424 /* SPALoginSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B87DEAE1BEB2E2A00BA3424 /* SPALoginSource.m */; };
+		9B87DEB11BEB2E3600BA3424 /* SPALoginSourceJsonPattern.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B87DEB01BEB2E3600BA3424 /* SPALoginSourceJsonPattern.json */; };
+		9B87DEB41BEB300A00BA3424 /* KMMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B87DEB31BEB300A00BA3424 /* KMMovie.m */; };
+		9B87DEBD1BEB7CD300BA3424 /* MBProgressHUDSubClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B87DEBC1BEB7CD300BA3424 /* MBProgressHUDSubClass.m */; };
 		9B8C3A901BE9E84800BABA05 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3A8F1BE9E84800BABA05 /* BaseViewController.m */; };
 		9B8C3A941BE9EC1D00BABA05 /* AddScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C3A921BE9EC1D00BABA05 /* AddScheduleViewController.m */; };
 		9B8C3A951BE9EC1D00BABA05 /* AddScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C3A931BE9EC1D00BABA05 /* AddScheduleViewController.xib */; };
@@ -247,6 +251,13 @@
 		9B6A68E11BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+STTwitter.m"; sourceTree = "<group>"; };
 		9B6A68E31BCC02D600C284CB /* CommonReturns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonReturns.h; sourceTree = "<group>"; };
 		9B6A68E41BCC02D600C284CB /* CommonReturns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonReturns.m; sourceTree = "<group>"; };
+		9B87DEAD1BEB2E2A00BA3424 /* SPALoginSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPALoginSource.h; sourceTree = "<group>"; };
+		9B87DEAE1BEB2E2A00BA3424 /* SPALoginSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPALoginSource.m; sourceTree = "<group>"; };
+		9B87DEB01BEB2E3600BA3424 /* SPALoginSourceJsonPattern.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SPALoginSourceJsonPattern.json; sourceTree = "<group>"; };
+		9B87DEB21BEB300A00BA3424 /* KMMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMMovie.h; sourceTree = "<group>"; };
+		9B87DEB31BEB300A00BA3424 /* KMMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KMMovie.m; sourceTree = "<group>"; };
+		9B87DEBB1BEB7CD300BA3424 /* MBProgressHUDSubClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUDSubClass.h; sourceTree = "<group>"; };
+		9B87DEBC1BEB7CD300BA3424 /* MBProgressHUDSubClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUDSubClass.m; sourceTree = "<group>"; };
 		9B8C3A8E1BE9E84800BABA05 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		9B8C3A8F1BE9E84800BABA05 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		9B8C3A911BE9EC1D00BABA05 /* AddScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddScheduleViewController.h; sourceTree = "<group>"; };
@@ -645,7 +656,12 @@
 		9B6A68AB1BCBDA1200C284CB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9B87DEAC1BEB2DC700BA3424 /* Forget Password */,
+				9B87DEAB1BEB2DBA00BA3424 /* Registration */,
+				9B87DEAA1BEB2DAF00BA3424 /* Login */,
 				9B6A68AC1BCBDA4C00C284CB /* SPABaseSource.h */,
+				9B87DEBB1BEB7CD300BA3424 /* MBProgressHUDSubClass.h */,
+				9B87DEBC1BEB7CD300BA3424 /* MBProgressHUDSubClass.m */,
 				9B6A68AD1BCBDA4C00C284CB /* SPABaseSource.m */,
 				9B6A68BA1BCBE78400C284CB /* SPAFontConfig.h */,
 				9B6A68BB1BCBE78400C284CB /* SPAFontConfig.m */,
@@ -777,6 +793,32 @@
 				9BAD64661BD5083700FF65C1 /* ForgetPasswordControllerViewController.xib */,
 			);
 			name = ForgetPasswordController;
+			sourceTree = "<group>";
+		};
+		9B87DEAA1BEB2DAF00BA3424 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9B87DEB21BEB300A00BA3424 /* KMMovie.h */,
+				9B87DEB31BEB300A00BA3424 /* KMMovie.m */,
+				9B87DEAD1BEB2E2A00BA3424 /* SPALoginSource.h */,
+				9B87DEAE1BEB2E2A00BA3424 /* SPALoginSource.m */,
+				9B87DEB01BEB2E3600BA3424 /* SPALoginSourceJsonPattern.json */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		9B87DEAB1BEB2DBA00BA3424 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Registration;
+			sourceTree = "<group>";
+		};
+		9B87DEAC1BEB2DC700BA3424 /* Forget Password */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Forget Password";
 			sourceTree = "<group>";
 		};
 		9B8C3A961BE9ED5B00BABA05 /* Task */ = {
@@ -1093,6 +1135,7 @@
 				9BAD9EF21BE0CEB8004E6C7C /* MyriadPro-CondIt.otf in Resources */,
 				9BAD9EF31BE0CEB8004E6C7C /* MyriadPro-It.otf in Resources */,
 				9BBBFC9D1BE3584200BBC6EF /* nko_colormap.png in Resources */,
+				9B87DEB11BEB2E3600BA3424 /* SPALoginSourceJsonPattern.json in Resources */,
 				9BAD9EF41BE0CEB8004E6C7C /* MyriadPro-Regular.otf in Resources */,
 				9BAD9EF51BE0CEB8004E6C7C /* MyriadPro-Semibold.otf in Resources */,
 				9BAD9EF61BE0CEB8004E6C7C /* MyriadPro-SemiboldIt.otf in Resources */,
@@ -1263,8 +1306,10 @@
 				9BAD64671BD5083700FF65C1 /* ForgetPasswordControllerViewController.m in Sources */,
 				9B6A68B01BCBDA4C00C284CB /* SPABaseSource.m in Sources */,
 				9B8C3AAF1BEA0FCE00BABA05 /* AgendaListMonthViewController.m in Sources */,
+				9B87DEBD1BEB7CD300BA3424 /* MBProgressHUDSubClass.m in Sources */,
 				9B8C3AD61BEA60BC00BABA05 /* AFHTTPRequestSerializer+OAuth2.m in Sources */,
 				9BAD9EEA1BE0CE06004E6C7C /* DEMOSecondViewController.m in Sources */,
+				9B87DEB41BEB300A00BA3424 /* KMMovie.m in Sources */,
 				9BAD9ED51BE0CDE9004E6C7C /* REFrostedViewController.m in Sources */,
 				9B6A688D1BCBD8F800C284CB /* KM_NSURL+Parameters.m in Sources */,
 				9B5897A41BC7DBD8000AD6B3 /* ViewController.m in Sources */,
@@ -1277,6 +1322,7 @@
 				9BAAD1BD1BE90B550006C209 /* KalDataSource.m in Sources */,
 				9B8C3ACD1BEA140600BABA05 /* ClassTasksViewController.m in Sources */,
 				9B6A68A51BCBD9D300C284CB /* EGOImageLoadConnection.m in Sources */,
+				9B87DEAF1BEB2E2A00BA3424 /* SPALoginSource.m in Sources */,
 				9B6A68DC1BCBF9C700C284CB /* DataModel.m in Sources */,
 				9BAD9EE61BE0CE06004E6C7C /* DEMOHomeViewController.m in Sources */,
 				9B6A68891BCBD8F800C284CB /* NSString+MD5.m in Sources */,

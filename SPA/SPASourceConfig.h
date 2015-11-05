@@ -16,6 +16,7 @@
 @property (nonatomic, copy, readonly) NSString* build;
 @property (nonatomic, copy, readonly) NSString* theDbHost;
 @property (nonatomic, copy, readonly) NSString* apiKey;
+@property (nonatomic, copy, readonly) NSString* SeperatorKey;
 
 @property (nonatomic, copy, readonly) NSString* Paramlogin_parameters;
 @property (nonatomic, copy, readonly) NSString* Paramrequest_newpassword;

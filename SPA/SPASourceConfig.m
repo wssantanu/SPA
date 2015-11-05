@@ -16,9 +16,9 @@
 
 #define kConfigVersionKey @"version"
 #define kConfigBuildKey @"build"
-#define kConfigTheMovieDbHostKey @"themoviedb_host"
+#define kConfigTheMovieDbHostKey @"thedb_host"
 #define kConfigApiKey @"api_key"
-#define kConfigParamSeperatorKey @","
+#define kConfigParamSeperatorKey @"seperator_key"
 
 #define kConfigLoginKey @"login_parameters"
 #define kConfigrequest_newpasswordKey @"request_newpassword"
@@ -66,6 +66,7 @@
         _version                          = [Baseconfig km_safeStringForKey:kConfigVersionKey];
         _build                            = [Baseconfig km_safeStringForKey:kConfigBuildKey];
         _apiKey                           = [Baseconfig km_safeStringForKey:kConfigApiKey];
+        _SeperatorKey                     = [Baseconfig km_safeStringForKey:kConfigParamSeperatorKey];
         
         _Paramlogin_parameters            = [Paramconfig km_safeStringForKey:kConfigLoginKey];
         _Paramrequest_newpassword         = [Paramconfig km_safeStringForKey:kConfigrequest_newpasswordKey];

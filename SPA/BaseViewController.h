@@ -11,4 +11,5 @@
 @interface BaseViewController : UIViewController
 
 -(void)CustomizeHeaderwithTitle:(NSString *)Title WithFontName:(NSString *)FontName WithFontSize:(float)Size;
+-(void)ShowAletviewWIthTitle:(NSString *)ParamTitle Tag:(int)ParamTag Message:(NSString *)ParamMessage CancelButtonTitle:(NSString *)ParamCancelButtonTitle OtherButtonTitle:(NSString *)ParamOtherButtonTitle;
 @end
