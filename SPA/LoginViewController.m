@@ -199,7 +199,7 @@ bool isTesting = YES;
         
         SPALoginCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
             
-             NSLog(@"data ==%@ errorString %@",data,errorString);
+             NSLog(@"data ==%@ ",data);
             
             [_ActivityIndicator hide:YES];
             if (errorString) {
@@ -248,7 +248,7 @@ bool isTesting = YES;
         };
         
         SPALoginSource * source = [SPALoginSource loginDetailsSource];
-        [source getLoginDetails:[NSArray arrayWithObjects:[Constant CleanTextField:_LoginEmailTextFiled.text], nil] completion:completionBlock];
+        [source getLoginDetails:[NSArray arrayWithObjects:[Constant CleanTextField:_LoginEmailTextFiled.text],[Constant CleanTextField:_LoginPasswordTextFiled.text], nil] completion:completionBlock];
         
         _ActivityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
@@ -260,10 +260,12 @@ bool isTesting = YES;
 
 -(NSString *)getValueFromDictionary :(NSDictionary *)DataDictionary
 {
+    NSLog(@"DataDictionary ==>%@",DataDictionary);
+    
     NSString *ReturnValue = @"";
-    NSArray *Dic = [DataDictionary objectForKey:@"filename"];
+    NSArray *Dic = [DataDictionary objectForKey:@"und"];
     if(Dic!=NULL)
-        ReturnValue = removeNull([[Dic objectAtIndex:0] objectForKey:@"value"]);
+        ReturnValue = [[Dic objectAtIndex:0] objectForKey:@"value"];
     return ReturnValue;
 }
 
