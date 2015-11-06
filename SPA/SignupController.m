@@ -11,30 +11,72 @@
 #import "Constant.h"
 #import "PECropViewController.h"
 
-/**
- A Boolean value indicating whether the manager is enabled.
- 
- If YES, the manager will change status bar network activity indicator according to network operation notifications it receives. The default value is NO.
- */
-
 typedef enum {
     userTypeTeacher,
     userTypeStudent
 } userType;
 
+typedef enum {
+    receiveEmailNo,
+    receiveEmailYes
+} receiveEmail;
+
+typedef enum {
+    loginDeviceNo,
+    loginDeviceYes
+} loginDevice;
+
 #define kConfigScrollviewKey @"121"
-#define kConfigEmailTitleLabelKey @"122"
-#define kConfigPasswordTitleLabelKey @"124"
-#define kConfigEmailTextFiledKey @"123"
-#define kConfigPasswordTextFiledKey @"125"
-#define kConfigLoginButtonKey @"126"
-#define kConfigSignupButtonKey @"127"
-#define kConfigForgetPasswordButtonKey @"128"
+//#define kConfigEmailTitleLabelKey @"122"
+//#define kConfigPasswordTitleLabelKey @"124"
+//#define kConfigEmailTextFiledKey @"123"
+//#define kConfigPasswordTextFiledKey @"125"
+//#define kConfigLoginButtonKey @"126"
+//#define kConfigSignupButtonKey @"127"
+//#define kConfigForgetPasswordButtonKey @"128"
+
+#define kConfigTeacherEmailTextfieldKey @"123"
+#define kConfigTeacherNameTextfieldKey @"124"
+#define kConfigTeacherPasswordTextfieldKey @"125"
+#define kConfigTeacherConfirmPasswordTextfieldKey @"126"
+#define kConfigTeacherSchoolTextfieldKey @"127"
+#define kConfigTeacherOfficeLocationTextfieldKey @"128"
+#define kConfigTeacherOfficeHoursTextfieldKey @"129"
+#define kConfigTeacherPhoneTextfieldKey @"130"
+
+#define kConfigStudentEmailTextfieldKey @"223"
+#define kConfigStudentNameTextfieldKey @"224"
+#define kConfigStudentPasswordTextfieldKey @"225"
+#define kConfigStudentConfirmPasswordTextfieldKey @"226"
 
 #define kConfigTeacherTypeButtonKey @"999"
 #define kConfigStudentTypeButtonKey @"888"
 
-#define kConfigAttachedViewYPosition @"100"
+#define kConfigTeacherReceiveEmailTypeButtonKey @"1123"
+#define kConfigTeacherLoginDeviceTypeButtonKey @"1124"
+#define kConfigStudentReceiveEmailTypeButtonKey @"2123"
+#define kConfigStudentLoginDeviceTypeButtonKey @"2124"
+
+#define kConfigCheckboxNormalKey @"checkbox_normal"
+#define kConfigCheckboxSelectedKey @"checkbox_selected"
+#define kConfigRedioButtonNormalKey @"rediobutton_unchacked"
+#define kConfigRedioButtonSelectedKey @"rediobutton_chacked"
+
+#define kConfigTeacherTypeLoginButtonKey @"6213"
+#define kConfigTeacherTypeRegistrationButtonKey @"6214"
+#define kConfigTeacherTypeCancelButtonKey @"6215"
+#define kConfigStudentTypeLoginButtonKey @"7213"
+#define kConfigStudentTypeRegistrationButtonKey @"7214"
+#define kConfigStudentTypeCancelButtonKey @"7215"
+
+#define kConfigAttachedViewYPosition @"60"
+
+#define kConfigSendEmailYes @"1"
+#define kConfigSendEmailNo @"0"
+#define kConfigLoginDeviceYes @"1"
+#define kConfigLoginDeviceNo @"0"
+#define kConfiguserTypeTeacher @"4"
+#define kConfiguserTypeStudent @"5"
 
 @interface SignupController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, PECropViewControllerDelegate>{
     __weak id<UIScrollViewDelegate> _scrollViewDelegate;
@@ -42,15 +84,24 @@ typedef enum {
 }
 
 @property (nonatomic,retain) UIScrollView *LoginMainBgScrollView;
+
 @property (nonatomic,retain) UILabel *LoginEmailTitleLabel,*LoginPasswordTitleLabel;
-@property (nonatomic,retain) UITextField *LoginEmailTextFiled,*LoginPasswordTextFiled;
-@property (nonatomic,retain) UIButton *LoginButton,*SignupButton,*ForgetPasswordButton,*TeacherTypeButton,*StudentTypeButton;
+
+@property (nonatomic,retain) UIButton *LoginButton,*SignupButton,*ForgetPasswordButton,*TeacherTypeButton,*StudentTypeButton,*TeacherReceiveEmailButton,*TeacherLogedinDeviceButton,*StudentReceiveEmailButton,*StudentLogedinDeviceButton,*TeacherLoginButton,*TeacherSignupButton,*TeacherForgetPasswordButton,*StudentLoginButton,*StudentSignupButton,*StudentForgetPasswordButton;
+
 @property (nonatomic,retain) IBOutlet UIView *TeacherTypeView,*StudentTypeView;
-@property (assign) userType SelectedUserType;
-@property (nonatomic) UIPopoverController *popover;
-@property (nonatomic, weak) IBOutlet UIButton *editButton;
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
-@property (nonatomic, weak) IBOutlet UIButton *cameraButton;
+
+@property (nonatomic,retain) UITextField *TeacherEmailTextfield,*TeacherNameTextfield,*TeacherPasswordTextfield,*TeacherConfirmPasswordTextfield,*TeacherSchoolTextfield,*TeacherOfficeLocationTextfield,*TeacherOfficeHoursTextfield,*TeacherPhoneTextfield,*StudentEmailTextfield,*StudentNameTextfield,*StudentPasswordTextfield,*StudentConfirmPasswordTextfield,*LoginEmailTextFiled,*LoginPasswordTextFiled;
+
+@property (assign) userType     SelectedUserType;
+@property (assign) receiveEmail receiveEmailType;
+@property (assign) loginDevice  loginDeviceType;
+
+@property (nonatomic) UIPopoverController           *popover;
+@property (nonatomic, weak) IBOutlet UIButton       *editButton;
+@property (nonatomic, weak) IBOutlet UIImageView    *imageView;
+@property (nonatomic, weak) IBOutlet UIButton       *cameraButton;
+@property (nonatomic,retain) MBProgressHUD          *ActivityIndicator;
 
 @end
 @implementation SignupController
@@ -69,26 +120,40 @@ typedef enum {
         [_LoginMainBgScrollView setShowsVerticalScrollIndicator:NO];
         [_LoginMainBgScrollView setDelegate:_scrollViewDelegate];
         
-        // Define UILabel
-        
-        _LoginEmailTitleLabel       = (UILabel *)[_LoginMainBgScrollView viewWithTag:[kConfigEmailTitleLabelKey intValue]];
-        _LoginPasswordTitleLabel    = (UILabel *)[_LoginMainBgScrollView viewWithTag:[kConfigPasswordTitleLabelKey intValue]];
-        
         // Define Textfiled
         
-        _LoginEmailTextFiled       = (UITextField *)[_LoginMainBgScrollView viewWithTag:[kConfigEmailTextFiledKey intValue]];
-        _LoginPasswordTextFiled    = (UITextField *)[_LoginMainBgScrollView viewWithTag:[kConfigPasswordTextFiledKey intValue]];
+        _TeacherEmailTextfield              = (UITextField *)[_TeacherTypeView viewWithTag:[kConfigTeacherEmailTextfieldKey intValue]];
+        _TeacherNameTextfield               = (UITextField *)[_TeacherTypeView viewWithTag:[kConfigTeacherNameTextfieldKey intValue]];
+        _TeacherPasswordTextfield           = (UITextField *)[_TeacherTypeView viewWithTag:[kConfigTeacherPasswordTextfieldKey intValue]];
+        _TeacherConfirmPasswordTextfield    = (UITextField *)[_TeacherTypeView viewWithTag:[kConfigTeacherConfirmPasswordTextfieldKey intValue]];
+        _TeacherSchoolTextfield             = (UITextField *)[_TeacherTypeView viewWithTag:[kConfigTeacherSchoolTextfieldKey intValue]];
+        _TeacherOfficeLocationTextfield     = (UITextField *)[_TeacherTypeView viewWithTag:[kConfigTeacherOfficeLocationTextfieldKey intValue]];
+        _TeacherOfficeHoursTextfield        = (UITextField *)[_TeacherTypeView viewWithTag:[kConfigTeacherOfficeHoursTextfieldKey intValue]];
+        _TeacherPhoneTextfield              = (UITextField *)[_TeacherTypeView viewWithTag:[kConfigTeacherPhoneTextfieldKey intValue]];
         
-        // Define Button
+        _StudentEmailTextfield              = (UITextField *)[_StudentTypeView viewWithTag:[kConfigStudentEmailTextfieldKey intValue]];
+        _StudentNameTextfield               = (UITextField *)[_StudentTypeView viewWithTag:[kConfigStudentNameTextfieldKey intValue]];
+        _StudentPasswordTextfield           = (UITextField *)[_StudentTypeView viewWithTag:[kConfigStudentPasswordTextfieldKey intValue]];
+        _StudentConfirmPasswordTextfield    = (UITextField *)[_StudentTypeView viewWithTag:[kConfigStudentConfirmPasswordTextfieldKey intValue]];
         
-        _LoginButton                = (UIButton *)[_LoginMainBgScrollView viewWithTag:[kConfigLoginButtonKey intValue]];
-        _SignupButton               = (UIButton *)[_LoginMainBgScrollView viewWithTag:[kConfigSignupButtonKey intValue]];
-        _ForgetPasswordButton       = (UIButton *)[_LoginMainBgScrollView viewWithTag:[kConfigForgetPasswordButtonKey intValue]];
+        _TeacherTypeButton                  = (UIButton *)[_LoginMainBgScrollView viewWithTag:[kConfigTeacherTypeButtonKey intValue]];
+        _StudentTypeButton                  = (UIButton *)[_LoginMainBgScrollView viewWithTag:[kConfigStudentTypeButtonKey intValue]];
         
-        _TeacherTypeButton       = (UIButton *)[_LoginMainBgScrollView viewWithTag:[kConfigTeacherTypeButtonKey intValue]];
-        _StudentTypeButton       = (UIButton *)[_LoginMainBgScrollView viewWithTag:[kConfigStudentTypeButtonKey intValue]];
+        _TeacherLoginButton                 = (UIButton *)[_TeacherTypeView viewWithTag:[kConfigTeacherTypeLoginButtonKey intValue]];
+        _TeacherSignupButton                = (UIButton *)[_TeacherTypeView viewWithTag:[kConfigTeacherTypeRegistrationButtonKey intValue]];
+        _TeacherForgetPasswordButton        = (UIButton *)[_TeacherTypeView viewWithTag:[kConfigTeacherTypeCancelButtonKey intValue]];
+        _TeacherReceiveEmailButton          = (UIButton *)[_TeacherTypeView viewWithTag:[kConfigTeacherReceiveEmailTypeButtonKey intValue]];
+        _TeacherLogedinDeviceButton         = (UIButton *)[_TeacherTypeView viewWithTag:[kConfigTeacherLoginDeviceTypeButtonKey intValue]];
+        
+        _StudentLoginButton                 = (UIButton *)[_StudentTypeView viewWithTag:[kConfigStudentTypeLoginButtonKey intValue]];
+        _StudentSignupButton                = (UIButton *)[_StudentTypeView viewWithTag:[kConfigStudentTypeRegistrationButtonKey intValue]];
+        _StudentForgetPasswordButton        = (UIButton *)[_StudentTypeView viewWithTag:[kConfigStudentTypeCancelButtonKey intValue]];
+        _StudentReceiveEmailButton          = (UIButton *)[_StudentTypeView viewWithTag:[kConfigStudentReceiveEmailTypeButtonKey intValue]];
+        _StudentLogedinDeviceButton         = (UIButton *)[_StudentTypeView viewWithTag:[kConfigStudentLoginDeviceTypeButtonKey intValue]];
         
         _SelectedUserType = userTypeTeacher;
+        _receiveEmailType = receiveEmailNo;
+        _loginDeviceType  = loginDeviceNo;
         
         for (id AllLabel in [_LoginMainBgScrollView subviews]) {
             if ([AllLabel isKindOfClass:[UILabel class]]) {
@@ -107,10 +172,10 @@ typedef enum {
                 {
                     [AllButtonInView addTarget:self action:@selector(UserTypeSelect:) forControlEvents:UIControlEventTouchUpInside];
                 }
-                else if (AllButtonInView == _StudentTypeButton) {
+                else if (AllButtonInView == _StudentTypeButton)
+                {
                     [AllButtonInView addTarget:self action:@selector(UserTypeSelect:) forControlEvents:UIControlEventTouchUpInside];
                 }
-                //[AllButtonInView.titleLabel setTextColor:Constant.ColorSPAWhiteColor];
             }
         }
         
@@ -128,7 +193,7 @@ typedef enum {
             if ([AllLabel isKindOfClass:[UILabel class]]) {
                 UILabel *AllLabelInView = (UILabel *)AllLabel;
                 [AllLabelInView setTextColor:Constant.ColorSPABlackColor];
-                [AllLabelInView setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:16]];
+                (AllLabelInView.tag == 1122)?[AllLabelInView setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:12]]:[AllLabelInView setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:16]];
             }
         }
         
@@ -137,12 +202,16 @@ typedef enum {
                 
                 UIButton *AllButtonInView = (UIButton *)AllButton;
                 
-                if (AllButtonInView == _LoginButton)
+                if (AllButtonInView == _TeacherLoginButton)
                     [AllButtonInView addTarget:self action:@selector(ProcessLogin) forControlEvents:UIControlEventTouchUpInside];
-                else if (AllButtonInView == _SignupButton)
+                else if (AllButtonInView == _TeacherSignupButton)
                     [AllButtonInView addTarget:self action:@selector(GotoSignup) forControlEvents:UIControlEventTouchUpInside];
-                else if (AllButtonInView == _ForgetPasswordButton)
+                else if (AllButtonInView == _TeacherForgetPasswordButton)
                     [AllButtonInView addTarget:self action:@selector(GotoForgetPassword) forControlEvents:UIControlEventTouchUpInside];
+                else if (AllButtonInView == _TeacherReceiveEmailButton)
+                    [AllButtonInView addTarget:self action:@selector(changeSettings:) forControlEvents:UIControlEventTouchUpInside];
+                else if (AllButtonInView == _TeacherLogedinDeviceButton)
+                    [AllButtonInView addTarget:self action:@selector(changeSettings:) forControlEvents:UIControlEventTouchUpInside];
                 
                 [AllButtonInView.titleLabel setTextColor:Constant.ColorSPAWhiteColor];
             }
@@ -153,6 +222,15 @@ typedef enum {
                 UITextField *AllTextFiledInView = (UITextField *)AllTextFiled;
                 [AllTextFiledInView setDelegate:_textFieldDelegate];
                 [AllTextFiledInView setBorderStyle:UITextBorderStyleLine];
+                
+                UIView *LefftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, AllTextFiledInView.frame.size.height)];
+                [LefftView setBackgroundColor:[UIColor clearColor]];
+                [AllTextFiledInView setLeftView:LefftView];
+                [AllTextFiledInView setLeftViewMode:UITextFieldViewModeAlways];
+                
+                if (AllTextFiledInView == _TeacherPasswordTextfield || AllTextFiledInView == _TeacherConfirmPasswordTextfield) {
+                    [AllTextFiledInView setSecureTextEntry:YES];
+                }
             }
         }
         
@@ -163,6 +241,7 @@ typedef enum {
                 UILabel *AllLabelInView = (UILabel *)AllLabel;
                 [AllLabelInView setTextColor:Constant.ColorSPABlackColor];
                 [AllLabelInView setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:16]];
+                (AllLabelInView.tag == 2125)?[AllLabelInView setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:12]]:[AllLabelInView setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:16]];
             }
         }
         
@@ -171,12 +250,16 @@ typedef enum {
                 
                 UIButton *AllButtonInView = (UIButton *)AllButton;
                 
-                if (AllButtonInView == _LoginButton)
+                if (AllButtonInView == _StudentLoginButton)
                     [AllButtonInView addTarget:self action:@selector(ProcessLogin) forControlEvents:UIControlEventTouchUpInside];
-                else if (AllButtonInView == _SignupButton)
+                else if (AllButtonInView == _StudentSignupButton)
                     [AllButtonInView addTarget:self action:@selector(GotoSignup) forControlEvents:UIControlEventTouchUpInside];
-                else if (AllButtonInView == _ForgetPasswordButton)
+                else if (AllButtonInView == _StudentForgetPasswordButton)
                     [AllButtonInView addTarget:self action:@selector(GotoForgetPassword) forControlEvents:UIControlEventTouchUpInside];
+                else if (AllButtonInView == _StudentReceiveEmailButton)
+                    [AllButtonInView addTarget:self action:@selector(changeSettings:) forControlEvents:UIControlEventTouchUpInside];
+                else if (AllButtonInView == _StudentLogedinDeviceButton)
+                    [AllButtonInView addTarget:self action:@selector(changeSettings:) forControlEvents:UIControlEventTouchUpInside];
                 
                 [AllButtonInView.titleLabel setTextColor:Constant.ColorSPAWhiteColor];
             }
@@ -187,12 +270,101 @@ typedef enum {
                 UITextField *AllTextFiledInView = (UITextField *)AllTextFiled;
                 [AllTextFiledInView setDelegate:_textFieldDelegate];
                 [AllTextFiledInView setBorderStyle:UITextBorderStyleLine];
+                
+                UIView *LefftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, AllTextFiledInView.frame.size.height)];
+                [LefftView setBackgroundColor:[UIColor clearColor]];
+                [AllTextFiledInView setLeftView:LefftView];
+                [AllTextFiledInView setLeftViewMode:UITextFieldViewModeAlways];
+                
+                if (AllTextFiledInView == _StudentPasswordTextfield || AllTextFiledInView == _StudentConfirmPasswordTextfield) {
+                    [AllTextFiledInView setSecureTextEntry:YES];
+                }
             }
         }
-        
         [self UserTypeChanged];
     }
     return self;
+}
+
+-(void)UserTypeSelect:(UIButton *)sender
+{
+    if (sender.tag == [kConfigTeacherTypeButtonKey intValue]){
+        if (_SelectedUserType != userTypeTeacher) {
+            [_TeacherTypeButton setImage:[UIImage imageNamed:kConfigRedioButtonSelectedKey] forState:UIControlStateNormal];
+            [_StudentTypeButton setImage:[UIImage imageNamed:kConfigRedioButtonNormalKey] forState:UIControlStateNormal];
+            _SelectedUserType = userTypeTeacher;
+            [self UserTypeChanged];
+        }
+    } else if (sender.tag == [kConfigStudentTypeButtonKey intValue]) {
+        if (_SelectedUserType != userTypeStudent) {
+            [_TeacherTypeButton setImage:[UIImage imageNamed:kConfigRedioButtonNormalKey] forState:UIControlStateNormal];
+            [_StudentTypeButton setImage:[UIImage imageNamed:kConfigRedioButtonSelectedKey] forState:UIControlStateNormal];
+            _SelectedUserType = userTypeStudent;
+            [self UserTypeChanged];
+        }
+    }
+}
+
+-(NSString *)getUserType {
+    return (_SelectedUserType == userTypeTeacher)?kConfiguserTypeTeacher:kConfiguserTypeStudent;
+}
+-(NSString *)getEmailReciveStatus {
+    return (_receiveEmailType == receiveEmailNo)?kConfigSendEmailNo:kConfigSendEmailYes;
+}
+-(NSString *)getLoginDeviceStatus {
+    return (_loginDeviceType == loginDeviceNo)?kConfigLoginDeviceNo:kConfigLoginDeviceYes;
+}
+
+-(void)changeSettings :(UIButton *)sender
+{
+    if (_SelectedUserType == userTypeTeacher) {
+        if (sender.tag == [kConfigTeacherReceiveEmailTypeButtonKey intValue]) {
+            if (_receiveEmailType == receiveEmailNo) {
+                [_TeacherReceiveEmailButton setImage:[UIImage imageNamed:kConfigCheckboxSelectedKey] forState:UIControlStateNormal];
+                [_TeacherReceiveEmailButton setImage:[UIImage imageNamed:kConfigCheckboxSelectedKey] forState:UIControlStateNormal];
+                _receiveEmailType = receiveEmailYes;
+            } else {
+                [_TeacherReceiveEmailButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+                [_TeacherReceiveEmailButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+                _receiveEmailType = receiveEmailNo;
+            }
+        }
+        else if (sender.tag == [kConfigTeacherLoginDeviceTypeButtonKey intValue]) {
+            if (_loginDeviceType == loginDeviceNo) {
+                [_TeacherLogedinDeviceButton setImage:[UIImage imageNamed:kConfigCheckboxSelectedKey] forState:UIControlStateNormal];
+                [_TeacherLogedinDeviceButton setImage:[UIImage imageNamed:kConfigCheckboxSelectedKey] forState:UIControlStateNormal];
+                _loginDeviceType = loginDeviceYes;
+            } else {
+                [_TeacherLogedinDeviceButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+                [_TeacherLogedinDeviceButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+                _loginDeviceType = loginDeviceNo;
+            }
+        }
+    }
+    else if (_SelectedUserType == userTypeStudent) {
+        if (sender.tag == [kConfigStudentReceiveEmailTypeButtonKey intValue]) {
+            if (_receiveEmailType == receiveEmailNo) {
+                [_StudentReceiveEmailButton setImage:[UIImage imageNamed:kConfigCheckboxSelectedKey] forState:UIControlStateNormal];
+                [_StudentReceiveEmailButton setImage:[UIImage imageNamed:kConfigCheckboxSelectedKey] forState:UIControlStateNormal];
+                _receiveEmailType = receiveEmailYes;
+            } else {
+                [_StudentReceiveEmailButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+                [_StudentReceiveEmailButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+                _receiveEmailType = receiveEmailNo;
+            }
+        }
+        else if (sender.tag == [kConfigStudentLoginDeviceTypeButtonKey intValue]) {
+            if (_loginDeviceType == loginDeviceNo) {
+                [_StudentLogedinDeviceButton setImage:[UIImage imageNamed:kConfigCheckboxSelectedKey] forState:UIControlStateNormal];
+                [_StudentLogedinDeviceButton setImage:[UIImage imageNamed:kConfigCheckboxSelectedKey] forState:UIControlStateNormal];
+                _loginDeviceType = loginDeviceYes;
+            } else {
+                [_StudentLogedinDeviceButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+                [_StudentLogedinDeviceButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+                _loginDeviceType = loginDeviceNo;
+            }
+        }
+    }
 }
 
 #pragma mark - PECropViewControllerDelegate methods
@@ -230,10 +402,7 @@ typedef enum {
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
     CGFloat length = MIN(width, height);
-    controller.imageCropRect = CGRectMake((width - length) / 2,
-                                          (height - length) / 2,
-                                          length,
-                                          length);
+    controller.imageCropRect = CGRectMake((width - length) / 2,(height - length) / 2,length,length);
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     
@@ -352,27 +521,14 @@ typedef enum {
     }
 }
 
-
--(void)UserTypeSelect:(UIButton *)sender
-{
-    if (sender.tag == [kConfigTeacherTypeButtonKey intValue]){
-        if (_SelectedUserType != userTypeTeacher) {
-            [_TeacherTypeButton setImage:[UIImage imageNamed:@"checkbox_selected"] forState:UIControlStateNormal];
-            [_StudentTypeButton setImage:[UIImage imageNamed:@"checkbox_normal"] forState:UIControlStateNormal];
-            _SelectedUserType = userTypeTeacher;
-            [self UserTypeChanged];
-        }
-    } else if (sender.tag == [kConfigStudentTypeButtonKey intValue]) {
-        if (_SelectedUserType != userTypeStudent) {
-            [_TeacherTypeButton setImage:[UIImage imageNamed:@"checkbox_normal"] forState:UIControlStateNormal];
-            [_StudentTypeButton setImage:[UIImage imageNamed:@"checkbox_selected"] forState:UIControlStateNormal];
-            _SelectedUserType = userTypeStudent;
-            [self UserTypeChanged];
-        }
-    }
-}
-
 -(void)UserTypeChanged {
+    
+    _loginDeviceType = loginDeviceNo;
+    _receiveEmailType = receiveEmailNo;
+    [_TeacherReceiveEmailButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+    [_TeacherLogedinDeviceButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+    [_StudentReceiveEmailButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
+    [_StudentLogedinDeviceButton setImage:[UIImage imageNamed:kConfigCheckboxNormalKey] forState:UIControlStateNormal];
     
     if (_SelectedUserType == userTypeTeacher)
     {
@@ -420,11 +576,101 @@ typedef enum {
     [HeaderView addSubview:TitleLabel];
 }
 
+#pragma mark - ValidateAccount
+
+-(BOOL)ValidateTeacherTypeSignupForm
+{
+    BOOL validate = YES;
+    
+    if ([Constant CleanTextField:_TeacherEmailTextfield.text].length == 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10000 Message:@"Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if (![Constant ValidateEmail:[Constant CleanTextField:_TeacherEmailTextfield.text]]) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10001 Message:@"Proper Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_TeacherNameTextfield.text].length== 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10002 Message:@"Name please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_TeacherPasswordTextfield.text].length== 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10003 Message:@"Password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_TeacherPasswordTextfield.text].length < 6) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10004 Message:@"Password must be 6 character" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_TeacherConfirmPasswordTextfield.text].length == 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10005 Message:@"Retype password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if (![[Constant CleanTextField:_TeacherPasswordTextfield.text] isEqualToString:[Constant CleanTextField:_TeacherConfirmPasswordTextfield.text]]) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10006 Message:@"Password not matching" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_TeacherSchoolTextfield.text].length == 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10007 Message:@"School Please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_TeacherOfficeLocationTextfield.text].length == 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10008 Message:@"Office location please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_TeacherOfficeHoursTextfield.text].length == 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10009 Message:@"Office hours please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_TeacherPhoneTextfield.text].length == 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10010 Message:@"Phone number please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if (![Constant validatePhone:[Constant CleanTextField:_TeacherPhoneTextfield.text]]) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10011 Message:@"Proper Phone number please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    }
+    return validate;
+}
+
+-(BOOL)ValidateStudentTypeSignupForm
+{
+    BOOL validate = YES;
+    
+    if ([Constant CleanTextField:_StudentEmailTextfield.text].length == 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10012 Message:@"Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if (![Constant ValidateEmail:[Constant CleanTextField:_StudentEmailTextfield.text]]) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10013 Message:@"Proper Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_StudentNameTextfield.text].length== 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10014 Message:@"Name please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_StudentPasswordTextfield.text].length== 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10015 Message:@"Password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_StudentPasswordTextfield.text].length < 6) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10016 Message:@"Password must be 6 character" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_StudentConfirmPasswordTextfield.text].length == 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10017 Message:@"Retype password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if (![[Constant CleanTextField:_StudentPasswordTextfield.text] isEqualToString:[Constant CleanTextField:_StudentConfirmPasswordTextfield.text]]) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10018 Message:@"Password not matching" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    }
+    return validate;
+}
+
 #pragma mark - Navigate to different Screen
 
--(void)ProcessLogin {  }
--(void)GotoSignup { [self.navigationController pushViewController:Constant.SignupController animated:YES]; }
--(void)GotoForgetPassword { [self.navigationController pushViewController:Constant.ForgetPasswordControllerViewController animated:YES]; }
+-(void)ProcessLogin {
+    [self.navigationController pushViewController:Constant.LoginViewController animated:YES];
+}
+-(void)GotoSignup {
+    if (_SelectedUserType == userTypeTeacher) {
+        if ([self ValidateTeacherTypeSignupForm]) {
+            
+        }
+    } else if (_SelectedUserType == userTypeStudent) {
+        if ([self ValidateStudentTypeSignupForm]) {
+            
+        }
+    }
+}
+-(void)GotoForgetPassword {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 #pragma mark - Memory Warning
 

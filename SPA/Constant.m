@@ -57,6 +57,12 @@
 #define kConfigFontSPAGreenKey @"0x52a63d"
 #define kConfigFontSPAYellowKey @"0xF2BA27"
 
+/**
+ @key define for Entity
+ */
+
+#define kConfigUserEntityKey @"UserDetails"
+
 @implementation Constant
 
 +(ViewController *)LandingController {
@@ -154,7 +160,7 @@
  @parm details
  **/
 
-
++(NSString *)EntityForUser { return kConfigUserEntityKey; }
 
 /**
  @return service setails

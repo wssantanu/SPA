@@ -30,6 +30,9 @@
 -(void)showerrorMessage:(id)sender;
 -(NSNumber*)numberForString:(NSString*)aVal;
 -(void)deleteAllObjectsForEntity:(NSString *)entityDescription;
+-(NSManagedObject*)objectOfType:(NSString*) aType forKey:(NSString*) aKey andValue:(NSString*) anId withCondition:(NSString*) aCond newFlag:(BOOL) canCreate forManagedObjectContext:(NSManagedObjectContext*)tempContext;
+-(NSManagedObjectContext*)getChildManagedObjectContext;
+-(void)saveContextForChildContext:(NSManagedObjectContext*)childContext;
 
-
+- (NSArray *)fetchedUserDataWithUserId:(NSString *)UserId;
 @end

@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:UserDetails.h">
+   </FileRef>
+   <FileRef
+      location = "group:UserDetails.m">
+   </FileRef>
+   <FileRef
       location = "group:SPA.xcodeproj">
    </FileRef>
    <FileRef

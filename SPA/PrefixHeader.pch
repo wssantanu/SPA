@@ -17,6 +17,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BaseViewController.h"
 #import "Constant.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 #define UIColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -36,6 +37,11 @@ alpha:1.0]
 #define TextfiledStartEditingNotification @"textfield-start-editing-notification"
 #define TextfiledEndEditingNotification @"textfield-end-editing-notification"
 #define ClassDetailsMenuNotification @"class-details-menu-notification"
+
+#define AlertTitle @"Student Planner Application"
+
+#define KeychainUserEmailkey @"SPAUSERNAME"
+#define KeychainUserPasswordkey @"SPAUSERPASSWORD"
 #endif
 
 

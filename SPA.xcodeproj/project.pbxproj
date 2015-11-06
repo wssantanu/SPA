@@ -51,7 +51,6 @@
 		9B6A68D31BCBF30E00C284CB /* LoginflowStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B6A68D21BCBF30E00C284CB /* LoginflowStoryboard.storyboard */; };
 		9B6A68D91BCBF36800C284CB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68D81BCBF36800C284CB /* LoginViewController.m */; };
 		9B6A68DC1BCBF9C700C284CB /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68DB1BCBF9C700C284CB /* DataModel.m */; };
-		9B6A68DF1BCBFCBA00C284CB /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68DE1BCBFCBA00C284CB /* UserDetails.m */; };
 		9B6A68E21BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68E11BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m */; };
 		9B6A68E51BCC02D600C284CB /* CommonReturns.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6A68E41BCC02D600C284CB /* CommonReturns.m */; };
 		9B87DEAF1BEB2E2A00BA3424 /* SPALoginSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B87DEAE1BEB2E2A00BA3424 /* SPALoginSource.m */; };
@@ -150,6 +149,11 @@
 		9BBBFC9C1BE3584200BBC6EF /* nko_brightness_guide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BBBFC991BE3584200BBC6EF /* nko_brightness_guide@2x.png */; };
 		9BBBFC9D1BE3584200BBC6EF /* nko_colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BBBFC9A1BE3584200BBC6EF /* nko_colormap.png */; };
 		9BBBFCA01BE3584A00BBC6EF /* NKOColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBBFC9F1BE3584A00BBC6EF /* NKOColorPickerView.m */; };
+		9BBD83141BEC9A3D00DA7117 /* UserDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD83131BEC9A3D00DA7117 /* UserDetails.m */; };
+		9BBD83171BECAF1900DA7117 /* SPAForgetPasswordSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD83161BECAF1900DA7117 /* SPAForgetPasswordSource.m */; };
+		9BBD83191BECAF3F00DA7117 /* SPAForgetPasswordSourceJsonPattern.json in Resources */ = {isa = PBXBuildFile; fileRef = 9BBD83181BECAF3F00DA7117 /* SPAForgetPasswordSourceJsonPattern.json */; };
+		9BBD831C1BECCA7C00DA7117 /* SPAsignupSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD831B1BECCA7C00DA7117 /* SPAsignupSource.m */; };
+		9BBD831E1BECCBA100DA7117 /* SPAsignupSourceJsonPattern.json in Resources */ = {isa = PBXBuildFile; fileRef = 9BBD831D1BECCBA100DA7117 /* SPAsignupSourceJsonPattern.json */; };
 		9BC17AE51BE205D900331DD5 /* Addmoreviewobject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC17AE41BE205D900331DD5 /* Addmoreviewobject.m */; };
 		9BCA09F31BD0E44700A78D71 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA09F21BD0E44700A78D71 /* Constant.m */; };
 		9BDE42DD1BCE764F0089CA68 /* SignupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE42DC1BCE764F0089CA68 /* SignupController.m */; };
@@ -245,8 +249,6 @@
 		9B6A68D81BCBF36800C284CB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9B6A68DA1BCBF9C700C284CB /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
 		9B6A68DB1BCBF9C700C284CB /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
-		9B6A68DD1BCBFCBA00C284CB /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
-		9B6A68DE1BCBFCBA00C284CB /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
 		9B6A68E01BCBFEBD00C284CB /* NSDateFormatter+STTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+STTwitter.h"; sourceTree = "<group>"; };
 		9B6A68E11BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+STTwitter.m"; sourceTree = "<group>"; };
 		9B6A68E31BCC02D600C284CB /* CommonReturns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonReturns.h; sourceTree = "<group>"; };
@@ -403,6 +405,14 @@
 		9BBBFC9A1BE3584200BBC6EF /* nko_colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nko_colormap.png; sourceTree = "<group>"; };
 		9BBBFC9E1BE3584A00BBC6EF /* NKOColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NKOColorPickerView.h; sourceTree = "<group>"; };
 		9BBBFC9F1BE3584A00BBC6EF /* NKOColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NKOColorPickerView.m; sourceTree = "<group>"; };
+		9BBD83121BEC9A3D00DA7117 /* UserDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetails.h; sourceTree = "<group>"; };
+		9BBD83131BEC9A3D00DA7117 /* UserDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetails.m; sourceTree = "<group>"; };
+		9BBD83151BECAF1900DA7117 /* SPAForgetPasswordSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAForgetPasswordSource.h; sourceTree = "<group>"; };
+		9BBD83161BECAF1900DA7117 /* SPAForgetPasswordSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAForgetPasswordSource.m; sourceTree = "<group>"; };
+		9BBD83181BECAF3F00DA7117 /* SPAForgetPasswordSourceJsonPattern.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SPAForgetPasswordSourceJsonPattern.json; sourceTree = "<group>"; };
+		9BBD831A1BECCA7C00DA7117 /* SPAsignupSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAsignupSource.h; sourceTree = "<group>"; };
+		9BBD831B1BECCA7C00DA7117 /* SPAsignupSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAsignupSource.m; sourceTree = "<group>"; };
+		9BBD831D1BECCBA100DA7117 /* SPAsignupSourceJsonPattern.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SPAsignupSourceJsonPattern.json; sourceTree = "<group>"; };
 		9BC17AE31BE205D900331DD5 /* Addmoreviewobject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Addmoreviewobject.h; sourceTree = "<group>"; };
 		9BC17AE41BE205D900331DD5 /* Addmoreviewobject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Addmoreviewobject.m; sourceTree = "<group>"; };
 		9BCA09F11BD0E44700A78D71 /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
@@ -714,8 +724,8 @@
 		9B6A68C81BCBF08900C284CB /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				9B6A68DD1BCBFCBA00C284CB /* UserDetails.h */,
-				9B6A68DE1BCBFCBA00C284CB /* UserDetails.m */,
+				9BBD83121BEC9A3D00DA7117 /* UserDetails.h */,
+				9BBD83131BEC9A3D00DA7117 /* UserDetails.m */,
 				9B58979F1BC7DBD8000AD6B3 /* SPA.xcdatamodeld */,
 				9B6A68DA1BCBF9C700C284CB /* DataModel.h */,
 				9B6A68DB1BCBF9C700C284CB /* DataModel.m */,
@@ -800,6 +810,12 @@
 			children = (
 				9B87DEB21BEB300A00BA3424 /* KMMovie.h */,
 				9B87DEB31BEB300A00BA3424 /* KMMovie.m */,
+				9BBD831A1BECCA7C00DA7117 /* SPAsignupSource.h */,
+				9BBD831B1BECCA7C00DA7117 /* SPAsignupSource.m */,
+				9BBD831D1BECCBA100DA7117 /* SPAsignupSourceJsonPattern.json */,
+				9BBD83151BECAF1900DA7117 /* SPAForgetPasswordSource.h */,
+				9BBD83161BECAF1900DA7117 /* SPAForgetPasswordSource.m */,
+				9BBD83181BECAF3F00DA7117 /* SPAForgetPasswordSourceJsonPattern.json */,
 				9B87DEAD1BEB2E2A00BA3424 /* SPALoginSource.h */,
 				9B87DEAE1BEB2E2A00BA3424 /* SPALoginSource.m */,
 				9B87DEB01BEB2E3600BA3424 /* SPALoginSourceJsonPattern.json */,
@@ -1140,12 +1156,14 @@
 				9BAD9EF51BE0CEB8004E6C7C /* MyriadPro-Semibold.otf in Resources */,
 				9BAD9EF61BE0CEB8004E6C7C /* MyriadPro-SemiboldIt.otf in Resources */,
 				9BAD9EF71BE0CEB8004E6C7C /* Roboto-Bold_0.ttf in Resources */,
+				9BBD831E1BECCBA100DA7117 /* SPAsignupSourceJsonPattern.json in Resources */,
 				9BAD9EF81BE0CEB8004E6C7C /* Roboto-Medium_0.ttf in Resources */,
 				9B8C3AA61BEA0FA100BABA05 /* AgendaListDayViewController.xib in Resources */,
 				9B8C3AA01BE9ED7900BABA05 /* AddTaskViewController.xib in Resources */,
 				9B8C3AAB1BEA0FBE00BABA05 /* AgendaListFiveDayViewController.xib in Resources */,
 				9B8C3A9B1BE9ED6A00BABA05 /* TaskListViewController.xib in Resources */,
 				9B8C3AB61BEA131D00BABA05 /* MaterialsListViewController.xib in Resources */,
+				9BBD83191BECAF3F00DA7117 /* SPAForgetPasswordSourceJsonPattern.json in Resources */,
 				9BAD9EF91BE0CEB8004E6C7C /* Roboto-Regular_0.ttf in Resources */,
 				9B8C3AC21BEA135800BABA05 /* AlertStudentsViewController.xib in Resources */,
 				9BAAD19A1BE892480006C209 /* EditProfileViewController.xib in Resources */,
@@ -1248,7 +1266,6 @@
 				9BBBFCA01BE3584A00BBC6EF /* NKOColorPickerView.m in Sources */,
 				9BAD9ED41BE0CDE9004E6C7C /* REFrostedContainerViewController.m in Sources */,
 				9B6A688B1BCBD8F800C284CB /* KM_NSDictionary+SafeValues.m in Sources */,
-				9B6A68DF1BCBFCBA00C284CB /* UserDetails.m in Sources */,
 				9BAD9EFC1BE0FA18004E6C7C /* AddMoreView.m in Sources */,
 				9B6A68781BCBD8E300C284CB /* KMNetworkLoadingViewController.m in Sources */,
 				9BAAD1BE1BE90B550006C209 /* KalDate.m in Sources */,
@@ -1294,6 +1311,7 @@
 				9BAD9ED61BE0CDE9004E6C7C /* UIImage+REFrostedViewController.m in Sources */,
 				9BC17AE51BE205D900331DD5 /* Addmoreviewobject.m in Sources */,
 				9BAAD1A51BE905EC0006C209 /* ScheduleViewController.m in Sources */,
+				9BBD831C1BECCA7C00DA7117 /* SPAsignupSource.m in Sources */,
 				9B8C3A9A1BE9ED6A00BABA05 /* TaskListViewController.m in Sources */,
 				9B6A68BF1BCBE7B300C284CB /* SPAColorConfig.m in Sources */,
 				9B6A688A1BCBD8F800C284CB /* KM_NSArray+SafeValues.m in Sources */,
@@ -1303,6 +1321,7 @@
 				9B8C3AB51BEA131D00BABA05 /* MaterialsListViewController.m in Sources */,
 				9BAAD1BF1BE90B550006C209 /* KalGridView.m in Sources */,
 				9BCA09F31BD0E44700A78D71 /* Constant.m in Sources */,
+				9BBD83141BEC9A3D00DA7117 /* UserDetails.m in Sources */,
 				9BAD64671BD5083700FF65C1 /* ForgetPasswordControllerViewController.m in Sources */,
 				9B6A68B01BCBDA4C00C284CB /* SPABaseSource.m in Sources */,
 				9B8C3AAF1BEA0FCE00BABA05 /* AgendaListMonthViewController.m in Sources */,
@@ -1317,6 +1336,7 @@
 				9B6A68AA1BCBD9DD00C284CB /* KIImagePager.m in Sources */,
 				9BAAD19E1BE8F8F00006C209 /* ClassListTableViewCell.m in Sources */,
 				9B8C3A901BE9E84800BABA05 /* BaseViewController.m in Sources */,
+				9BBD83171BECAF1900DA7117 /* SPAForgetPasswordSource.m in Sources */,
 				9B6A688F1BCBD8F800C284CB /* UIFont+GillSansFonts.m in Sources */,
 				9B8C3AA51BEA0FA100BABA05 /* AgendaListDayViewController.m in Sources */,
 				9BAAD1BD1BE90B550006C209 /* KalDataSource.m in Sources */,

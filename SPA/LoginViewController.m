@@ -10,9 +10,10 @@
 #import "AppDelegate.h"
 #import "Constant.h"
 #import "SPALoginSource.h"
-#import <MBProgressHUD/MBProgressHUD.h>
 #import "KMActivityIndicator.h"
 #import "CommonReturns.h"
+#import "JNKeychain.h"
+
 /**
  A Boolean value indicating whether the manager is enabled.
  
@@ -75,9 +76,8 @@ bool isTesting = YES;
         
         if (isTesting) {
             [_LoginEmailTextFiled setText:@"teacher@gmail.com"];
-            [_LoginPasswordTextFiled setText:@"#abcd123"];
+            [_LoginPasswordTextFiled setText:@"123456"];
         }
-        
         
         // Define Button
         
@@ -208,47 +208,13 @@ bool isTesting = YES;
                 }
             } else {
                 //[MainDelegate SetupAfterLoginMenu];
-                
-                NSString *sessid = [data objectForKey:@"sessid"];
-                NSString *session_name = [data objectForKey:@"session_name"];
-                NSString *token = [data objectForKey:@"token"];
-                
-                NSDictionary *userDictionary = [data objectForKey:@"user"];
-                
-                NSLog(@"userDictionary ==%@ ",userDictionary);
-                
-                NSString *access = [userDictionary objectForKey:@"access"];
-                NSString *created = [userDictionary objectForKey:@"created"];
-                
-                NSString *field_user_full_name = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_full_name"]];
-                NSString *field_user_keep_logged_in = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_keep_logged_in"]];
-                NSString *field_user_office_hours = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_office_hours"]];
-                NSString *field_user_office_location = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_office_location"]];
-                NSString *field_user_phone = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_phone"]];
-                NSString *field_user_receive_emails = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_receive_emails"]];
-                NSString *field_user_school = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_school"]];
-                
-                NSString *language = [userDictionary objectForKey:@"language"];
-                NSString *login = [userDictionary objectForKey:@"login"];
-                NSString *mail = [userDictionary objectForKey:@"mail"];
-                NSString *name = [userDictionary objectForKey:@"name"];
-                NSString *signature = [userDictionary objectForKey:@"signature"];
-                NSString *signature_format = [userDictionary objectForKey:@"signature_format"];
-                NSString *status = [userDictionary objectForKey:@"status"];
-                NSString *theme = [userDictionary objectForKey:@"theme"];
-                NSString *timezone = [userDictionary objectForKey:@"timezone"];
-                NSString *uid = [userDictionary objectForKey:@"uid"];
-                NSString *picture = ([[userDictionary objectForKey:@"picture"] isKindOfClass:[NSDictionary class]])?[self getPictureFromDictionary:[userDictionary objectForKey:@"picture"]]:@"";
-                NSString *userrole = [self getUserRoleFromDictionary:[userDictionary objectForKey:@"roles"]];
-                
-                NSArray *FetchedDataArray = [[NSArray alloc] initWithObjects:sessid,session_name,token,access,created,field_user_full_name,field_user_keep_logged_in,field_user_office_hours,field_user_office_location,field_user_phone,field_user_receive_emails,field_user_school,language,login,mail,name,signature,signature_format,status,theme,timezone,uid,picture,userrole, nil];
-                
-                NSLog(@"FetchedDataArray ==%@ ",FetchedDataArray);
             }
         };
         
         SPALoginSource * source = [SPALoginSource loginDetailsSource];
         [source getLoginDetails:[NSArray arrayWithObjects:[Constant CleanTextField:_LoginEmailTextFiled.text],[Constant CleanTextField:_LoginPasswordTextFiled.text], nil] completion:completionBlock];
+        [JNKeychain saveValue:[Constant CleanTextField:_LoginEmailTextFiled.text] forKey:KeychainUserEmailkey];
+        [JNKeychain saveValue:[Constant CleanTextField:_LoginPasswordTextFiled.text] forKey:KeychainUserPasswordkey];
         
         _ActivityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
@@ -256,34 +222,6 @@ bool isTesting = YES;
         [_ActivityIndicator show:NO];
         _ActivityIndicator.labelText = @"Loading";
     }
-}
-
--(NSString *)getValueFromDictionary :(NSDictionary *)DataDictionary
-{
-    NSLog(@"DataDictionary ==>%@",DataDictionary);
-    
-    NSString *ReturnValue = @"";
-    NSArray *Dic = [DataDictionary objectForKey:@"und"];
-    if(Dic!=NULL)
-        ReturnValue = [[Dic objectAtIndex:0] objectForKey:@"value"];
-    return ReturnValue;
-}
-
--(NSString *)getPictureFromDictionary :(NSDictionary *)DataDictionary
-{
-    if ([DataDictionary count]>0) {
-        return (removeNull([DataDictionary objectForKey:@"url"])!=nil)?removeNull([DataDictionary objectForKey:@"url"]):@"";
-    } else {
-        return @"";
-    }
-    return @"";
-}
-
--(NSString *)getUserRoleFromDictionary :(NSDictionary *)DataDictionary
-{
-    NSLog(@"====> %@",DataDictionary);
-    
-    return nil;
 }
 
 -(void)GotoSignup { [self.navigationController pushViewController:Constant.SignupController animated:YES]; }
