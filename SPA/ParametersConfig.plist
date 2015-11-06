@@ -27,7 +27,7 @@
 	<key>Class_Create</key>
 	<string></string>
 	<key>User_Registration</key>
-	<string>email,role_id,password,userfullname,schoolname,officelocation,recieve_mail,phone_no,keep_login</string>
+	<string>role_id,file_image_ext,email,password,userfullname,schoolname,officelocation,phone_no,keep_login,recieve_mail,office_hours,file_image_data</string>
 	<key>logout</key>
 	<string></string>
 	<key>request_newpassword</key>

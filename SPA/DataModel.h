@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
-
+#import "UserDetails.h"
 @interface DataModel : NSObject
 {
     AppDelegate* appDelegate;
@@ -33,6 +33,6 @@
 -(NSManagedObject*)objectOfType:(NSString*) aType forKey:(NSString*) aKey andValue:(NSString*) anId withCondition:(NSString*) aCond newFlag:(BOOL) canCreate forManagedObjectContext:(NSManagedObjectContext*)tempContext;
 -(NSManagedObjectContext*)getChildManagedObjectContext;
 -(void)saveContextForChildContext:(NSManagedObjectContext*)childContext;
-
+-(UserDetails *)fetchCurrentUser;
 - (NSArray *)fetchedUserDataWithUserId:(NSString *)UserId;
 @end

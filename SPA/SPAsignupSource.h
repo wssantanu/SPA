@@ -15,5 +15,5 @@ typedef void (^SPASignupCompletionBlock)(NSDictionary* data, NSString* errorStri
 
 + (SPAsignupSource*)signupDetailsSource;
 
--(void)getsignupDetails:(NSArray *)signupParam completion:(SPASignupCompletionBlock)completionBlock;
+-(void)getsignupDetails:(NSArray *)signupParam withImageData:(NSData *)ImageData completion:(SPASignupCompletionBlock)completionBlock;
 @end

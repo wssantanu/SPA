@@ -122,6 +122,9 @@
 +(ClassInfoViewController *)ClassInfoViewController {
     return [[ClassInfoViewController alloc] initWithNibName:NSStringFromClass([ClassInfoViewController class]) bundle:[NSBundle mainBundle]];
 }
++(ShowProfileViewController *)ShowProfileViewController {
+    return [[ShowProfileViewController alloc] initWithNibName:NSStringFromClass([ShowProfileViewController class]) bundle:[NSBundle mainBundle]];
+}
 
 /**
  @return Font name as string

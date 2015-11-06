@@ -51,7 +51,7 @@
 #pragma mark -
 #pragma mark Request Methods
 
--(void)getsignupDetails:(NSArray *)signupParam completion:(SPASignupCompletionBlock)completionBlock
+-(void)getsignupDetails:(NSArray *)signupParam withImageData:(NSData *)ImageData completion:(SPASignupCompletionBlock)completionBlock
 {
     if (completionBlock)
     {
@@ -62,6 +62,10 @@
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        
+//        [manager POST:[self prepareUrl] parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//            [formData appendPartWithFormData:ImageData name:@"file_image_data"];
+//        } success:^(AFHTTPRequestOperation *operation, id responseObject)
         
         [manager POST:[self prepareUrl] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
          {

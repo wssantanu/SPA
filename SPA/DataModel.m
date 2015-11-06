@@ -8,7 +8,6 @@
 
 #import "DataModel.h"
 
-
 @implementation DataModel {
     NSDateFormatter *dateFormatter;
 }
@@ -74,6 +73,22 @@
             }
         }];
     }];
+}
+
+-(UserDetails *)fetchCurrentUser
+{
+    UserDetails *aUser=nil;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"UserDetails"];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"UserDetails" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSArray *fetchedUser = [mainDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    if([fetchedUser count]>0)
+    {
+        aUser=(UserDetails*)[fetchedUser objectAtIndex:0];
+    }
+    return aUser;
 }
 
 - (NSArray *)fetchedUserDataWithUserId:(NSString *)UserId {

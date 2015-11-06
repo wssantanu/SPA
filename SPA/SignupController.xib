@@ -9,7 +9,8 @@
                 <outlet property="StudentTypeView" destination="ZEF-QC-jdy" id="NLt-F5-1Fn"/>
                 <outlet property="TeacherTypeView" destination="Doq-1o-af5" id="rCG-eY-NS4"/>
                 <outlet property="cameraButton" destination="K4t-SO-0L4" id="AIz-3p-8bp"/>
-                <outlet property="imageView" destination="3rQ-6J-Hzh" id="kgc-tX-vEz"/>
+                <outlet property="imageView" destination="3rQ-6J-Hzh" id="L9n-oQ-vad"/>
+                <outlet property="imageViewOne" destination="88o-sy-MKR" id="T8Z-l3-7v8"/>
                 <outlet property="view" destination="Oxa-Wq-0GT" id="MR6-6Y-u2N"/>
             </connections>
         </placeholder>
@@ -68,13 +69,13 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="986"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" tag="123" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="5OY-ft-aCZ">
+                <textField opaque="NO" clipsSubviews="YES" tag="123" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="testone@gmail.com" borderStyle="line" minimumFontSize="17" id="5OY-ft-aCZ">
                     <rect key="frame" x="17" y="33" width="382" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" tag="124" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="xxs-Oy-HFq">
+                <textField opaque="NO" clipsSubviews="YES" tag="124" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test one" borderStyle="line" minimumFontSize="17" id="xxs-Oy-HFq">
                     <rect key="frame" x="17" y="110" width="382" height="45"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -94,13 +95,13 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" tag="125" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="U8N-h0-cKU">
+                <textField opaque="NO" clipsSubviews="YES" tag="125" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="line" minimumFontSize="17" id="U8N-h0-cKU">
                     <rect key="frame" x="17" y="189" width="382" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" tag="126" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="JQx-RA-zic">
+                <textField opaque="NO" clipsSubviews="YES" tag="126" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="line" minimumFontSize="17" id="JQx-RA-zic">
                     <rect key="frame" x="17" y="266" width="382" height="45"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -120,13 +121,13 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" tag="127" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="eWF-Yc-sQz">
+                <textField opaque="NO" clipsSubviews="YES" tag="127" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test one school" borderStyle="line" minimumFontSize="17" id="eWF-Yc-sQz">
                     <rect key="frame" x="17" y="353" width="382" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" tag="128" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="QGX-NL-PTm">
+                <textField opaque="NO" clipsSubviews="YES" tag="128" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test location" borderStyle="line" minimumFontSize="17" id="QGX-NL-PTm">
                     <rect key="frame" x="17" y="430" width="382" height="45"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -146,13 +147,13 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" tag="129" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="2My-OT-Y3i">
+                <textField opaque="NO" clipsSubviews="YES" tag="129" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10am-11am" borderStyle="line" minimumFontSize="17" id="2My-OT-Y3i">
                     <rect key="frame" x="17" y="509" width="382" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" tag="130" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="rsr-rT-nya">
+                <textField opaque="NO" clipsSubviews="YES" tag="130" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="8820324338" borderStyle="line" minimumFontSize="17" id="rsr-rT-nya">
                     <rect key="frame" x="17" y="586" width="382" height="45"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

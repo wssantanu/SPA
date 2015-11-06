@@ -26,6 +26,7 @@
 #import "StudentsViewController.h"
 #import "AlertStudentsViewController.h"
 #import "ClassInfoViewController.h"
+#import "ShowProfileViewController.h"
 
 @interface Constant : NSObject
 
@@ -109,6 +110,10 @@
  @return ClassInfoViewController
  */
 +(ClassInfoViewController *)ClassInfoViewController;
+/**
+ @return ShowProfileViewController
+ */
++(ShowProfileViewController *)ShowProfileViewController;
 
 
 /*

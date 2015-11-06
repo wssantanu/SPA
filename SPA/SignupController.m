@@ -10,6 +10,8 @@
 #import "AppDelegate.h"
 #import "Constant.h"
 #import "PECropViewController.h"
+#import "SPAsignupSource.h"
+#import <JNKeychain/JNKeychain.h>
 
 typedef enum {
     userTypeTeacher,
@@ -99,7 +101,7 @@ typedef enum {
 
 @property (nonatomic) UIPopoverController           *popover;
 @property (nonatomic, weak) IBOutlet UIButton       *editButton;
-@property (nonatomic, weak) IBOutlet UIImageView    *imageView;
+@property (nonatomic, weak) IBOutlet UIImageView    *imageView,*imageViewOne;
 @property (nonatomic, weak) IBOutlet UIButton       *cameraButton;
 @property (nonatomic,retain) MBProgressHUD          *ActivityIndicator;
 
@@ -372,7 +374,13 @@ typedef enum {
 - (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage transform:(CGAffineTransform)transform cropRect:(CGRect)cropRect
 {
     [controller dismissViewControllerAnimated:YES completion:NULL];
-    self.imageView.image = croppedImage;
+    
+    if (_SelectedUserType == userTypeTeacher) {
+        self.imageViewOne.image = croppedImage;
+    } else {
+        self.imageView.image = croppedImage;
+    }
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self updateEditButtonEnabled];
     }
@@ -396,9 +404,9 @@ typedef enum {
     controller.rotationEnabled = NO;
     controller.keepingCropAspectRatio = YES;
     controller.cropAspectRatio = 9.0f / 9.0f;
-    controller.image = self.imageView.image;
+    controller.image = (_SelectedUserType == userTypeTeacher)?self.imageViewOne.image:self.imageView.image;
     
-    UIImage *image = self.imageView.image;
+    UIImage *image = (_SelectedUserType == userTypeTeacher)?self.imageViewOne.image:self.imageView.image;//self.imageView.image;
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
     CGFloat length = MIN(width, height);
@@ -478,7 +486,7 @@ typedef enum {
 
 - (void)updateEditButtonEnabled
 {
-    self.editButton.enabled = !!self.imageView.image;
+    self.editButton.enabled = !!(_SelectedUserType == userTypeTeacher)?self.imageViewOne.image:self.imageView.image;
 }
 
 #pragma mark - UIActionSheetDelegate methods
@@ -504,7 +512,12 @@ typedef enum {
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    self.imageView.image = image;
+    if (_SelectedUserType == userTypeTeacher) {
+        self.imageViewOne.image = image;
+    } else {
+        self.imageView.image = image;
+    }
+    
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if (self.popover.isPopoverVisible) {
@@ -615,10 +628,11 @@ typedef enum {
     } else if ([Constant CleanTextField:_TeacherPhoneTextfield.text].length == 0) {
         [super ShowAletviewWIthTitle:AlertTitle Tag:10010 Message:@"Phone number please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
-    } else if (![Constant validatePhone:[Constant CleanTextField:_TeacherPhoneTextfield.text]]) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10011 Message:@"Proper Phone number please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
-        validate = NO;
     }
+//    else if ([Constant validatePhone:[Constant CleanTextField:_TeacherPhoneTextfield.text]] == NO) {
+//        [super ShowAletviewWIthTitle:AlertTitle Tag:10011 Message:@"Proper Phone number please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+//        validate = NO;
+//    }
     return validate;
 }
 
@@ -660,9 +674,39 @@ typedef enum {
     if (_SelectedUserType == userTypeTeacher) {
         if ([self ValidateTeacherTypeSignupForm]) {
             
+            SPASignupCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
+                
+                NSLog(@"data ==%@ ",data);
+                
+                [_ActivityIndicator hide:YES];
+                if (errorString) {
+                    if (errorString.length>0) {
+                        [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    }
+                } else {
+                    //[MainDelegate SetupAfterLoginMenu];
+                }
+            };
+            
+            // role_id,file_image_ext,file_image_data,email,password,userfullname,schoolname,officelocation,phone_no,keep_login,recieve_mail,office_hours
+            
+            SPAsignupSource * source = [SPAsignupSource signupDetailsSource];
+            [source getsignupDetails:[NSArray arrayWithObjects:[self getUserType],@"jpg",[Constant CleanTextField:[_TeacherEmailTextfield text]],[Constant CleanTextField:[_TeacherPasswordTextfield text]],[Constant CleanTextField:[_TeacherNameTextfield text]],[Constant CleanTextField:[_TeacherSchoolTextfield text]],[Constant CleanTextField:[_TeacherOfficeLocationTextfield text]],[Constant CleanTextField:[_TeacherPhoneTextfield text]],[self getLoginDeviceStatus],[self getEmailReciveStatus],[Constant CleanTextField:[_TeacherOfficeHoursTextfield text]],[UIImageJPEGRepresentation(self.imageView.image, 0) base64EncodedDataWithOptions:0], nil] withImageData:[UIImageJPEGRepresentation(self.imageView.image, 0) base64EncodedDataWithOptions:0] completion:completionBlock];
+            
+            [JNKeychain saveValue:[Constant CleanTextField:_LoginEmailTextFiled.text] forKey:KeychainUserEmailkey];
+            [JNKeychain saveValue:[Constant CleanTextField:_LoginPasswordTextFiled.text] forKey:KeychainUserPasswordkey];
+            
+            _ActivityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
+            [_ActivityIndicator setOpacity:1.0];
+            [_ActivityIndicator show:NO];
+            _ActivityIndicator.labelText = @"Loading";
+            
         }
     } else if (_SelectedUserType == userTypeStudent) {
         if ([self ValidateStudentTypeSignupForm]) {
+            
+           
             
         }
     }

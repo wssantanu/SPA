@@ -82,7 +82,7 @@
         
         NSDictionary *userDictionary = [data objectForKey:@"user"];
         
-        NSString *access            = [userDictionary objectForKey:@"access"];
+        NSString *access            = removeNull([userDictionary objectForKey:@"access"]);
         NSString *created           = [userDictionary objectForKey:@"created"];
         NSString *field_user_full_name          = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_full_name"]];
         NSString *field_user_keep_logged_in     = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_keep_logged_in"]];
@@ -92,56 +92,24 @@
         NSString *field_user_receive_emails     = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_receive_emails"]];
         NSString *field_user_school             = [self getValueFromDictionary:[userDictionary objectForKey:@"field_user_school"]];
         NSString *language          = [userDictionary objectForKey:@"language"];
-        NSString *login             = [userDictionary objectForKey:@"login"];
+        NSString *login             = removeNull([NSString stringWithFormat:@"%@",[userDictionary objectForKey:@"login"]]);
         NSString *mail              = [userDictionary objectForKey:@"mail"];
         NSString *name              = [userDictionary objectForKey:@"name"];
         NSString *signature         = [userDictionary objectForKey:@"signature"];
         NSString *signature_format  = [userDictionary objectForKey:@"signature_format"];
         NSString *status            = [userDictionary objectForKey:@"status"];
         NSString *theme             = [userDictionary objectForKey:@"theme"];
-        NSString *timezone          = [userDictionary objectForKey:@"timezone"];
+        NSString *timezone          = removeNull([userDictionary objectForKey:@"timezone"]);
         NSString *uid               = [userDictionary objectForKey:@"uid"];
         NSString *picture           = ([[userDictionary objectForKey:@"picture"] isKindOfClass:[NSDictionary class]])?[self getPictureFromDictionary:[userDictionary objectForKey:@"picture"]]:@"";
         NSString *userrole          = [[self getUserRoleFromDictionary:[userDictionary objectForKey:@"roles"]] isEqualToString:@"teacher"]?@"4":@"5";
-        
-//        NSArray *FetchedDataArray   = [[NSArray alloc] initWithObjects:sessid,session_name,token,access,created,field_user_full_name,field_user_keep_logged_in,field_user_office_hours,field_user_office_location,field_user_phone,field_user_receive_emails,field_user_school,language,login,mail,name,signature,signature_format,status,theme,timezone,uid,picture,userrole, nil];
-//        
-//        NSLog(@"FetchedDataArray ==%@ ",FetchedDataArray);
-//        
-//        NSUserDefaults *Prefs = [NSUserDefaults standardUserDefaults];
-//        [Prefs setObject:sessid forKey:@"sessid"];
-//        [Prefs setObject:session_name forKey:@"session_name"];
-//        [Prefs setObject:token forKey:@"token"];
-//        [Prefs setObject:access forKey:@"access"];
-//        [Prefs setObject:created forKey:@"created"];
-//        [Prefs setObject:field_user_full_name forKey:@"field_user_full_name"];
-//        [Prefs setObject:field_user_keep_logged_in forKey:@"field_user_keep_logged_in"];
-//        [Prefs setObject:field_user_office_hours forKey:@"field_user_office_hours"];
-//        [Prefs setObject:field_user_office_location forKey:@"field_user_office_location"];
-//        [Prefs setObject:field_user_phone forKey:@"field_user_phone"];
-//        [Prefs setObject:field_user_receive_emails forKey:@"field_user_receive_emails"];
-//        [Prefs setObject:field_user_school forKey:@"field_user_school"];
-//        [Prefs setObject:language forKey:@"language"];
-//        [Prefs setObject:mail forKey:@"mail"];
-//        [Prefs setObject:name forKey:@"name"];
-//        [Prefs setObject:signature forKey:@"signature"];
-//        [Prefs setObject:signature_format forKey:@"signature_format"];
-//        [Prefs setObject:status forKey:@"status"];
-//        [Prefs setObject:theme forKey:@"theme"];
-//        [Prefs setObject:timezone forKey:@"timezone"];
-//        [Prefs setObject:uid forKey:@"uid"];
-//        [Prefs setObject:picture forKey:@"picture"];
-//        [Prefs setObject:userrole forKey:@"userrole"];
-//        [Prefs synchronize];
 
     DataModel *dataModelObj = [DataModel sharedEngine];
     [dataModelObj deleteAllObjectsForEntity:Constant.EntityForUser];
     
-    NSManagedObjectContext *childContext=nil;
-    if (data != (NSMutableDictionary *)[NSNull null])
-        childContext=[dataModelObj getChildManagedObjectContext];
+    AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    UserDetails *UserDetailsObj             = (UserDetails *)[dataModelObj objectOfType:Constant.EntityForUser forKey:@"uid" andValue:uid withCondition:nil newFlag:YES forManagedObjectContext:childContext];
+    UserDetails *UserDetailsObj             = (UserDetails *)[dataModelObj objectOfType:Constant.EntityForUser forKey:@"uid" andValue:uid withCondition:nil newFlag:YES forManagedObjectContext:mainDelegate.managedObjectContext];
     UserDetailsObj.sessid                   = sessid;
     UserDetailsObj.session_name             = session_name;
     UserDetailsObj.token                    = token;
@@ -166,9 +134,13 @@
     UserDetailsObj.picture                  = picture;
     UserDetailsObj.roles                    = userrole;
     UserDetailsObj.login                    = login;
-    [dataModelObj saveContextForChildContext:childContext];
     
-    NSLog(@"====userDeatails after save %@",[dataModelObj fetchedUserDataWithUserId:uid]);
+    [mainDelegate saveContext];
+    
+    NSUserDefaults *Prefs = [NSUserDefaults standardUserDefaults];
+    [Prefs setObject:uid forKey:@"logedin_userid"];
+    
+    [Prefs synchronize];
     
     return (removeNull(data));
 }

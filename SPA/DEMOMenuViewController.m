@@ -15,6 +15,7 @@
 #import "Constant.h"
 #import "AppDelegate.h"
 
+
 int CurrentSelectedCell = 0;
 BOOL isFirstLoad = NO;
 
@@ -122,7 +123,7 @@ BOOL isFirstLoad = NO;
                 navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.TaskListViewController];
                 break;
             case 3:
-                navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.EditProfileViewController];
+                navigationController = [[DEMONavigationController alloc] initWithRootViewController:Constant.ShowProfileViewController];
                 break;
             case 4:
             {

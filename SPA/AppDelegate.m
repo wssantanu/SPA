@@ -32,17 +32,10 @@ BOOL isUserLogedIn = NO;
     NSUserDefaults *StanderdUserDefaults = [NSUserDefaults standardUserDefaults];
     [StanderdUserDefaults synchronize];
     
-    
-    // If user is already logedin, then assign menu
-//    if ((int)[StanderdUserDefaults objectForKey:@"LogedinUserId"] > 0)
-//    {
-//        [self SetupAfterLoginMenu];
-//    }
-//    // else push to loginView
-//    else
-//    {
-//        [self DefaultNavigationController];
-//    }
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *LogedinUSerId = [prefs objectForKey:@"logedin_userid"];
+    isUserLogedIn = ([LogedinUSerId intValue]>0)?YES:NO;
+
     (isUserLogedIn)?[self SetupAfterLoginMenu]:[self DefaultNavigationController];
     return YES;
 }
@@ -89,6 +82,8 @@ BOOL isUserLogedIn = NO;
 
 -(void)LogoutUser
 {
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+    
     [self DefaultNavigationController];
 }
 

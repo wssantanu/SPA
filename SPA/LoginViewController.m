@@ -75,7 +75,7 @@ bool isTesting = YES;
          **/
         
         if (isTesting) {
-            [_LoginEmailTextFiled setText:@"teacher@gmail.com"];
+            [_LoginEmailTextFiled setText:@"testone@gmail.com"];
             [_LoginPasswordTextFiled setText:@"123456"];
         }
         
@@ -207,7 +207,7 @@ bool isTesting = YES;
                     [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 }
             } else {
-                //[MainDelegate SetupAfterLoginMenu];
+                [MainDelegate SetupAfterLoginMenu];
             }
         };
         
