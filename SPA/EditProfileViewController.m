@@ -192,7 +192,7 @@ typedef enum {
         (_SelectedUserType == userTypeTeacher)?[_imageViewOne.layer setBorderColor:[UIColor lightGrayColor].CGColor]:[_imageView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
         
         if (FeatchUserdetails.picture.length > 0) {
-            [(_SelectedUserType == userTypeTeacher)?_imageViewOne:_imageView sd_setImageWithURL:[NSURL URLWithString:@"http://studentplanner.dev.webspiders.com/sites/all/themes/studentplanner/images/profile-img.jpg"] placeholderImage:[UIImage imageNamed:@"menu_profile_selected"]];
+            [(_SelectedUserType == userTypeTeacher)?_imageViewOne:_imageView sd_setImageWithURL:[NSURL URLWithString:FeatchUserdetails.picture] placeholderImage:[UIImage imageNamed:@"menu_profile_selected"]];
         } else {
             [(_SelectedUserType == userTypeTeacher)?_imageViewOne:_imageView sd_setImageWithURL:[NSURL URLWithString:@"http://studentplanner.dev.webspiders.com/sites/all/themes/studentplanner/images/profile-img.jpg"] placeholderImage:[UIImage imageNamed:@"menu_profile_selected"]];
         }

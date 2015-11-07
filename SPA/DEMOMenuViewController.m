@@ -14,7 +14,9 @@
 #import "MenuCellTableViewCell.h"
 #import "Constant.h"
 #import "AppDelegate.h"
-
+#import "DataModel.h"
+#import "UserDetails.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 int CurrentSelectedCell = 0;
 BOOL isFirstLoad = NO;
@@ -27,6 +29,7 @@ BOOL isFirstLoad = NO;
 {
     NSArray *titleTireOne,*titleTireTwo,*imageClassTireOne,*imageClassTireTwo;
     AppDelegate *MainDelegate;
+    UserDetails *FeatchUserdetails;
 }
 
 - (void)viewDidLoad
@@ -37,7 +40,7 @@ BOOL isFirstLoad = NO;
     self.tableView.opaque = NO;
     self.tableView.backgroundColor = [UIColor blackColor];
     self.tableView.separatorColor = [UIColor clearColor];
-    self.tableView.scrollEnabled = NO;
+    self.tableView.scrollEnabled = YES;
     
     
     isFirstLoad = YES;
@@ -74,18 +77,38 @@ BOOL isFirstLoad = NO;
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    DataModel *dataModelObj = [DataModel sharedEngine];
+    
+    FeatchUserdetails = [dataModelObj fetchCurrentUser];
+    
     UIView *bgview = [[UIView alloc] init];
     [bgview setBackgroundColor:[UIColor blackColor]];
-    UIImageView *ProfileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 6.5, 70, 70)];
+    UIImageView *ProfileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 14, 70, 70)];
     [ProfileImageView setBackgroundColor:[UIColor clearColor]];
     [ProfileImageView setImage:[UIImage imageNamed:@"menu_profile"]];
+    if (FeatchUserdetails.picture.length > 0) {
+        [ProfileImageView sd_setImageWithURL:[NSURL URLWithString:FeatchUserdetails.picture] placeholderImage:[UIImage imageNamed:@"menu_profile_selected"]];
+    } else {
+        [ProfileImageView sd_setImageWithURL:[NSURL URLWithString:@"http://studentplanner.dev.webspiders.com/sites/all/themes/studentplanner/images/profile-img.jpg"] placeholderImage:[UIImage imageNamed:@"menu_profile_selected"]];
+    }
     [bgview addSubview:ProfileImageView];
+    
+    UILabel *NameLabel = [[UILabel alloc] initWithFrame:CGRectMake(-5, 70, tableView.frame.size.width, 30)];
+    NameLabel.backgroundColor = [UIColor clearColor];
+    NameLabel.textColor = [UIColor whiteColor];
+    [NameLabel setNumberOfLines:0];
+    
+    [NameLabel setTextAlignment:NSTextAlignmentCenter];
+    NameLabel.font = [UIFont fontWithName:@"Roboto-Bold" size:14];
+    NameLabel.text = FeatchUserdetails.user_full_name;
+    [ProfileImageView addSubview:NameLabel];
+    
     return bgview;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)sectionIndex
 {
-    return 100;
+    return 120;
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

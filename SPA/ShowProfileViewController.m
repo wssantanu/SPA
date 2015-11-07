@@ -175,8 +175,10 @@ typedef enum {
         [InfoListTableViewCell addSubview:ProfileImage];
         
         if (FrofileImage.length > 0) {
-            [ProfileImage sd_setImageWithURL:[NSURL URLWithString:@"http://studentplanner.dev.webspiders.com/sites/all/themes/studentplanner/images/profile-img.jpg"] placeholderImage:[UIImage imageNamed:@"menu_profile_selected"]];
+            [InfoListTableViewCell.textLabel setText:@""];
+            [ProfileImage sd_setImageWithURL:[NSURL URLWithString:FrofileImage] placeholderImage:[UIImage imageNamed:@"menu_profile_selected"]];
         } else {
+            [InfoListTableViewCell.textLabel setText:@""];
             [ProfileImage sd_setImageWithURL:[NSURL URLWithString:@"http://studentplanner.dev.webspiders.com/sites/all/themes/studentplanner/images/profile-img.jpg"] placeholderImage:[UIImage imageNamed:@"menu_profile_selected"]];
         }
     }
