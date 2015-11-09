@@ -10,10 +10,10 @@
 #import "AppDelegate.h"
 #import "Constant.h"
 #import "PECropViewController.h"
-#import "DGActivityIndicatorView.h"
 #import "DataModel.h"
 #import "UserDetails.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "SPAChangePasswordSource.h"
 
 #define kConfigScrollviewKey @"121"
 #define kConfigTeacherEmailTextfieldKey @"123"
@@ -59,6 +59,11 @@
 #define kConfiguserTypeTeacher @"4"
 #define kConfiguserTypeStudent @"5"
 
+#define kConfigEditProfileOldPassword @"6543"
+#define kConfigEditProfileNewPassword @"6542"
+#define kConfigEditProfileConfirmPassword @"6541"
+#define kConfigEditProfileSaveButton @"6540"
+
 typedef enum {
     userTypeTeacher,
     userTypeStudent
@@ -79,8 +84,14 @@ typedef enum {
     loginDeviceYes
 } loginDevice;
 
+typedef enum {
+    dataSaveOptionNone,
+    dataSaveOptionEditProfile,
+    dataSaveOptionChangePassword
+} dataSaveOption;
 
-@interface EditProfileViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, PECropViewControllerDelegate>{
+
+@interface EditProfileViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, PECropViewControllerDelegate,UIAlertViewDelegate>{
     __weak id<UIScrollViewDelegate> _scrollViewDelegate;
     __weak id<UITextFieldDelegate> _textFieldDelegate;
     UserDetails *FeatchUserdetails;
@@ -88,21 +99,24 @@ typedef enum {
 @property (nonatomic,retain) UIScrollView *LoginMainBgScrollView;
 @property (nonatomic,retain) UILabel *LoginEmailTitleLabel,*LoginPasswordTitleLabel;
 @property (nonatomic,retain) IBOutlet UIView *TeacherTypeView,*StudentTypeView,*ForgetPasswordView,*TransparentView;
-@property (assign) userType SelectedUserType;
 @property (nonatomic) UIPopoverController *popover;
 @property (nonatomic, weak) IBOutlet UIButton *editButton;
 @property (nonatomic, weak) IBOutlet UIImageView *imageView,*imageViewOne;
 @property (nonatomic, weak) IBOutlet UIButton *cameraButton,*ChangePasswordButtonStudentView,*ChangePasswordButtonTeacherView;
-@property (assign) changePasswordVisiabelity changePasswordVisiabelityType;
 @property (nonatomic,retain) IBOutlet UIButton *FPCancelButton,*FPSaveButton;
+@property (assign) changePasswordVisiabelity changePasswordVisiabelityType;
+@property (assign) userType SelectedUserType;
 @property (assign) receiveEmail receiveEmailType;
 @property (assign) loginDevice  loginDeviceType;
-
+@property (assign) dataSaveOption  DataSaveOption;
+@property (nonatomic,retain) MBProgressHUD *ActivityIndicator;
 @property (nonatomic, strong) NSArray * dataSourceTeacher,*dataSourceStudent;
 
-@property (nonatomic,retain) UIButton *LoginButton,*SignupButton,*ForgetPasswordButton,*TeacherTypeButton,*StudentTypeButton,*TeacherReceiveEmailButton,*TeacherLogedinDeviceButton,*StudentReceiveEmailButton,*StudentLogedinDeviceButton,*TeacherLoginButton,*TeacherSignupButton,*TeacherForgetPasswordButton,*StudentLoginButton,*StudentSignupButton,*StudentForgetPasswordButton;
+@property (nonatomic,retain) IBOutlet UIButton *EPTeacherCancelButton,*EPStudentCancelButton,*EPTeacherSaveButton,*EPStudentSaveButton;
 
-@property (nonatomic,retain) UITextField *TeacherEmailTextfield,*TeacherNameTextfield,*TeacherPasswordTextfield,*TeacherConfirmPasswordTextfield,*TeacherSchoolTextfield,*TeacherOfficeLocationTextfield,*TeacherOfficeHoursTextfield,*TeacherPhoneTextfield,*StudentEmailTextfield,*StudentNameTextfield,*StudentPasswordTextfield,*StudentConfirmPasswordTextfield,*LoginEmailTextFiled,*LoginPasswordTextFiled;
+@property (nonatomic,retain) UIButton *LoginButton,*SignupButton,*ForgetPasswordButton,*TeacherTypeButton,*StudentTypeButton,*TeacherReceiveEmailButton,*TeacherLogedinDeviceButton,*StudentReceiveEmailButton,*StudentLogedinDeviceButton,*TeacherLoginButton,*TeacherSignupButton,*TeacherForgetPasswordButton,*StudentLoginButton,*StudentSignupButton,*StudentForgetPasswordButton,*ForgetPasswordSaveButton;
+
+@property (nonatomic,retain) UITextField *TeacherEmailTextfield,*TeacherNameTextfield,*TeacherPasswordTextfield,*TeacherConfirmPasswordTextfield,*TeacherSchoolTextfield,*TeacherOfficeLocationTextfield,*TeacherOfficeHoursTextfield,*TeacherPhoneTextfield,*StudentEmailTextfield,*StudentNameTextfield,*StudentPasswordTextfield,*StudentConfirmPasswordTextfield,*LoginEmailTextFiled,*LoginPasswordTextFiled,*EditPasswordOldPassword,*EditPasswordNewPassword,*EditPasswordCOnfirmPassword;
 
 @end
 
@@ -116,6 +130,7 @@ typedef enum {
         // Define scrollview
         
         _changePasswordVisiabelityType = changePasswordisinVisiable;
+        _DataSaveOption = dataSaveOptionNone;
         
         DataModel *dataModelObj = [DataModel sharedEngine];
         
@@ -223,6 +238,17 @@ typedef enum {
         [_FPSaveButton addTarget:self action:@selector(SaveForgetPassword) forControlEvents:UIControlEventTouchUpInside];
         [_FPCancelButton addTarget:self action:@selector(OpenChangePasswordButton) forControlEvents:UIControlEventTouchUpInside];
         
+        /**
+         Forget password section
+         */
+        
+        _ForgetPasswordSaveButton = (UIButton *)[_ForgetPasswordView viewWithTag:[kConfigEditProfileSaveButton intValue]];
+        [_ForgetPasswordSaveButton addTarget:self action:@selector(doEditPassword) forControlEvents:UIControlEventTouchUpInside];
+        
+        _EditPasswordOldPassword = (UITextField *)[_ForgetPasswordView viewWithTag:[kConfigEditProfileOldPassword intValue]];
+        _EditPasswordNewPassword = (UITextField *)[_ForgetPasswordView viewWithTag:[kConfigEditProfileNewPassword intValue]];
+        _EditPasswordCOnfirmPassword = (UITextField *)[_ForgetPasswordView viewWithTag:[kConfigEditProfileConfirmPassword intValue]];
+        
         for (id AllLabel in [_LoginMainBgScrollView subviews]) {
             if ([AllLabel isKindOfClass:[UILabel class]]) {
                 UILabel *AllLabelInView = (UILabel *)AllLabel;
@@ -277,7 +303,6 @@ typedef enum {
                 }
                 else if (AllButtonInView == _TeacherForgetPasswordButton)
                 {
-                    NSLog(@"_TeacherForgetPasswordButton tag ==> %ld",_TeacherForgetPasswordButton.tag);
                     [AllButtonInView addTarget:self action:@selector(CencelEditOption) forControlEvents:UIControlEventTouchUpInside];
                     [AllButtonInView.titleLabel setText:@"B"];
                 }
@@ -305,6 +330,21 @@ typedef enum {
                 if (AllTextFiledInView == _TeacherPasswordTextfield || AllTextFiledInView == _TeacherConfirmPasswordTextfield) {
                     [AllTextFiledInView setSecureTextEntry:YES];
                 }
+            }
+        }
+        
+        //
+        
+        for (id AllTextFiled in [_ForgetPasswordView subviews]) {
+            if ([AllTextFiled isKindOfClass:[UITextField class]]) {
+                UITextField *AllTextFiledInView = (UITextField *)AllTextFiled;
+                [AllTextFiledInView setDelegate:_textFieldDelegate];
+                [AllTextFiledInView setBorderStyle:UITextBorderStyleLine];
+                
+                UIView *LefftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, AllTextFiledInView.frame.size.height)];
+                [LefftView setBackgroundColor:[UIColor clearColor]];
+                [AllTextFiledInView setLeftView:LefftView];
+                [AllTextFiledInView setLeftViewMode:UITextFieldViewModeAlways];
             }
         }
         
@@ -353,6 +393,12 @@ typedef enum {
             }
         }
         
+        [_EPTeacherCancelButton addTarget:self action:@selector(GotoViewProfile) forControlEvents:UIControlEventTouchUpInside];
+        [_EPStudentCancelButton addTarget:self action:@selector(GotoViewProfile) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_EPTeacherSaveButton addTarget:self action:@selector(doEditData) forControlEvents:UIControlEventTouchUpInside];
+        [_EPStudentSaveButton addTarget:self action:@selector(doEditData) forControlEvents:UIControlEventTouchUpInside];
+        
         [self UserTypeChanged];
     }
     return self;
@@ -366,6 +412,16 @@ typedef enum {
 }
 -(NSString *)getLoginDeviceStatus {
     return (_loginDeviceType == loginDeviceNo)?kConfigLoginDeviceNo:kConfigLoginDeviceYes;
+}
+-(void)doEditPassword {
+    if ([self ValidateEditPasswordForm]) {
+        _DataSaveOption = dataSaveOptionChangePassword;
+        [self ProcessSaveData];
+    }
+}
+-(void)doEditData {
+    _DataSaveOption = dataSaveOptionEditProfile;
+    [self ProcessSaveData];
 }
 
 -(void)changeSettings :(UIButton *)sender
@@ -420,32 +476,18 @@ typedef enum {
     }
 }
 
--(void)SaveForgetPassword {
-
-    AppDelegate *MainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    BOOL IsLoaderOpen = NO;
-    
-    for (id LoaderView in MainDelegate.window.subviews) {
-        if ([LoaderView isKindOfClass:[DGActivityIndicatorView class]]) {
-            
-            IsLoaderOpen = YES;
-            
-            DGActivityIndicatorView *activityIndicatorView = (DGActivityIndicatorView *)LoaderView;
-            [activityIndicatorView stopAnimating];
-            [activityIndicatorView removeFromSuperview];
-        }
-    }
-    
-    DGActivityIndicatorView *activityIndicatorView = [[DGActivityIndicatorView alloc] initWithType:DGActivityIndicatorAnimationTypeBallTrianglePath tintColor:Constant.ColorSPAYellowColor size:30.0f];
-    activityIndicatorView.frame = CGRectMake(0.0f, 0.0f, 100.0f, 100.0f);
-    [MainDelegate.window addSubview:activityIndicatorView];
-    [activityIndicatorView startAnimating];
-}
-
 -(void)OpenChangePasswordButton
 {
     AppDelegate *MainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    for (id AllTextFiled in [_ForgetPasswordView subviews]) {
+        if ([AllTextFiled isKindOfClass:[UITextField class]]) {
+            UITextField *AllTextFiledInView = (UITextField *)AllTextFiled;
+            [AllTextFiledInView setDelegate:_textFieldDelegate];
+            [AllTextFiledInView setBorderStyle:UITextBorderStyleLine];
+            [AllTextFiledInView setText:nil];
+        }
+    }
     
     [_ForgetPasswordView setFrame:CGRectMake(10, 100, self.view.frame.size.width-20, _ForgetPasswordView.frame.size.height)];
     
@@ -657,7 +699,6 @@ typedef enum {
     }
 }
 
-
 -(void)UserTypeSelect:(UIButton *)sender
 {
     _loginDeviceType = loginDeviceNo;
@@ -733,7 +774,7 @@ typedef enum {
 
 #pragma mark - ValidateAccount
 
--(BOOL)ValidateTeacherTypeSignupForm
+-(BOOL)ValidateTeacherTypeEditProfileForm
 {
     BOOL validate = YES;
     
@@ -745,18 +786,6 @@ typedef enum {
         validate = NO;
     } else if ([Constant CleanTextField:_TeacherNameTextfield.text].length== 0) {
         [super ShowAletviewWIthTitle:AlertTitle Tag:10002 Message:@"Name please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
-        validate = NO;
-    } else if ([Constant CleanTextField:_TeacherPasswordTextfield.text].length== 0) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10003 Message:@"Password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
-        validate = NO;
-    } else if ([Constant CleanTextField:_TeacherPasswordTextfield.text].length < 6) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10004 Message:@"Password must be 6 character" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
-        validate = NO;
-    } else if ([Constant CleanTextField:_TeacherConfirmPasswordTextfield.text].length == 0) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10005 Message:@"Retype password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
-        validate = NO;
-    } else if (![[Constant CleanTextField:_TeacherPasswordTextfield.text] isEqualToString:[Constant CleanTextField:_TeacherConfirmPasswordTextfield.text]]) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10006 Message:@"Password not matching" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     } else if ([Constant CleanTextField:_TeacherSchoolTextfield.text].length == 0) {
         [super ShowAletviewWIthTitle:AlertTitle Tag:10007 Message:@"School Please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
@@ -771,14 +800,10 @@ typedef enum {
         [super ShowAletviewWIthTitle:AlertTitle Tag:10010 Message:@"Phone number please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     }
-    //    else if ([Constant validatePhone:[Constant CleanTextField:_TeacherPhoneTextfield.text]] == NO) {
-    //        [super ShowAletviewWIthTitle:AlertTitle Tag:10011 Message:@"Proper Phone number please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
-    //        validate = NO;
-    //    }
     return validate;
 }
 
--(BOOL)ValidateStudentTypeSignupForm
+-(BOOL)ValidateStudentTypeEditProfileForm
 {
     BOOL validate = YES;
     
@@ -791,17 +816,28 @@ typedef enum {
     } else if ([Constant CleanTextField:_StudentNameTextfield.text].length== 0) {
         [super ShowAletviewWIthTitle:AlertTitle Tag:10014 Message:@"Name please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
-    } else if ([Constant CleanTextField:_StudentPasswordTextfield.text].length== 0) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10015 Message:@"Password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+    }
+    return validate;
+}
+
+-(BOOL)ValidateEditPasswordForm
+{
+    BOOL validate = YES;
+    
+    if ([Constant CleanTextField:_EditPasswordOldPassword.text].length == 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10012 Message:@"Old Password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
-    } else if ([Constant CleanTextField:_StudentPasswordTextfield.text].length < 6) {
+    } else if ([Constant CleanTextField:_EditPasswordNewPassword.text].length== 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10014 Message:@"New Password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_EditPasswordNewPassword.text].length < 6) {
         [super ShowAletviewWIthTitle:AlertTitle Tag:10016 Message:@"Password must be 6 character" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
-    } else if ([Constant CleanTextField:_StudentConfirmPasswordTextfield.text].length == 0) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10017 Message:@"Retype password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+    }else if ([Constant CleanTextField:_EditPasswordCOnfirmPassword.text].length== 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10014 Message:@"Retype Password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
-    } else if (![[Constant CleanTextField:_StudentPasswordTextfield.text] isEqualToString:[Constant CleanTextField:_StudentConfirmPasswordTextfield.text]]) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10018 Message:@"Password not matching" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+    } else if (![[Constant CleanTextField:_EditPasswordNewPassword.text] isEqualToString:[Constant CleanTextField:_EditPasswordCOnfirmPassword.text]]) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:10017 Message:@"Password not matching" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     }
     return validate;
@@ -809,15 +845,58 @@ typedef enum {
 
 #pragma mark - Navigate to different Screen
 
--(void)ProcessLogin {
-
+-(void)ProcessSaveData {
+    
+    if (_DataSaveOption == dataSaveOptionEditProfile) {
+        
+        if (_SelectedUserType == userTypeTeacher) {
+            if ([self ValidateTeacherTypeEditProfileForm]) {
+                
+            }
+        } else if (_SelectedUserType == userTypeStudent) {
+            if ([self ValidateStudentTypeEditProfileForm]) {
+                
+            }
+        }
+        
+    } else if (_DataSaveOption == dataSaveOptionChangePassword) {
+        
+        SPAChangePasswordCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
+            
+            [_ActivityIndicator hide:YES];
+            if (errorString) {
+                if (errorString.length>0) {
+                    [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                }
+            } else {
+                if ([[data objectForKey:@"error"] intValue] == 1) {
+                    [super ShowAletviewWIthTitle:@"Sorry" Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                } else {
+                    [super ShowAletviewWIthTitle:@"Success" Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                }
+            }
+            _DataSaveOption = dataSaveOptionNone;
+            [self OpenChangePasswordButton];
+        };
+        
+        SPAChangePasswordSource * source = [SPAChangePasswordSource ChangePasswordSource];
+        [source doChangePassword:[NSArray arrayWithObjects:[FeatchUserdetails uid],[Constant CleanTextField:_EditPasswordOldPassword.text],[Constant CleanTextField:_EditPasswordNewPassword.text], nil] completion:completionBlock];
+        
+        AppDelegate *MainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        _ActivityIndicator = [MBProgressHUD showHUDAddedTo:MainDelegate.window animated:YES];
+        _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
+        [_ActivityIndicator setOpacity:1.0];
+        [_ActivityIndicator show:NO];
+        _ActivityIndicator.labelText = @"Loading";
+    }
 }
 -(void)GotoSignup {
     
     [self.navigationController pushViewController:Constant.SignupController animated:YES];
 }
--(void)GotoForgetPassword {
-    [self.navigationController pushViewController:Constant.ForgetPasswordControllerViewController animated:YES];
+-(void)GotoViewProfile {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Memory Warning

@@ -9,6 +9,11 @@
 #import "ClassListViewController.h"
 #import "Constant.h"
 #import "ClassListTableViewCell.h"
+#import "SPAClassListSource.h"
+#import "DataModel.h"
+#import "UserDetails.h"
+#import "ClassDetails.h"
+#import "ClassSlots.h"
 
 typedef enum {
     TableViewListTypeNormal,
@@ -19,7 +24,7 @@ typedef enum {
 @property (nonatomic,retain) UITableView *ClassListTableView;
 @property (nonatomic,retain) NSMutableArray *TableViewData,*TableViewFilterData;
 @property (nonatomic,retain) UITextField *SearchTextField;
-
+@property (nonatomic,retain) MBProgressHUD *ActivityIndicator;
 @property (assign) TableViewListType TableViewListingType;
 @end
 
@@ -37,7 +42,7 @@ typedef enum {
         [_ClassListTableView setShowsHorizontalScrollIndicator:NO];
         [_ClassListTableView setShowsVerticalScrollIndicator:NO];
         
-        _TableViewData = [@[@"Mahendra Singh Dhoni",@"Virat Kohli",@"Ajinkya Rahane",@"Shikhar Dhawan",@"Rohit Sharma",@"Stuart Binny",@"Suresh Raina",@"Ravindra Jadeja",@"Ambati Rayudu",@"Axar Patel",@"Ravichandran Ashwin",@"Bhuvneshwar Kumar",@"Mohammed Shami",@"Umesh Yadav",@"Ishant Sharma"] mutableCopy];
+        _TableViewData = [@[@"Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni"] mutableCopy];
         
         [_ClassListTableView reloadData];
         [_ClassListTableView registerNib:[UINib nibWithNibName:@"ClassListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ClassListTableViewCell"];
@@ -47,8 +52,51 @@ typedef enum {
         
         _TableViewListingType = TableViewListTypeNormal;
         
+        [self ProcessFetchClassList];
+        
     }
     return self;
+}
+
+#pragma mark - Navigate to different Screen
+
+-(void)ProcessFetchClassList {
+        
+        SPAClassListSourceCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
+            
+            [_ActivityIndicator hide:YES];
+            if (errorString) {
+                if (errorString.length>0) {
+                    [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                }
+            } else {
+                
+                DataModel *dataModelObj = [DataModel sharedEngine];
+                
+                for (ClassDetails *Classdetails in dataModelObj.fetchAllClassList) {
+                    
+                    NSLog(@"Classdetails ===> %@",Classdetails.name);
+                    
+                    for (ClassSlots *Classslots in [dataModelObj fetchAllSlotList:[Classdetails.classId stringValue]]) {
+                        
+                        NSLog(@"Classslots ===> %@ ---%@ ---%@ ---%@",Classslots.start_time,Classslots.end_time,Classslots.classId,Classslots.dayId);
+                        
+                    }
+                }
+            }
+        };
+    
+        DataModel *dataModelObj = [DataModel sharedEngine];
+        UserDetails * FeatchUserdetails = [dataModelObj fetchCurrentUser];
+    
+        SPAClassListSource * source = [SPAClassListSource SPAClassListSource];
+        [source getClasslist:[[NSArray alloc] initWithObjects:[FeatchUserdetails uid], nil] completion:completionBlock];
+        
+        _ActivityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
+        [_ActivityIndicator setOpacity:1.0];
+        [_ActivityIndicator show:NO];
+        _ActivityIndicator.labelText = @"Loading";
 }
 
 #pragma mark - UITextfield Delegate
@@ -129,6 +177,11 @@ typedef enum {
         cell = (ClassListTableViewCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:alphaIdentifire];
     }
     [cell.CellClassName setText:(_TableViewListingType == TableViewListTypeNormal)?[_TableViewData objectAtIndex:indexPath.row]:[_TableViewFilterData objectAtIndex:indexPath.row]];
+    [cell.CellClassName setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:18]];
+//    [cell.CellClassName setNumberOfLines:0];
+//    [cell.CellClassName sizeToFit];
+    
+    
     [cell.CellClassLocation setText:@"Classroom Location"];
     [cell.CellClassTime setText:@"Mon, Wed, Fri 9:00-10:00 AM"];
     return cell;
@@ -145,7 +198,20 @@ typedef enum {
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100.0f;
+    NSString* text = nil;
+    
+    text = (_TableViewListingType == TableViewListTypeNormal)?[_TableViewData objectAtIndex:indexPath.row]:[_TableViewFilterData objectAtIndex:indexPath.row];
+    
+    NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:text attributes:@{ NSFontAttributeName: [UIFont systemFontOfSize:18]}];
+    
+    CGSize constraintSize = CGSizeMake(tableView.frame.size.width - 5, MAXFLOAT);
+    
+    CGRect rect = [attributedString boundingRectWithSize:constraintSize options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
+    
+    rect.size.height = rect.size.height + 23;
+    
+    //return (rect.size.height < 44 ? 44 : rect.size.height);
+    return UITableViewAutomaticDimension;;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

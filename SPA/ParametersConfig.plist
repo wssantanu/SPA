@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>my_class_list</key>
+	<string>uid</string>
+	<key>change_user_password</key>
+	<string>uid,currentpassword,newpassword</string>
 	<key>Material_of_class</key>
 	<string>uid,cid </string>
 	<key>Material_Delete</key>
@@ -29,7 +33,7 @@
 	<key>User_Registration</key>
 	<string>role_id,file_image_ext,email,password,userfullname,schoolname,officelocation,phone_no,keep_login,recieve_mail,office_hours,file_image_data</string>
 	<key>logout</key>
-	<string></string>
+	<string>uid</string>
 	<key>request_newpassword</key>
 	<string>name</string>
 	<key>login_parameters</key>

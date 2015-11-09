@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "AppDelegate.h"
 #import "UserDetails.h"
+#import "ClassSlots.h"
+#import "ClassDetails.h"
+
 @interface DataModel : NSObject
 {
     AppDelegate* appDelegate;
@@ -34,5 +37,8 @@
 -(NSManagedObjectContext*)getChildManagedObjectContext;
 -(void)saveContextForChildContext:(NSManagedObjectContext*)childContext;
 -(UserDetails *)fetchCurrentUser;
-- (NSArray *)fetchedUserDataWithUserId:(NSString *)UserId;
+-(NSArray *)fetchAllClassList;
+-(ClassDetails *)fetchedClassListWithClassId:(NSString *)ClassId;
+-(NSArray *)fetchedUserDataWithUserId:(NSString *)UserId;
+- (NSArray *)fetchAllSlotList:(NSString *)ClassId;
 @end

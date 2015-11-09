@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5007383DA4A5FAE9EDEF0911 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 726B27DD2124D40C3954CACE /* libPods.a */; };
+		9B2D12711BF0B17800C977F5 /* SPAClassListSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D12701BF0B17800C977F5 /* SPAClassListSource.m */; };
+		9B2D12731BF0B18900C977F5 /* SPAClassListSource.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D12721BF0B18900C977F5 /* SPAClassListSource.json */; };
+		9B2D127E1BF0BE2100C977F5 /* ClassDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D127B1BF0BE2100C977F5 /* ClassDetails.m */; };
+		9B2D127F1BF0BE2100C977F5 /* ClassSlots.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D127D1BF0BE2100C977F5 /* ClassSlots.m */; };
 		9B58979B1BC7DBD8000AD6B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B58979A1BC7DBD8000AD6B3 /* main.m */; };
 		9B58979E1BC7DBD8000AD6B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B58979D1BC7DBD8000AD6B3 /* AppDelegate.m */; };
 		9B5897A11BC7DBD8000AD6B3 /* SPA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B58979F1BC7DBD8000AD6B3 /* SPA.xcdatamodeld */; };
@@ -91,6 +95,12 @@
 		9B8C63631BE7C2F60049705B /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C635C1BE7C2F60049705B /* PECropRectView.m */; };
 		9B8C63641BE7C2F60049705B /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C635E1BE7C2F60049705B /* PEResizeControl.m */; };
 		9B8C63651BE7C2F60049705B /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C63601BE7C2F60049705B /* UIImage+PECrop.m */; };
+		9B939F0E1BF05BD8004D893D /* SPAChangePasswordSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B939F0D1BF05BD8004D893D /* SPAChangePasswordSource.m */; };
+		9B939F111BF05BEF004D893D /* SPAEditProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B939F101BF05BEF004D893D /* SPAEditProfileSource.m */; };
+		9B939F131BF05C0D004D893D /* SPAEditProfileSource.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B939F121BF05C0D004D893D /* SPAEditProfileSource.json */; };
+		9B939F151BF05C26004D893D /* SPAChangePasswordSource.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B939F141BF05C26004D893D /* SPAChangePasswordSource.json */; };
+		9B939F191BF062F7004D893D /* SPASignoutSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B939F181BF062F7004D893D /* SPASignoutSource.m */; };
+		9B939F1B1BF06309004D893D /* SPASignoutSource.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B939F1A1BF06309004D893D /* SPASignoutSource.json */; };
 		9BAAD1991BE892480006C209 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1971BE892480006C209 /* EditProfileViewController.m */; };
 		9BAAD19A1BE892480006C209 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BAAD1981BE892480006C209 /* EditProfileViewController.xib */; };
 		9BAAD19E1BE8F8F00006C209 /* ClassListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD19C1BE8F8F00006C209 /* ClassListTableViewCell.m */; };
@@ -182,6 +192,13 @@
 		1F1AB8C039E5FF0AD81993B2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		726B27DD2124D40C3954CACE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FC3E01A75B814B54E3721EB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9B2D126F1BF0B17800C977F5 /* SPAClassListSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAClassListSource.h; sourceTree = "<group>"; };
+		9B2D12701BF0B17800C977F5 /* SPAClassListSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAClassListSource.m; sourceTree = "<group>"; };
+		9B2D12721BF0B18900C977F5 /* SPAClassListSource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SPAClassListSource.json; sourceTree = "<group>"; };
+		9B2D127A1BF0BE2100C977F5 /* ClassDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetails.h; sourceTree = "<group>"; };
+		9B2D127B1BF0BE2100C977F5 /* ClassDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetails.m; sourceTree = "<group>"; };
+		9B2D127C1BF0BE2100C977F5 /* ClassSlots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassSlots.h; sourceTree = "<group>"; };
+		9B2D127D1BF0BE2100C977F5 /* ClassSlots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassSlots.m; sourceTree = "<group>"; };
 		9B5897951BC7DBD8000AD6B3 /* SPA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5897991BC7DBD8000AD6B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B58979A1BC7DBD8000AD6B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -319,6 +336,15 @@
 		9B8C635E1BE7C2F60049705B /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEResizeControl.m; sourceTree = "<group>"; };
 		9B8C635F1BE7C2F60049705B /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
 		9B8C63601BE7C2F60049705B /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PECrop.m"; sourceTree = "<group>"; };
+		9B939F0C1BF05BD8004D893D /* SPAChangePasswordSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAChangePasswordSource.h; sourceTree = "<group>"; };
+		9B939F0D1BF05BD8004D893D /* SPAChangePasswordSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAChangePasswordSource.m; sourceTree = "<group>"; };
+		9B939F0F1BF05BEF004D893D /* SPAEditProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAEditProfileSource.h; sourceTree = "<group>"; };
+		9B939F101BF05BEF004D893D /* SPAEditProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAEditProfileSource.m; sourceTree = "<group>"; };
+		9B939F121BF05C0D004D893D /* SPAEditProfileSource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SPAEditProfileSource.json; sourceTree = "<group>"; };
+		9B939F141BF05C26004D893D /* SPAChangePasswordSource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SPAChangePasswordSource.json; sourceTree = "<group>"; };
+		9B939F171BF062F7004D893D /* SPASignoutSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPASignoutSource.h; sourceTree = "<group>"; };
+		9B939F181BF062F7004D893D /* SPASignoutSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPASignoutSource.m; sourceTree = "<group>"; };
+		9B939F1A1BF06309004D893D /* SPASignoutSource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SPASignoutSource.json; sourceTree = "<group>"; };
 		9BAAD1961BE892480006C209 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		9BAAD1971BE892480006C209 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		9BAAD1981BE892480006C209 /* EditProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
@@ -495,6 +521,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9B2D126E1BF0B15800C977F5 /* Class List */ = {
+			isa = PBXGroup;
+			children = (
+				9B2D126F1BF0B17800C977F5 /* SPAClassListSource.h */,
+				9B2D12701BF0B17800C977F5 /* SPAClassListSource.m */,
+				9B2D12721BF0B18900C977F5 /* SPAClassListSource.json */,
+			);
+			name = "Class List";
+			sourceTree = "<group>";
+		};
 		9B58978C1BC7DBD8000AD6B3 = {
 			isa = PBXGroup;
 			children = (
@@ -518,32 +554,8 @@
 		9B5897971BC7DBD8000AD6B3 /* SPA */ = {
 			isa = PBXGroup;
 			children = (
+				9B939F081BF05425004D893D /* Calender */,
 				9B8C3AD11BEA60B200BABA05 /* AFOAuth2Manager */,
-				9BAAD1C71BE90B690006C209 /* NSDateAdditions.h */,
-				9BAAD1C81BE90B690006C209 /* NSDateAdditions.m */,
-				9BAAD1C91BE90B690006C209 /* UIViewAdditions.h */,
-				9BAAD1CD1BE90B8D0006C209 /* EventKitDataSource.h */,
-				9BAAD1CE1BE90B8D0006C209 /* EventKitDataSource.m */,
-				9BAAD1CA1BE90B690006C209 /* UIViewAdditions.m */,
-				9BAAD1C51BE90B600006C209 /* Kal.bundle */,
-				9BAAD1AB1BE90B550006C209 /* Kal.h */,
-				9BAAD1AC1BE90B550006C209 /* KalDataSource.h */,
-				9BAAD1AD1BE90B550006C209 /* KalDataSource.m */,
-				9BAAD1AE1BE90B550006C209 /* KalDate.h */,
-				9BAAD1AF1BE90B550006C209 /* KalDate.m */,
-				9BAAD1B01BE90B550006C209 /* KalGridView.h */,
-				9BAAD1B11BE90B550006C209 /* KalGridView.m */,
-				9BAAD1B21BE90B550006C209 /* KalLogic.h */,
-				9BAAD1B31BE90B550006C209 /* KalLogic.m */,
-				9BAAD1B41BE90B550006C209 /* KalMonthView.h */,
-				9BAAD1B51BE90B550006C209 /* KalMonthView.m */,
-				9BAAD1B61BE90B550006C209 /* KalPrivate.h */,
-				9BAAD1B71BE90B550006C209 /* KalTileView.h */,
-				9BAAD1B81BE90B550006C209 /* KalTileView.m */,
-				9BAAD1B91BE90B550006C209 /* KalView.h */,
-				9BAAD1BA1BE90B550006C209 /* KalView.m */,
-				9BAAD1BB1BE90B550006C209 /* KalViewController.h */,
-				9BAAD1BC1BE90B550006C209 /* KalViewController.m */,
 				9BBBFC971BE3583200BBC6EF /* ColorPicker */,
 				9BAD9EC61BE0CDDB004E6C7C /* REFrostedViewController */,
 				9BAD9EB81BE0CDC8004E6C7C /* Fonts */,
@@ -681,6 +693,10 @@
 		9B6A68AB1BCBDA1200C284CB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9B2D126E1BF0B15800C977F5 /* Class List */,
+				9B939F161BF062D7004D893D /* Signout */,
+				9B939F0B1BF0549F004D893D /* Change Password */,
+				9B939F0A1BF05496004D893D /* Edit Profile */,
 				9B87DEAC1BEB2DC700BA3424 /* Forget Password */,
 				9B87DEAB1BEB2DBA00BA3424 /* Registration */,
 				9B87DEAA1BEB2DAF00BA3424 /* Login */,
@@ -730,8 +746,6 @@
 				9B6A68D41BCBF32300C284CB /* LoginController */,
 				9B6A68CB1BCBF0E800C284CB /* AppDelegate */,
 				9B6A68CC1BCBF0F200C284CB /* ViewController */,
-				9BAD9EFA1BE0FA18004E6C7C /* AddMoreView.h */,
-				9BAD9EFB1BE0FA18004E6C7C /* AddMoreView.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -739,6 +753,10 @@
 		9B6A68C81BCBF08900C284CB /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				9B2D127A1BF0BE2100C977F5 /* ClassDetails.h */,
+				9B2D127B1BF0BE2100C977F5 /* ClassDetails.m */,
+				9B2D127C1BF0BE2100C977F5 /* ClassSlots.h */,
+				9B2D127D1BF0BE2100C977F5 /* ClassSlots.m */,
 				9BBD83121BEC9A3D00DA7117 /* UserDetails.h */,
 				9BBD83131BEC9A3D00DA7117 /* UserDetails.m */,
 				9B58979F1BC7DBD8000AD6B3 /* SPA.xcdatamodeld */,
@@ -825,12 +843,6 @@
 			children = (
 				9B87DEB21BEB300A00BA3424 /* KMMovie.h */,
 				9B87DEB31BEB300A00BA3424 /* KMMovie.m */,
-				9BBD831A1BECCA7C00DA7117 /* SPAsignupSource.h */,
-				9BBD831B1BECCA7C00DA7117 /* SPAsignupSource.m */,
-				9BBD831D1BECCBA100DA7117 /* SPAsignupSourceJsonPattern.json */,
-				9BBD83151BECAF1900DA7117 /* SPAForgetPasswordSource.h */,
-				9BBD83161BECAF1900DA7117 /* SPAForgetPasswordSource.m */,
-				9BBD83181BECAF3F00DA7117 /* SPAForgetPasswordSourceJsonPattern.json */,
 				9B87DEAD1BEB2E2A00BA3424 /* SPALoginSource.h */,
 				9B87DEAE1BEB2E2A00BA3424 /* SPALoginSource.m */,
 				9B87DEB01BEB2E3600BA3424 /* SPALoginSourceJsonPattern.json */,
@@ -841,6 +853,9 @@
 		9B87DEAB1BEB2DBA00BA3424 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				9BBD831A1BECCA7C00DA7117 /* SPAsignupSource.h */,
+				9BBD831B1BECCA7C00DA7117 /* SPAsignupSource.m */,
+				9BBD831D1BECCBA100DA7117 /* SPAsignupSourceJsonPattern.json */,
 			);
 			name = Registration;
 			sourceTree = "<group>";
@@ -848,6 +863,9 @@
 		9B87DEAC1BEB2DC700BA3424 /* Forget Password */ = {
 			isa = PBXGroup;
 			children = (
+				9BBD83151BECAF1900DA7117 /* SPAForgetPasswordSource.h */,
+				9BBD83161BECAF1900DA7117 /* SPAForgetPasswordSource.m */,
+				9BBD83181BECAF3F00DA7117 /* SPAForgetPasswordSourceJsonPattern.json */,
 			);
 			name = "Forget Password";
 			sourceTree = "<group>";
@@ -942,6 +960,77 @@
 			name = AFOAuth2Manager;
 			sourceTree = "<group>";
 		};
+		9B939F081BF05425004D893D /* Calender */ = {
+			isa = PBXGroup;
+			children = (
+				9BAAD1C71BE90B690006C209 /* NSDateAdditions.h */,
+				9BAAD1C81BE90B690006C209 /* NSDateAdditions.m */,
+				9BAAD1C91BE90B690006C209 /* UIViewAdditions.h */,
+				9BAAD1CD1BE90B8D0006C209 /* EventKitDataSource.h */,
+				9BAAD1CE1BE90B8D0006C209 /* EventKitDataSource.m */,
+				9BAAD1CA1BE90B690006C209 /* UIViewAdditions.m */,
+				9BAAD1C51BE90B600006C209 /* Kal.bundle */,
+				9BAAD1AB1BE90B550006C209 /* Kal.h */,
+				9BAAD1AC1BE90B550006C209 /* KalDataSource.h */,
+				9BAAD1AD1BE90B550006C209 /* KalDataSource.m */,
+				9BAAD1AE1BE90B550006C209 /* KalDate.h */,
+				9BAAD1AF1BE90B550006C209 /* KalDate.m */,
+				9BAAD1B01BE90B550006C209 /* KalGridView.h */,
+				9BAAD1B11BE90B550006C209 /* KalGridView.m */,
+				9BAAD1B21BE90B550006C209 /* KalLogic.h */,
+				9BAAD1B31BE90B550006C209 /* KalLogic.m */,
+				9BAAD1B41BE90B550006C209 /* KalMonthView.h */,
+				9BAAD1B51BE90B550006C209 /* KalMonthView.m */,
+				9BAAD1B61BE90B550006C209 /* KalPrivate.h */,
+				9BAAD1B71BE90B550006C209 /* KalTileView.h */,
+				9BAAD1B81BE90B550006C209 /* KalTileView.m */,
+				9BAAD1B91BE90B550006C209 /* KalView.h */,
+				9BAAD1BA1BE90B550006C209 /* KalView.m */,
+				9BAAD1BB1BE90B550006C209 /* KalViewController.h */,
+				9BAAD1BC1BE90B550006C209 /* KalViewController.m */,
+			);
+			name = Calender;
+			sourceTree = "<group>";
+		};
+		9B939F091BF05442004D893D /* AddMoreView */ = {
+			isa = PBXGroup;
+			children = (
+				9BAD9EFA1BE0FA18004E6C7C /* AddMoreView.h */,
+				9BAD9EFB1BE0FA18004E6C7C /* AddMoreView.m */,
+			);
+			name = AddMoreView;
+			sourceTree = "<group>";
+		};
+		9B939F0A1BF05496004D893D /* Edit Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9B939F0F1BF05BEF004D893D /* SPAEditProfileSource.h */,
+				9B939F101BF05BEF004D893D /* SPAEditProfileSource.m */,
+				9B939F121BF05C0D004D893D /* SPAEditProfileSource.json */,
+			);
+			name = "Edit Profile";
+			sourceTree = "<group>";
+		};
+		9B939F0B1BF0549F004D893D /* Change Password */ = {
+			isa = PBXGroup;
+			children = (
+				9B939F0C1BF05BD8004D893D /* SPAChangePasswordSource.h */,
+				9B939F0D1BF05BD8004D893D /* SPAChangePasswordSource.m */,
+				9B939F141BF05C26004D893D /* SPAChangePasswordSource.json */,
+			);
+			name = "Change Password";
+			sourceTree = "<group>";
+		};
+		9B939F161BF062D7004D893D /* Signout */ = {
+			isa = PBXGroup;
+			children = (
+				9B939F171BF062F7004D893D /* SPASignoutSource.h */,
+				9B939F181BF062F7004D893D /* SPASignoutSource.m */,
+				9B939F1A1BF06309004D893D /* SPASignoutSource.json */,
+			);
+			name = Signout;
+			sourceTree = "<group>";
+		};
 		9BAAD1951BE892360006C209 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1022,6 +1111,7 @@
 		9BBBFC8A1BE353D700BBC6EF /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				9B939F091BF05442004D893D /* AddMoreView */,
 				9BBD831F1BED031000DA7117 /* ShowProfile */,
 				9BAAD1951BE892360006C209 /* EditProfile */,
 				9BBBFC961BE3541E00BBC6EF /* AddClass */,
@@ -1175,6 +1265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B939F131BF05C0D004D893D /* SPAEditProfileSource.json in Resources */,
 				9BAD9EED1BE0CEB8004E6C7C /* MyriadPro-Bold.otf in Resources */,
 				9BAD9EEE1BE0CEB8004E6C7C /* MyriadPro-BoldCond.otf in Resources */,
 				9BAD9EEF1BE0CEB8004E6C7C /* MyriadPro-BoldCondIt.otf in Resources */,
@@ -1198,6 +1289,7 @@
 				9B8C3AB61BEA131D00BABA05 /* MaterialsListViewController.xib in Resources */,
 				9BBD83191BECAF3F00DA7117 /* SPAForgetPasswordSourceJsonPattern.json in Resources */,
 				9BAD9EF91BE0CEB8004E6C7C /* Roboto-Regular_0.ttf in Resources */,
+				9B939F1B1BF06309004D893D /* SPASignoutSource.json in Resources */,
 				9B8C3AC21BEA135800BABA05 /* AlertStudentsViewController.xib in Resources */,
 				9BAAD19A1BE892480006C209 /* EditProfileViewController.xib in Resources */,
 				9BEC2CBB1BCFA91500360904 /* LoginViewController.xib in Resources */,
@@ -1213,6 +1305,7 @@
 				9BAD64681BD5083700FF65C1 /* ForgetPasswordControllerViewController.xib in Resources */,
 				9B8C3AB01BEA0FCE00BABA05 /* AgendaListMonthViewController.xib in Resources */,
 				9B6A68B91BCBE45E00C284CB /* FontConfig.plist in Resources */,
+				9B2D12731BF0B18900C977F5 /* SPAClassListSource.json in Resources */,
 				9BBBFC9B1BE3584200BBC6EF /* nko_brightness_guide.png in Resources */,
 				9B5897AC1BC7DBD8000AD6B3 /* LaunchScreen.xib in Resources */,
 				9BBBFC941BE3540A00BBC6EF /* AddClassViewController.xib in Resources */,
@@ -1222,6 +1315,7 @@
 				9BAD646A1BD50F9000FF65C1 /* ParametersConfig.plist in Resources */,
 				9B8C3ACE1BEA140600BABA05 /* ClassTasksViewController.xib in Resources */,
 				9B8C3AD01BEA50F100BABA05 /* ServiceConfig.plist in Resources */,
+				9B939F151BF05C26004D893D /* SPAChangePasswordSource.json in Resources */,
 				9B8C3ABC1BEA133A00BABA05 /* StudentsViewController.xib in Resources */,
 				9BBD832E1BED05BE00DA7117 /* UserImageCell.xib in Resources */,
 				9B5897A91BC7DBD8000AD6B3 /* Images.xcassets in Resources */,
@@ -1301,9 +1395,11 @@
 				9BBBFCA01BE3584A00BBC6EF /* NKOColorPickerView.m in Sources */,
 				9BAD9ED41BE0CDE9004E6C7C /* REFrostedContainerViewController.m in Sources */,
 				9BBD83231BED032F00DA7117 /* ShowProfileViewController.m in Sources */,
+				9B2D127E1BF0BE2100C977F5 /* ClassDetails.m in Sources */,
 				9B6A688B1BCBD8F800C284CB /* KM_NSDictionary+SafeValues.m in Sources */,
 				9BAD9EFC1BE0FA18004E6C7C /* AddMoreView.m in Sources */,
 				9B6A68781BCBD8E300C284CB /* KMNetworkLoadingViewController.m in Sources */,
+				9B939F111BF05BEF004D893D /* SPAEditProfileSource.m in Sources */,
 				9BAAD1BE1BE90B550006C209 /* KalDate.m in Sources */,
 				9BAD9ED71BE0CDE9004E6C7C /* UIView+REFrostedViewController.m in Sources */,
 				9B6A68A61BCBD9D300C284CB /* EGOImageLoader.m in Sources */,
@@ -1316,6 +1412,7 @@
 				9BAD9EE91BE0CE06004E6C7C /* DEMONavigationController.m in Sources */,
 				9BAAD1CF1BE90B8D0006C209 /* EventKitDataSource.m in Sources */,
 				9BAD9ED81BE0CDE9004E6C7C /* UIViewController+REFrostedViewController.m in Sources */,
+				9B2D12711BF0B17800C977F5 /* SPAClassListSource.m in Sources */,
 				9B6A68791BCBD8E300C284CB /* StoryBoardUtilities.m in Sources */,
 				9B6A68E21BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m in Sources */,
 				9B8C63631BE7C2F60049705B /* PECropRectView.m in Sources */,
@@ -1326,6 +1423,7 @@
 				9B6A688C1BCBD8F800C284CB /* KM_NSString+UrlEncoding.m in Sources */,
 				9B6A68A41BCBD9D300C284CB /* EGOImageButton.m in Sources */,
 				9B8C63611BE7C2F60049705B /* PECropViewController.m in Sources */,
+				9B939F0E1BF05BD8004D893D /* SPAChangePasswordSource.m in Sources */,
 				9B8C3A9F1BE9ED7900BABA05 /* AddTaskViewController.m in Sources */,
 				9B6A68931BCBD91600C284CB /* KMGillSansLabel.m in Sources */,
 				9B6A688E1BCBD8F800C284CB /* NSBundle+Loader.m in Sources */,
@@ -1341,6 +1439,7 @@
 				9B6A68C51BCBEA9400C284CB /* KMActivityIndicator.m in Sources */,
 				9B8C3AC71BEA13A000BABA05 /* ClassInfoViewController.m in Sources */,
 				9BAAD1C11BE90B550006C209 /* KalMonthView.m in Sources */,
+				9B2D127F1BF0BE2100C977F5 /* ClassSlots.m in Sources */,
 				9B8C63621BE7C2F60049705B /* PECropView.m in Sources */,
 				9B6A68E51BCC02D600C284CB /* CommonReturns.m in Sources */,
 				9B6A68B11BCBDA4C00C284CB /* SPASourceConfig.m in Sources */,
@@ -1353,6 +1452,7 @@
 				9B6A688A1BCBD8F800C284CB /* KM_NSArray+SafeValues.m in Sources */,
 				9B8C63641BE7C2F60049705B /* PEResizeControl.m in Sources */,
 				9BAAD1C21BE90B550006C209 /* KalTileView.m in Sources */,
+				9B939F191BF062F7004D893D /* SPASignoutSource.m in Sources */,
 				9B58979E1BC7DBD8000AD6B3 /* AppDelegate.m in Sources */,
 				9B8C3AB51BEA131D00BABA05 /* MaterialsListViewController.m in Sources */,
 				9BAAD1BF1BE90B550006C209 /* KalGridView.m in Sources */,

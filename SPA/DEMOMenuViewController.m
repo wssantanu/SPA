@@ -17,12 +17,13 @@
 #import "DataModel.h"
 #import "UserDetails.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "SPASignoutSource.h"
 
 int CurrentSelectedCell = 0;
 BOOL isFirstLoad = NO;
 
 @interface DEMOMenuViewController()<UIAlertViewDelegate>
-
+@property (nonatomic,retain) MBProgressHUD *ActivityIndicator;
 @end
 
 @implementation DEMOMenuViewController
@@ -59,10 +60,9 @@ BOOL isFirstLoad = NO;
 {
     isFirstLoad = YES;
     _menutypeorderlabel = menutypeordersecondlabel;
-    [UIView transitionWithView:self.tableView duration:0.35f options:UIViewAnimationOptionTransitionCrossDissolve
-                    animations:^(void) {
-                        [self.tableView reloadData];
-                    } completion:nil];
+    [UIView transitionWithView:self.tableView duration:0.35f options:UIViewAnimationOptionTransitionCrossDissolve animations:^(void) {
+       [self.tableView reloadData];
+    } completion:nil];
 }
 
 #pragma mark -
@@ -78,7 +78,6 @@ BOOL isFirstLoad = NO;
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     DataModel *dataModelObj = [DataModel sharedEngine];
-    
     FeatchUserdetails = [dataModelObj fetchCurrentUser];
     
     UIView *bgview = [[UIView alloc] init];
@@ -111,9 +110,44 @@ BOOL isFirstLoad = NO;
     return 120;
 }
 
+-(void)ShowAletviewWIthTitle:(NSString *)ParamTitle Tag:(int)ParamTag Message:(NSString *)ParamMessage CancelButtonTitle:(NSString *)ParamCancelButtonTitle OtherButtonTitle:(NSString *)ParamOtherButtonTitle
+{
+    UIAlertView *AlertView = [[UIAlertView alloc] initWithTitle:ParamTitle message:ParamMessage delegate:self cancelButtonTitle:ParamCancelButtonTitle otherButtonTitles:ParamOtherButtonTitle, nil];
+    [AlertView setTag:ParamTag];
+    [AlertView show];
+}
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
+    if (alertView.tag == 8820) {
+        
+        if (buttonIndex == 1) {
+            
+            SPASignoutSourceCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
+                [_ActivityIndicator hide:YES];
+                if (errorString) {
+                    if (errorString.length>0) {
+                        [self ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    }
+                } else {
+                    if ([[data objectForKey:@"error"] intValue] == 1) {
+                        [self ShowAletviewWIthTitle:@"Sorry" Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    } else {
+                        [self ShowAletviewWIthTitle:@"Success" Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    }
+                }
+            };
+            
+            SPASignoutSource * source = [SPASignoutSource SignoutSource];
+            [source doSignout:[NSArray arrayWithObjects:[FeatchUserdetails uid], nil] completion:completionBlock];
+    
+            _ActivityIndicator = [MBProgressHUD showHUDAddedTo:MainDelegate.window animated:YES];
+            _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
+            [_ActivityIndicator setOpacity:1.0];
+            [_ActivityIndicator show:NO];
+            _ActivityIndicator.labelText = @"Loading";
+        }
+    } else {
         [MainDelegate LogoutUser];
     }
 }
@@ -150,7 +184,8 @@ BOOL isFirstLoad = NO;
                 break;
             case 4:
             {
-                UIAlertView *AlertViw = [[UIAlertView alloc] initWithTitle:@"Caution" message:@"Are you sere to signout" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+                UIAlertView *AlertViw = [[UIAlertView alloc] initWithTitle:@"Caution" message:@"Are you sure to signout" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+                [AlertViw setTag:8820];
                 [AlertViw show];
             }
                 break;

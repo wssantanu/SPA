@@ -1,12 +1,12 @@
 //
-//  SPAsignupSource.m
+//  SPASignoutSource.m
 //  SPA
 //
-//  Created by Santanu Das Adhikary on 06/11/15.
+//  Created by Santanu Das Adhikary on 09/11/15.
 //  Copyright (c) 2015 Santanu Das Adhikary. All rights reserved.
 //
 
-#import "SPAsignupSource.h"
+#import "SPASignoutSource.h"
 #import "SPASourceConfig.h"
 #import "AFNetworking.h"
 #import "CommonReturns.h"
@@ -15,20 +15,14 @@
 #import "DataModel.h"
 #import "Constant.h"
 
-@interface SPAsignupSource()
-@end
+@implementation SPASignoutSource
 
-@implementation SPAsignupSource
-
-#pragma mark -
-#pragma mark Init Methods
-
-+ (SPAsignupSource*)signupDetailsSource
++ (SPASignoutSource*)SignoutSource;
 {
     static dispatch_once_t onceToken;
-    static SPAsignupSource* instance = nil;
+    static SPASignoutSource* instance = nil;
     dispatch_once(&onceToken, ^{
-        instance = [[SPAsignupSource alloc]init];
+        instance = [[SPASignoutSource alloc]init];
     });
     return instance;
 }
@@ -54,20 +48,24 @@
 #pragma mark -
 #pragma mark Request Methods
 
--(void)getsignupDetails:(NSArray *)signupParam withImageData:(NSData *)ImageData completion:(SPASignupCompletionBlock)completionBlock
+-(void)doSignout:(NSArray *)SignoutParam completion:(SPASignoutSourceCompletionBlock)completionBlock
 {
     if (completionBlock)
     {
-        NSDictionary* parameters = [[NSDictionary alloc] initWithObjects:signupParam forKeys:[[SPASourceConfig config].ParamUser_Registration componentsSeparatedByString:[SPASourceConfig config].SeperatorKey]];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        
+        DataModel *dataModelObj = [DataModel sharedEngine];
+        UserDetails *FeatchUserdetails = [dataModelObj fetchCurrentUser];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:FeatchUserdetails.token forHTTPHeaderField:@"X-CSRF-TOKEN"];
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@=%@",FeatchUserdetails.session_name,FeatchUserdetails.sessid] forHTTPHeaderField:@"Cookie"];
         
-        [manager POST:[self prepareUrl] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
+        //NSLog(@"manager.requestSerializer.HTTPRequestHeaders ===> %@",manager.requestSerializer.HTTPRequestHeaders);
+        
+        [manager POST:[self prepareUrl] parameters:[NSDictionary new] success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
-             NSDictionary* infosDictionary = [self dictionaryFromResponseData:operation.responseData jsonPatternFile:@"SPAsignupSourceJsonPattern.json"];
+             NSDictionary* infosDictionary = [self dictionaryFromResponseData:operation.responseData jsonPatternFile:@"SPASignoutSource.json"];
              dispatch_async(dispatch_get_main_queue(), ^{
                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                  
@@ -80,6 +78,7 @@
                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                  
                  NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+                 
                  if ([ErrorResponse length] == 0)
                      ErrorResponse = nil;
                  completionBlock(nil, ErrorResponse);
@@ -102,7 +101,7 @@
 
 - (NSString*)prepareUrl
 {
-    return [NSString stringWithFormat:@"%@%@",[SPASourceConfig config].theDbHost,[SPASourceConfig config].ServiceUser_Registration];
+    return [NSString stringWithFormat:@"%@%@",[SPASourceConfig config].theDbHost,[SPASourceConfig config].Servicelogout];
 }
 
 @end

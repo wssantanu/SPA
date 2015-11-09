@@ -103,6 +103,12 @@
         NSString *uid               = [userDictionary objectForKey:@"uid"];
         NSString *picture           = ([[userDictionary objectForKey:@"picture"] isKindOfClass:[NSDictionary class]])?[self getPictureFromDictionary:[userDictionary objectForKey:@"picture"]]:@"";
         NSString *userrole          = [[self getUserRoleFromDictionary:[userDictionary objectForKey:@"roles"]] isEqualToString:@"teacher"]?@"4":@"5";
+    
+    NSUserDefaults *prfs = [NSUserDefaults standardUserDefaults];
+    [prfs setObject:sessid forKey:@"sessid"];
+    [prfs setObject:session_name forKey:@"session_name"];
+    [prfs setObject:token forKey:@"token"];
+    [prfs synchronize];
 
     DataModel *dataModelObj = [DataModel sharedEngine];
     [dataModelObj deleteAllObjectsForEntity:Constant.EntityForUser];

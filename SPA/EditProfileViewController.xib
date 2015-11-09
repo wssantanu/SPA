@@ -8,8 +8,11 @@
             <connections>
                 <outlet property="ChangePasswordButtonStudentView" destination="CYv-hb-cEC" id="5gx-om-JKY"/>
                 <outlet property="ChangePasswordButtonTeacherView" destination="aho-uf-rhw" id="A4A-Sa-AAO"/>
+                <outlet property="EPStudentCancelButton" destination="Yqx-oI-xL6" id="uFr-zO-6I3"/>
+                <outlet property="EPStudentSaveButton" destination="V1P-G6-y8q" id="t0Y-ra-neu"/>
+                <outlet property="EPTeacherCancelButton" destination="35w-Ko-kyJ" id="52k-jr-Qhe"/>
+                <outlet property="EPTeacherSaveButton" destination="6uV-9K-5Oa" id="iks-uq-5te"/>
                 <outlet property="FPCancelButton" destination="GBn-qo-ffz" id="HL3-pC-saf"/>
-                <outlet property="FPSaveButton" destination="fim-k8-OUc" id="gvX-vh-0SW"/>
                 <outlet property="ForgetPasswordView" destination="Vdg-Wd-qLm" id="PcS-NH-mtL"/>
                 <outlet property="StudentTypeView" destination="BCK-ma-PEY" id="dUQ-lZ-9bH"/>
                 <outlet property="TeacherTypeView" destination="1ye-I2-hGi" id="nli-wk-OFw"/>
@@ -332,17 +335,17 @@
             <rect key="frame" x="0.0" y="3" width="414" height="395"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="qte-zJ-W5r">
+                <textField opaque="NO" clipsSubviews="YES" tag="6543" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="qte-zJ-W5r">
                     <rect key="frame" x="17" y="113" width="382" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="oUd-gE-6vA">
+                <textField opaque="NO" clipsSubviews="YES" tag="6542" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="oUd-gE-6vA">
                     <rect key="frame" x="17" y="190" width="382" height="45"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Old Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XYn-7k-fll">
                     <rect key="frame" x="17" y="87" width="382" height="21"/>
@@ -358,11 +361,11 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="zpW-Fs-atg">
+                <textField opaque="NO" clipsSubviews="YES" tag="6541" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" id="zpW-Fs-atg">
                     <rect key="frame" x="17" y="269" width="382" height="38"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="siw-XJ-NxS">
                     <rect key="frame" x="17" y="243" width="382" height="21"/>
@@ -380,7 +383,7 @@
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fim-k8-OUc">
+                <button opaque="NO" tag="6540" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fim-k8-OUc">
                     <rect key="frame" x="158" y="327" width="241" height="51"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.99215686270000003" green="0.66274509800000003" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>

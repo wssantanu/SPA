@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>my_class_list</key>
+	<string>class/my-class</string>
+	<key>change_user_password</key>
+	<string>user/change-user-password</string>
 	<key>Material_of_class</key>
 	<string>material/fetch_class_material_list</string>
 	<key>Material_Delete</key>

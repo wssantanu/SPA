@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ClassListViewController : UIViewController
+@interface ClassListViewController : BaseViewController
 
 @end

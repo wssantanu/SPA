@@ -36,6 +36,9 @@
 #define kConfigUpload_MaterialKey @"Upload_Material"
 #define kConfigMaterial_DeleteKey @"Material_Delete"
 #define kConfigMaterial_of_classKey @"Material_of_class"
+#define kConfigchange_user_passwordKey @"change_user_password"
+#define kConfigMyClassListKey @"my_class_list"
+
 
 @implementation SPASourceConfig
 
@@ -84,6 +87,9 @@
         _ParamUpload_Material             = [Paramconfig km_safeStringForKey:kConfigUpload_MaterialKey];
         _ParamMaterial_Delete             = [Paramconfig km_safeStringForKey:kConfigMaterial_DeleteKey];
         _ParamMaterial_of_class           = [Paramconfig km_safeStringForKey:kConfigMaterial_of_classKey];
+        _ParamMaterial_of_class           = [Paramconfig km_safeStringForKey:kConfigchange_user_passwordKey];
+        _Paramchange_user_password        = [Paramconfig km_safeStringForKey:kConfigchange_user_passwordKey];
+        _ParamMyClassList                 = [Paramconfig km_safeStringForKey:kConfigMyClassListKey];
         
         _Servicelogin_parameters          = [Serviceconfig km_safeStringForKey:kConfigLoginKey];
         _Servicerequest_newpassword       = [Serviceconfig km_safeStringForKey:kConfigrequest_newpasswordKey];
@@ -101,6 +107,8 @@
         _ServiceUpload_Material           = [Serviceconfig km_safeStringForKey:kConfigUpload_MaterialKey];
         _ServiceMaterial_Delete           = [Serviceconfig km_safeStringForKey:kConfigMaterial_DeleteKey];
         _ServiceMaterial_of_class         = [Serviceconfig km_safeStringForKey:kConfigMaterial_of_classKey];
+        _Servicechange_user_password      = [Serviceconfig km_safeStringForKey:kConfigchange_user_passwordKey];
+        _ServiceMyClassList               = [Serviceconfig km_safeStringForKey:kConfigMyClassListKey];
         
     }
     return self;

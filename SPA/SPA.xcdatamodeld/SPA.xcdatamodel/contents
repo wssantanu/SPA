@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14F27" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ClassDetails" representedClassName="ClassDetails" syncable="YES">
+        <attribute name="classId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="field_color_code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="field_end_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="field_location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="field_section" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="field_semester" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="field_start_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teacheremail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teacherFullname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teacherofficehours" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teacherofficeLocation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="techerphoneno" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="classslots" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassSlots" inverseName="classdetails" inverseEntity="ClassSlots" syncable="YES"/>
+    </entity>
+    <entity name="ClassSlots" representedClassName="ClassSlots" syncable="YES">
+        <attribute name="classId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="dayId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="end_time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="start_time" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="classdetails" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClassDetails" inverseName="classslots" inverseEntity="ClassDetails" syncable="YES"/>
+    </entity>
     <entity name="UserDetails" representedClassName="UserDetails" syncable="YES">
         <attribute name="access" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,6 +50,8 @@
         <attribute name="user_school" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UserDetails" positionX="-63" positionY="-18" width="128" height="405"/>
+        <element name="UserDetails" positionX="-101" positionY="-18" width="128" height="405"/>
+        <element name="ClassDetails" positionX="-506" positionY="144" width="128" height="253"/>
+        <element name="ClassSlots" positionX="-308" positionY="81" width="128" height="118"/>
     </elements>
 </model>

@@ -8,6 +8,7 @@
 
 #import "DataModel.h"
 
+
 @implementation DataModel {
     NSDateFormatter *dateFormatter;
 }
@@ -89,6 +90,48 @@
         aUser=(UserDetails*)[fetchedUser objectAtIndex:0];
     }
     return aUser;
+}
+
+
+- (NSArray *)fetchedClassListWithUserId:(NSString *)UserId {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSArray *ClassDataList;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ClassDetails" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"(classId == %@)",UserId];
+    NSLog(@"predicate=%@",predicate);
+    [fetchRequest setPredicate:predicate];
+    ClassDataList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return ClassDataList;
+    
+}
+
+- (NSArray *)fetchAllClassList {
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSArray *ClassDataList;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ClassDetails" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    ClassDataList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return ClassDataList;
+    
+}
+
+- (NSArray *)fetchAllSlotList:(NSString *)ClassId
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSArray *UserDataList;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ClassSlots" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"(classId == %@)",ClassId];
+    NSLog(@"predicate=%@",predicate);
+    [fetchRequest setPredicate:predicate];
+    
+    UserDataList = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    return UserDataList;
 }
 
 - (NSArray *)fetchedUserDataWithUserId:(NSString *)UserId {

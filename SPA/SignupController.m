@@ -80,7 +80,7 @@ typedef enum {
 #define kConfiguserTypeTeacher @"4"
 #define kConfiguserTypeStudent @"5"
 
-@interface SignupController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, PECropViewControllerDelegate>{
+@interface SignupController()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, PECropViewControllerDelegate,UITextFieldDelegate>{
     __weak id<UIScrollViewDelegate> _scrollViewDelegate;
     __weak id<UITextFieldDelegate> _textFieldDelegate;
 }
@@ -90,6 +90,8 @@ typedef enum {
 @property (nonatomic,retain) UILabel *LoginEmailTitleLabel,*LoginPasswordTitleLabel;
 
 @property (nonatomic,retain) UIButton *LoginButton,*SignupButton,*ForgetPasswordButton,*TeacherTypeButton,*StudentTypeButton,*TeacherReceiveEmailButton,*TeacherLogedinDeviceButton,*StudentReceiveEmailButton,*StudentLogedinDeviceButton,*TeacherLoginButton,*TeacherSignupButton,*TeacherForgetPasswordButton,*StudentLoginButton,*StudentSignupButton,*StudentForgetPasswordButton;
+
+@property (nonatomic,retain) IBOutlet UIButton *TeacherTypeCancelButton,*TeacherTypeLoginButton,*StudentTypeCancelButton,*StudentTypeLoginButton;
 
 @property (nonatomic,retain) IBOutlet UIView *TeacherTypeView,*StudentTypeView;
 
@@ -153,6 +155,12 @@ typedef enum {
         _StudentReceiveEmailButton          = (UIButton *)[_StudentTypeView viewWithTag:[kConfigStudentReceiveEmailTypeButtonKey intValue]];
         _StudentLogedinDeviceButton         = (UIButton *)[_StudentTypeView viewWithTag:[kConfigStudentLoginDeviceTypeButtonKey intValue]];
         
+        [_TeacherTypeCancelButton addTarget:self action:@selector(GotoForgetPassword) forControlEvents:UIControlEventTouchUpInside];
+        [_StudentTypeCancelButton addTarget:self action:@selector(GotoForgetPassword) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_TeacherTypeLoginButton addTarget:self action:@selector(ProcessLogin) forControlEvents:UIControlEventTouchUpInside];
+        [_StudentTypeLoginButton addTarget:self action:@selector(ProcessLogin) forControlEvents:UIControlEventTouchUpInside];
+        
         _SelectedUserType = userTypeTeacher;
         _receiveEmailType = receiveEmailNo;
         _loginDeviceType  = loginDeviceNo;
@@ -184,7 +192,7 @@ typedef enum {
         for (id AllTextFiled in [_LoginMainBgScrollView subviews]) {
             if ([AllTextFiled isKindOfClass:[UITextField class]]) {
                 UITextField *AllTextFiledInView = (UITextField *)AllTextFiled;
-                [AllTextFiledInView setDelegate:_textFieldDelegate];
+                [AllTextFiledInView setDelegate:self];
                 [AllTextFiledInView setBorderStyle:UITextBorderStyleLine];
             }
         }
@@ -222,7 +230,7 @@ typedef enum {
         for (id AllTextFiled in [_TeacherTypeView subviews]) {
             if ([AllTextFiled isKindOfClass:[UITextField class]]) {
                 UITextField *AllTextFiledInView = (UITextField *)AllTextFiled;
-                [AllTextFiledInView setDelegate:_textFieldDelegate];
+                [AllTextFiledInView setDelegate:self];
                 [AllTextFiledInView setBorderStyle:UITextBorderStyleLine];
                 
                 UIView *LefftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, AllTextFiledInView.frame.size.height)];
@@ -270,7 +278,7 @@ typedef enum {
         for (id AllTextFiled in [_StudentTypeView subviews]) {
             if ([AllTextFiled isKindOfClass:[UITextField class]]) {
                 UITextField *AllTextFiledInView = (UITextField *)AllTextFiled;
-                [AllTextFiledInView setDelegate:_textFieldDelegate];
+                [AllTextFiledInView setDelegate:self];
                 [AllTextFiledInView setBorderStyle:UITextBorderStyleLine];
                 
                 UIView *LefftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, AllTextFiledInView.frame.size.height)];
@@ -676,22 +684,26 @@ typedef enum {
             
             SPASignupCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
                 
-                NSLog(@"data ==%@ ",data);
-                
                 [_ActivityIndicator hide:YES];
                 if (errorString) {
                     if (errorString.length>0) {
                         [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                     }
                 } else {
-                    //[MainDelegate SetupAfterLoginMenu];
+                    [super ShowAletviewWIthTitle:@"Success" Tag:780 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 }
             };
             
-            // role_id,file_image_ext,file_image_data,email,password,userfullname,schoolname,officelocation,phone_no,keep_login,recieve_mail,office_hours
-            
             SPAsignupSource * source = [SPAsignupSource signupDetailsSource];
-            [source getsignupDetails:[NSArray arrayWithObjects:[self getUserType],@"jpg",[Constant CleanTextField:[_TeacherEmailTextfield text]],[Constant CleanTextField:[_TeacherPasswordTextfield text]],[Constant CleanTextField:[_TeacherNameTextfield text]],[Constant CleanTextField:[_TeacherSchoolTextfield text]],[Constant CleanTextField:[_TeacherOfficeLocationTextfield text]],[Constant CleanTextField:[_TeacherPhoneTextfield text]],[self getLoginDeviceStatus],[self getEmailReciveStatus],[Constant CleanTextField:[_TeacherOfficeHoursTextfield text]],[UIImageJPEGRepresentation(self.imageView.image, 0) base64EncodedDataWithOptions:0], nil] withImageData:[UIImageJPEGRepresentation(self.imageView.image, 0) base64EncodedDataWithOptions:0] completion:completionBlock];
+            
+            if (UIImageJPEGRepresentation(self.imageViewOne.image, 0.7)!=NULL)
+            {
+                [source getsignupDetails:[NSArray arrayWithObjects:[self getUserType],@"jpg",[Constant CleanTextField:[_TeacherEmailTextfield text]],[Constant CleanTextField:[_TeacherPasswordTextfield text]],[Constant CleanTextField:[_TeacherNameTextfield text]],[Constant CleanTextField:[_TeacherSchoolTextfield text]],[Constant CleanTextField:[_TeacherOfficeLocationTextfield text]],[Constant CleanTextField:[_TeacherPhoneTextfield text]],[self getLoginDeviceStatus],[self getEmailReciveStatus],[Constant CleanTextField:[_TeacherOfficeHoursTextfield text]],[UIImageJPEGRepresentation(self.imageViewOne.image, 0.7) base64EncodedStringWithOptions:0], nil] withImageData:nil completion:completionBlock];
+            }
+            else
+            {
+                [source getsignupDetails:[NSArray arrayWithObjects:[self getUserType],@"",[Constant CleanTextField:[_TeacherEmailTextfield text]],[Constant CleanTextField:[_TeacherPasswordTextfield text]],[Constant CleanTextField:[_TeacherNameTextfield text]],[Constant CleanTextField:[_TeacherSchoolTextfield text]],[Constant CleanTextField:[_TeacherOfficeLocationTextfield text]],[Constant CleanTextField:[_TeacherPhoneTextfield text]],[self getLoginDeviceStatus],[self getEmailReciveStatus],[Constant CleanTextField:[_TeacherOfficeHoursTextfield text]],@"", nil] withImageData:nil completion:completionBlock];
+            }
             
             [JNKeychain saveValue:[Constant CleanTextField:_LoginEmailTextFiled.text] forKey:KeychainUserEmailkey];
             [JNKeychain saveValue:[Constant CleanTextField:_LoginPasswordTextFiled.text] forKey:KeychainUserPasswordkey];
@@ -704,10 +716,39 @@ typedef enum {
             
         }
     } else if (_SelectedUserType == userTypeStudent) {
-        if ([self ValidateStudentTypeSignupForm]) {
+        if ([self ValidateStudentTypeSignupForm])
+        {
+            SPASignupCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
+                
+                [_ActivityIndicator hide:YES];
+                if (errorString) {
+                    if (errorString.length>0) {
+                        [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    }
+                } else {
+                    [super ShowAletviewWIthTitle:@"Success" Tag:780 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                }
+            };
             
-           
+            SPAsignupSource * source = [SPAsignupSource signupDetailsSource];
             
+            if (UIImageJPEGRepresentation(self.imageView.image, 0.7)!=NULL)
+            {
+                [source getsignupDetails:[NSArray arrayWithObjects:[self getUserType],@"jpg",[Constant CleanTextField:[_StudentEmailTextfield text]],[Constant CleanTextField:[_StudentPasswordTextfield text]],[Constant CleanTextField:[_StudentNameTextfield text]],@"",@"",@"",[self getLoginDeviceStatus],[self getEmailReciveStatus],@"",[UIImageJPEGRepresentation(self.imageView.image, 0.7) base64EncodedStringWithOptions:0], nil] withImageData:nil completion:completionBlock];
+            }
+            else
+            {
+                [source getsignupDetails:[NSArray arrayWithObjects:[self getUserType],@"",[Constant CleanTextField:[_StudentEmailTextfield text]],[Constant CleanTextField:[_StudentPasswordTextfield text]],[Constant CleanTextField:[_StudentNameTextfield text]],@"",@"",@"",[self getLoginDeviceStatus],[self getEmailReciveStatus],@"",@"", nil] withImageData:nil completion:completionBlock];
+            }
+            
+            [JNKeychain saveValue:[Constant CleanTextField:_LoginEmailTextFiled.text] forKey:KeychainUserEmailkey];
+            [JNKeychain saveValue:[Constant CleanTextField:_LoginPasswordTextFiled.text] forKey:KeychainUserPasswordkey];
+            
+            _ActivityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
+            [_ActivityIndicator setOpacity:1.0];
+            [_ActivityIndicator show:NO];
+            _ActivityIndicator.labelText = @"Loading";
         }
     }
 }
@@ -719,5 +760,55 @@ typedef enum {
 #pragma mark - Memory Warning
 
 - (void)didReceiveMemoryWarning { [super didReceiveMemoryWarning]; }
+
+#pragma mark - UITextfield Delegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if (_SelectedUserType == userTypeTeacher) {
+        if (textField == _TeacherPasswordTextfield) {
+            [_LoginMainBgScrollView setContentOffset:CGPointMake(_LoginMainBgScrollView.frame.origin.x, 100) animated:YES];
+        } else if (textField == _TeacherConfirmPasswordTextfield) {
+            [_LoginMainBgScrollView setContentOffset:CGPointMake(_LoginMainBgScrollView.frame.origin.x, 200) animated:YES];
+        } else if (textField == _TeacherSchoolTextfield) {
+            [_LoginMainBgScrollView setContentOffset:CGPointMake(_LoginMainBgScrollView.frame.origin.x, 300) animated:YES];
+        }else if (textField == _TeacherOfficeLocationTextfield) {
+            [_LoginMainBgScrollView setContentOffset:CGPointMake(_LoginMainBgScrollView.frame.origin.x, 400) animated:YES];
+        }else if (textField == _TeacherOfficeHoursTextfield) {
+            [_LoginMainBgScrollView setContentOffset:CGPointMake(_LoginMainBgScrollView.frame.origin.x, 500) animated:YES];
+        }else if (textField == _TeacherPhoneTextfield) {
+            [_LoginMainBgScrollView setContentOffset:CGPointMake(_LoginMainBgScrollView.frame.origin.x, 600) animated:YES];
+        }
+    } else if (_SelectedUserType == userTypeStudent) {
+        NSLog(@"textField => %@",textField);
+        if (textField == _StudentPasswordTextfield) {
+            [_LoginMainBgScrollView setContentOffset:CGPointMake(_LoginMainBgScrollView.frame.origin.x, 200) animated:YES];
+        } else if (textField == _StudentConfirmPasswordTextfield) {
+            [_LoginMainBgScrollView setContentOffset:CGPointMake(_LoginMainBgScrollView.frame.origin.x, 300) animated:YES];
+        }
+    }
+    
+    return YES;
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+}
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    return YES;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    [textField resignFirstResponder];
+    [_LoginMainBgScrollView setContentOffset:CGPointMake(_LoginMainBgScrollView.frame.origin.x, _LoginMainBgScrollView.frame.origin.x) animated:YES];
+    return YES;
+}
 
 @end

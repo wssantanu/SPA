@@ -234,5 +234,6 @@
 -(NSDictionary *)GenerateParamValueForSubmit:(NSArray *)ParamArray FieldArray:(NSArray *)FieldArray;
 
 +(NSString *)EntityForUser;
-
++(NSString *)EntityForClassDetails;
++(NSString *)EntityForClassSlots;
 @end

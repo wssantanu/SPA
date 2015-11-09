@@ -1,12 +1,12 @@
 //
-//  SPAsignupSource.m
+//  SPAChangePasswordSource.m
 //  SPA
 //
-//  Created by Santanu Das Adhikary on 06/11/15.
+//  Created by Santanu Das Adhikary on 09/11/15.
 //  Copyright (c) 2015 Santanu Das Adhikary. All rights reserved.
 //
 
-#import "SPAsignupSource.h"
+#import "SPAChangePasswordSource.h"
 #import "SPASourceConfig.h"
 #import "AFNetworking.h"
 #import "CommonReturns.h"
@@ -15,20 +15,17 @@
 #import "DataModel.h"
 #import "Constant.h"
 
-@interface SPAsignupSource()
-@end
-
-@implementation SPAsignupSource
+@implementation SPAChangePasswordSource
 
 #pragma mark -
 #pragma mark Init Methods
 
-+ (SPAsignupSource*)signupDetailsSource
++ (SPAChangePasswordSource*)ChangePasswordSource
 {
     static dispatch_once_t onceToken;
-    static SPAsignupSource* instance = nil;
+    static SPAChangePasswordSource* instance = nil;
     dispatch_once(&onceToken, ^{
-        instance = [[SPAsignupSource alloc]init];
+        instance = [[SPAChangePasswordSource alloc]init];
     });
     return instance;
 }
@@ -54,20 +51,24 @@
 #pragma mark -
 #pragma mark Request Methods
 
--(void)getsignupDetails:(NSArray *)signupParam withImageData:(NSData *)ImageData completion:(SPASignupCompletionBlock)completionBlock
+-(void)doChangePassword:(NSArray *)ChangePasswordParam completion:(SPAChangePasswordCompletionBlock)completionBlock
 {
     if (completionBlock)
     {
-        NSDictionary* parameters = [[NSDictionary alloc] initWithObjects:signupParam forKeys:[[SPASourceConfig config].ParamUser_Registration componentsSeparatedByString:[SPASourceConfig config].SeperatorKey]];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        
+        NSDictionary* parameters = [[NSDictionary alloc] initWithObjects:ChangePasswordParam forKeys:[[SPASourceConfig config].Paramchange_user_password componentsSeparatedByString:[SPASourceConfig config].SeperatorKey]];
+        
+        DataModel *dataModelObj = [DataModel sharedEngine];
+        UserDetails *FeatchUserdetails = [dataModelObj fetchCurrentUser];
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:FeatchUserdetails.token forHTTPHeaderField:@"X-CSRF-TOKEN"];
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@=%@",FeatchUserdetails.session_name,FeatchUserdetails.sessid] forHTTPHeaderField:@"Cookie"];
         
         [manager POST:[self prepareUrl] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
-             NSDictionary* infosDictionary = [self dictionaryFromResponseData:operation.responseData jsonPatternFile:@"SPAsignupSourceJsonPattern.json"];
+             NSDictionary* infosDictionary = [self dictionaryFromResponseData:operation.responseData jsonPatternFile:@"SPAChangePasswordSource.json"];
              dispatch_async(dispatch_get_main_queue(), ^{
                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                  
@@ -102,7 +103,8 @@
 
 - (NSString*)prepareUrl
 {
-    return [NSString stringWithFormat:@"%@%@",[SPASourceConfig config].theDbHost,[SPASourceConfig config].ServiceUser_Registration];
+    return [NSString stringWithFormat:@"%@%@",[SPASourceConfig config].theDbHost,[SPASourceConfig config].Servicechange_user_password];
 }
+
 
 @end

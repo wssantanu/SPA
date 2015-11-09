@@ -2,10 +2,16 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:UserDetails.h">
+      location = "group:ClassDetails.h">
    </FileRef>
    <FileRef
-      location = "group:UserDetails.m">
+      location = "group:ClassDetails.m">
+   </FileRef>
+   <FileRef
+      location = "group:ClassSlots.h">
+   </FileRef>
+   <FileRef
+      location = "group:ClassSlots.m">
    </FileRef>
    <FileRef
       location = "group:SPA.xcodeproj">

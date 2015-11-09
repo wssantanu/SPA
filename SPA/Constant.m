@@ -62,6 +62,8 @@
  */
 
 #define kConfigUserEntityKey @"UserDetails"
+#define kConfigClassDetailsEntityKey @"ClassDetails"
+#define kConfigClassSlotsEntityKey @"ClassSlots"
 
 @implementation Constant
 
@@ -164,6 +166,8 @@
  **/
 
 +(NSString *)EntityForUser { return kConfigUserEntityKey; }
++(NSString *)EntityForClassDetails { return kConfigClassDetailsEntityKey; }
++(NSString *)EntityForClassSlots { return kConfigClassSlotsEntityKey; }
 
 /**
  @return service setails

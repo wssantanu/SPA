@@ -34,6 +34,8 @@
 @property (nonatomic, copy, readonly) NSString* ParamUpload_Material;
 @property (nonatomic, copy, readonly) NSString* ParamMaterial_Delete;
 @property (nonatomic, copy, readonly) NSString* ParamMaterial_of_class;
+@property (nonatomic, copy, readonly) NSString* Paramchange_user_password;
+@property (nonatomic, copy, readonly) NSString* ParamMyClassList;
 
 @property (nonatomic, copy, readonly) NSString* Servicelogin_parameters;
 @property (nonatomic, copy, readonly) NSString* Servicerequest_newpassword;
@@ -51,5 +53,7 @@
 @property (nonatomic, copy, readonly) NSString* ServiceUpload_Material;
 @property (nonatomic, copy, readonly) NSString* ServiceMaterial_Delete;
 @property (nonatomic, copy, readonly) NSString* ServiceMaterial_of_class;
+@property (nonatomic, copy, readonly) NSString* Servicechange_user_password;
+@property (nonatomic, copy, readonly) NSString* ServiceMyClassList;
 
 @end
