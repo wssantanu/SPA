@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ClassListTableViewCell : UITableViewCell
-@property (nonatomic,retain) IBOutlet UILabel *CellClassName,*CellClassLocation,*CellClassTime;
+@property (nonatomic,retain) IBOutlet UILabel *CellClassName,*CellClassLocation,*CellClassTime,*classSection,*TeacherName;
 @end

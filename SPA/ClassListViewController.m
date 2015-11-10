@@ -42,8 +42,6 @@ typedef enum {
         [_ClassListTableView setShowsHorizontalScrollIndicator:NO];
         [_ClassListTableView setShowsVerticalScrollIndicator:NO];
         
-        _TableViewData = [@[@"Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni Mahendra Singh Dhoni"] mutableCopy];
-        
         [_ClassListTableView reloadData];
         [_ClassListTableView registerNib:[UINib nibWithNibName:@"ClassListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ClassListTableViewCell"];
         
@@ -72,17 +70,37 @@ typedef enum {
             } else {
                 
                 DataModel *dataModelObj = [DataModel sharedEngine];
+                _TableViewData = [[NSMutableArray alloc] init];
                 
                 for (ClassDetails *Classdetails in dataModelObj.fetchAllClassList) {
                     
-                    NSLog(@"Classdetails ===> %@",Classdetails.name);
+                    NSMutableDictionary *TimeDetails = [[NSMutableDictionary alloc] init];
+                    NSMutableString *DayString = [@"" mutableCopy];
+                    NSString *Dayval;
+                    int latdayid = -1;
                     
                     for (ClassSlots *Classslots in [dataModelObj fetchAllSlotList:[Classdetails.classId stringValue]]) {
                         
-                        NSLog(@"Classslots ===> %@ ---%@ ---%@ ---%@",Classslots.start_time,Classslots.end_time,Classslots.classId,Classslots.dayId);
+                        switch ([Classslots.dayId intValue]) {
+                            case 0: Dayval = @"Sun"; break;
+                            case 1: Dayval = @"Mon"; break;
+                            case 2: Dayval = @"Tue"; break;
+                            case 3: Dayval = @"Wed"; break;
+                            case 4: Dayval = @"Thu"; break;
+                            case 5: Dayval = @"Fri"; break;
+                            case 6: Dayval = @"Sat"; break;
+                        }
                         
+                        (latdayid != [Classslots.dayId intValue])?[DayString appendString:[NSString stringWithFormat:@"%@ %@ - %@, ",Dayval,Classslots.start_time,Classslots.end_time]]:[DayString appendString:[NSString stringWithFormat:@"%@ - %@, ",Classslots.start_time,Classslots.end_time]];
+                        
+                        latdayid = [Classslots.dayId intValue];
                     }
+                    
+                    [TimeDetails setObject:Classdetails forKey:@"Classdetails"];
+                    [TimeDetails setObject:DayString forKey:@"Timedetails"];
+                    [_TableViewData addObject:TimeDetails];
                 }
+                [_ClassListTableView reloadData];
             }
         };
     
@@ -173,17 +191,39 @@ typedef enum {
 {
     static NSString *alphaIdentifire = @"ClassListTableViewCell";
     ClassListTableViewCell *cell = (ClassListTableViewCell*) [tableView dequeueReusableCellWithIdentifier:alphaIdentifire];
+    [cell setBackgroundColor:[UIColor clearColor]];
     if (cell == nil) {
         cell = (ClassListTableViewCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:alphaIdentifire];
     }
-    [cell.CellClassName setText:(_TableViewListingType == TableViewListTypeNormal)?[_TableViewData objectAtIndex:indexPath.row]:[_TableViewFilterData objectAtIndex:indexPath.row]];
-    [cell.CellClassName setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:18]];
-//    [cell.CellClassName setNumberOfLines:0];
-//    [cell.CellClassName sizeToFit];
     
+    ClassDetails *LocalObjectClassDetails = (_TableViewListingType == TableViewListTypeNormal)?[[_TableViewData objectAtIndex:indexPath.row] objectForKey:@"Classdetails"]:[[_TableViewFilterData objectAtIndex:indexPath.row] objectForKey:@"Classdetails"];
     
-    [cell.CellClassLocation setText:@"Classroom Location"];
-    [cell.CellClassTime setText:@"Mon, Wed, Fri 9:00-10:00 AM"];
+    NSString *LocalObjectTimeDetails = (_TableViewListingType == TableViewListTypeNormal)?[[_TableViewData objectAtIndex:indexPath.row] objectForKey:@"Timedetails"]:[[_TableViewFilterData objectAtIndex:indexPath.row] objectForKey:@"Timedetails"];
+    
+    [cell.CellClassName setText:LocalObjectClassDetails.name];
+    [cell.CellClassName setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:14]];
+    
+    [cell.classSection setText:LocalObjectClassDetails.field_semester];
+    [cell.classSection setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:14]];
+    
+    [cell.TeacherName setText:LocalObjectClassDetails.teacherFullname];
+    [cell.TeacherName setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:14]];
+    
+    [cell.CellClassLocation setText:LocalObjectClassDetails.field_location];
+    [cell.CellClassLocation setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:14]];
+    
+    [cell.CellClassTime setText:LocalObjectTimeDetails];
+    [cell.CellClassTime setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:14]];
+    
+    unsigned int hexValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:LocalObjectClassDetails.field_color_code];
+    [scanner setScanLocation:0];
+    [scanner scanHexInt:&hexValue];
+    
+    UILabel *Lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 2, cell.frame.size.height-50)];
+    [Lab setBackgroundColor:UIColorFromRGB(hexValue)];
+    [cell addSubview:Lab];
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -198,20 +238,7 @@ typedef enum {
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString* text = nil;
-    
-    text = (_TableViewListingType == TableViewListTypeNormal)?[_TableViewData objectAtIndex:indexPath.row]:[_TableViewFilterData objectAtIndex:indexPath.row];
-    
-    NSAttributedString * attributedString = [[NSAttributedString alloc] initWithString:text attributes:@{ NSFontAttributeName: [UIFont systemFontOfSize:18]}];
-    
-    CGSize constraintSize = CGSizeMake(tableView.frame.size.width - 5, MAXFLOAT);
-    
-    CGRect rect = [attributedString boundingRectWithSize:constraintSize options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading) context:nil];
-    
-    rect.size.height = rect.size.height + 23;
-    
-    //return (rect.size.height < 44 ? 44 : rect.size.height);
-    return UITableViewAutomaticDimension;;
+    return 100.0f;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
