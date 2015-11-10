@@ -214,6 +214,11 @@
  @return Yellow Color
  */
 +(UIColor *)ColorSPAYellowColor;
+/**
+ @return Yellow Color
+ */
++(UIColor *)ColorSPAGreyColor;
+
 
 + (BOOL) ScreenOfPlatform4m;
 + (BOOL) ScreenOfPlatform5e;

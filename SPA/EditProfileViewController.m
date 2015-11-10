@@ -295,18 +295,17 @@ typedef enum {
                 
                 UIButton *AllButtonInView = (UIButton *)AllButton;
                 
-                if (AllButtonInView == _TeacherLoginButton)
+                /**if (AllButtonInView == _TeacherLoginButton)
                 {
                     NSLog(@"_TeacherLoginButton tag ==> %ld",_TeacherLoginButton.tag);
                     [AllButtonInView addTarget:self action:@selector(saveEditedData) forControlEvents:UIControlEventTouchUpInside];
-                    [AllButtonInView.titleLabel setText:@"A"];
                 }
                 else if (AllButtonInView == _TeacherForgetPasswordButton)
                 {
                     [AllButtonInView addTarget:self action:@selector(CencelEditOption) forControlEvents:UIControlEventTouchUpInside];
-                    [AllButtonInView.titleLabel setText:@"B"];
                 }
-                else if (AllButtonInView == _TeacherReceiveEmailButton)
+                 **/
+                if (AllButtonInView == _TeacherReceiveEmailButton)
                     [AllButtonInView addTarget:self action:@selector(changeSettings:) forControlEvents:UIControlEventTouchUpInside];
                 else if (AllButtonInView == _TeacherLogedinDeviceButton)
                     [AllButtonInView addTarget:self action:@selector(changeSettings:) forControlEvents:UIControlEventTouchUpInside];
@@ -420,6 +419,7 @@ typedef enum {
     }
 }
 -(void)doEditData {
+    
     _DataSaveOption = dataSaveOptionEditProfile;
     [self ProcessSaveData];
 }

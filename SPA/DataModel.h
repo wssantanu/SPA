@@ -38,7 +38,7 @@
 -(void)saveContextForChildContext:(NSManagedObjectContext*)childContext;
 -(UserDetails *)fetchCurrentUser;
 -(NSArray *)fetchAllClassList;
--(ClassDetails *)fetchedClassListWithClassId:(NSString *)ClassId;
+-(NSArray *)fetchedClassListWithClassId:(NSString *)ClassId;
 -(NSArray *)fetchedUserDataWithUserId:(NSString *)UserId;
 - (NSArray *)fetchAllSlotList:(NSString *)ClassId;
 @end

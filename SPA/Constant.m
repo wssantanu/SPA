@@ -159,6 +159,8 @@
 +(UIColor *)ColorSPABlackColor { return UIColorFromRGB(0x000000); }
 +(UIColor *)ColorSPAGreenColor { return UIColorFromRGB(0x52a63d); }
 +(UIColor *)ColorSPAYellowColor { return UIColorFromRGB(0xF2BA27); }
++(UIColor *)ColorSPAGreyColor { return UIColorFromRGB(0x4c4c4d); }
+
 
 /**
  @return service setails

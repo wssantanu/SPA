@@ -1,0 +1,15 @@
+//
+//  ClassDetailsTableViewCell.h
+//  SPA
+//
+//  Created by Santanu Das Adhikary on 10/11/15.
+//  Copyright (c) 2015 Santanu Das Adhikary. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "ClassDetails.h"
+@interface ClassDetailsTableViewCell : UITableViewCell
+
+@property (nonatomic,retain) IBOutlet UILabel *ClassName,*ClassTeacherName,*ClassTime,*ClassLocation,*ClassSemister;
+-(CGFloat)configureCell:(ClassDetails *)classDetails;
+@end

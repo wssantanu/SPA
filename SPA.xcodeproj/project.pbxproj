@@ -173,6 +173,10 @@
 		9BC17AE51BE205D900331DD5 /* Addmoreviewobject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC17AE41BE205D900331DD5 /* Addmoreviewobject.m */; };
 		9BCA09F31BD0E44700A78D71 /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA09F21BD0E44700A78D71 /* Constant.m */; };
 		9BDE42DD1BCE764F0089CA68 /* SignupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE42DC1BCE764F0089CA68 /* SignupController.m */; };
+		9BE3511A1BF1FC1E00732FA9 /* ClassDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE351181BF1FC1E00732FA9 /* ClassDetailsTableViewCell.m */; };
+		9BE3511B1BF1FC1E00732FA9 /* ClassDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BE351191BF1FC1E00732FA9 /* ClassDetailsTableViewCell.xib */; };
+		9BE3511F1BF1FC4000732FA9 /* TeacherDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE3511D1BF1FC4000732FA9 /* TeacherDetailsTableViewCell.m */; };
+		9BE351201BF1FC4000732FA9 /* TeacherDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BE3511E1BF1FC4000732FA9 /* TeacherDetailsTableViewCell.xib */; };
 		9BEC2CBB1BCFA91500360904 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC2CBA1BCFA91500360904 /* LoginViewController.xib */; };
 		9BEC2CBD1BCFA92000360904 /* SignupController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC2CBC1BCFA92000360904 /* SignupController.xib */; };
 		9BEC2CBF1BCFAA1300360904 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BEC2CBE1BCFAA1300360904 /* ViewController.xib */; };
@@ -460,6 +464,12 @@
 		9BCA09F21BD0E44700A78D71 /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
 		9BDE42DB1BCE764F0089CA68 /* SignupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupController.h; sourceTree = "<group>"; };
 		9BDE42DC1BCE764F0089CA68 /* SignupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupController.m; sourceTree = "<group>"; };
+		9BE351171BF1FC1E00732FA9 /* ClassDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailsTableViewCell.h; sourceTree = "<group>"; };
+		9BE351181BF1FC1E00732FA9 /* ClassDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetailsTableViewCell.m; sourceTree = "<group>"; };
+		9BE351191BF1FC1E00732FA9 /* ClassDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		9BE3511C1BF1FC4000732FA9 /* TeacherDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeacherDetailsTableViewCell.h; sourceTree = "<group>"; };
+		9BE3511D1BF1FC4000732FA9 /* TeacherDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeacherDetailsTableViewCell.m; sourceTree = "<group>"; };
+		9BE3511E1BF1FC4000732FA9 /* TeacherDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeacherDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		9BEC2CBA1BCFA91500360904 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		9BEC2CBC1BCFA92000360904 /* SignupController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupController.xib; sourceTree = "<group>"; };
 		9BEC2CBE1BCFAA1300360904 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
@@ -935,6 +945,12 @@
 				9B8C3AC41BEA13A000BABA05 /* ClassInfoViewController.h */,
 				9B8C3AC51BEA13A000BABA05 /* ClassInfoViewController.m */,
 				9B8C3AC61BEA13A000BABA05 /* ClassInfoViewController.xib */,
+				9BE351171BF1FC1E00732FA9 /* ClassDetailsTableViewCell.h */,
+				9BE351181BF1FC1E00732FA9 /* ClassDetailsTableViewCell.m */,
+				9BE351191BF1FC1E00732FA9 /* ClassDetailsTableViewCell.xib */,
+				9BE3511C1BF1FC4000732FA9 /* TeacherDetailsTableViewCell.h */,
+				9BE3511D1BF1FC4000732FA9 /* TeacherDetailsTableViewCell.m */,
+				9BE3511E1BF1FC4000732FA9 /* TeacherDetailsTableViewCell.xib */,
 			);
 			name = "Class Info";
 			sourceTree = "<group>";
@@ -1302,6 +1318,7 @@
 				9BBD83291BED05A100DA7117 /* UserDataCell.xib in Resources */,
 				9B6A68B71BCBE43C00C284CB /* ColorConfig.plist in Resources */,
 				9BBBFC9C1BE3584200BBC6EF /* nko_brightness_guide@2x.png in Resources */,
+				9BE3511B1BF1FC1E00732FA9 /* ClassDetailsTableViewCell.xib in Resources */,
 				9BAD64681BD5083700FF65C1 /* ForgetPasswordControllerViewController.xib in Resources */,
 				9B8C3AB01BEA0FCE00BABA05 /* AgendaListMonthViewController.xib in Resources */,
 				9B6A68B91BCBE45E00C284CB /* FontConfig.plist in Resources */,
@@ -1312,6 +1329,7 @@
 				9BAAD1A61BE905EC0006C209 /* ScheduleViewController.xib in Resources */,
 				9B6A68B51BCBE42300C284CB /* StringConfig.plist in Resources */,
 				9BAAD19F1BE8F8F00006C209 /* ClassListTableViewCell.xib in Resources */,
+				9BE351201BF1FC4000732FA9 /* TeacherDetailsTableViewCell.xib in Resources */,
 				9BAD646A1BD50F9000FF65C1 /* ParametersConfig.plist in Resources */,
 				9B8C3ACE1BEA140600BABA05 /* ClassTasksViewController.xib in Resources */,
 				9B8C3AD01BEA50F100BABA05 /* ServiceConfig.plist in Resources */,
@@ -1394,6 +1412,7 @@
 				9BAAD1CB1BE90B690006C209 /* NSDateAdditions.m in Sources */,
 				9BBBFCA01BE3584A00BBC6EF /* NKOColorPickerView.m in Sources */,
 				9BAD9ED41BE0CDE9004E6C7C /* REFrostedContainerViewController.m in Sources */,
+				9BE3511F1BF1FC4000732FA9 /* TeacherDetailsTableViewCell.m in Sources */,
 				9BBD83231BED032F00DA7117 /* ShowProfileViewController.m in Sources */,
 				9B2D127E1BF0BE2100C977F5 /* ClassDetails.m in Sources */,
 				9B6A688B1BCBD8F800C284CB /* KM_NSDictionary+SafeValues.m in Sources */,
@@ -1404,6 +1423,7 @@
 				9BAD9ED71BE0CDE9004E6C7C /* UIView+REFrostedViewController.m in Sources */,
 				9B6A68A61BCBD9D300C284CB /* EGOImageLoader.m in Sources */,
 				9BAAD1C31BE90B550006C209 /* KalView.m in Sources */,
+				9BE3511A1BF1FC1E00732FA9 /* ClassDetailsTableViewCell.m in Sources */,
 				9B8C3AAA1BEA0FBE00BABA05 /* AgendaListFiveDayViewController.m in Sources */,
 				9B6A68BC1BCBE78400C284CB /* SPAFontConfig.m in Sources */,
 				9BAD9ED31BE0CDE9004E6C7C /* RECommonFunctions.m in Sources */,

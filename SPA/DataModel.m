@@ -134,6 +134,23 @@
     return UserDataList;
 }
 
+-(NSArray *)fetchedClassListWithClassId:(NSString *)ClassId
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ClassDetails" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"(classId == %@)",ClassId];
+    NSLog(@"predicate=%@",predicate);
+    [fetchRequest setPredicate:predicate];
+    
+   // ClassDetailsObj = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    AppDelegate *mainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    return [mainDelegate.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+}
+
 - (NSArray *)fetchedUserDataWithUserId:(NSString *)UserId {
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

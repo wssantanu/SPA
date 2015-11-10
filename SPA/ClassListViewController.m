@@ -50,6 +50,8 @@ typedef enum {
         
         _TableViewListingType = TableViewListTypeNormal;
         
+        _TableViewFilterData = [[NSMutableArray alloc] init];
+        
         [self ProcessFetchClassList];
         
     }
@@ -91,7 +93,7 @@ typedef enum {
                             case 6: Dayval = @"Sat"; break;
                         }
                         
-                        (latdayid != [Classslots.dayId intValue])?[DayString appendString:[NSString stringWithFormat:@"%@ %@ - %@, ",Dayval,Classslots.start_time,Classslots.end_time]]:[DayString appendString:[NSString stringWithFormat:@"%@ - %@, ",Classslots.start_time,Classslots.end_time]];
+                        (latdayid != [Classslots.dayId intValue])?[DayString appendString:[NSString stringWithFormat:@"%@ %@ - %@, \n",Dayval,Classslots.start_time,Classslots.end_time]]:[DayString appendString:[NSString stringWithFormat:@"%@ - %@, ",Classslots.start_time,Classslots.end_time]];
                         
                         latdayid = [Classslots.dayId intValue];
                     }
@@ -135,19 +137,52 @@ typedef enum {
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if ([string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length > 0)
+    if ([[textField.text stringByReplacingCharactersInRange:range withString:string] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length > 0)
     {
         _TableViewListingType = TableViewListTypeSearch;
         [_TableViewFilterData removeAllObjects];
         
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@",string];
-        _TableViewFilterData = [NSMutableArray arrayWithArray: [_TableViewData filteredArrayUsingPredicate:predicate]];
+        DataModel *dataModelObj = [DataModel sharedEngine];
+        
+        for (ClassDetails *Classdetails in dataModelObj.fetchAllClassList) {
+            
+            if([[Classdetails.name lowercaseString] rangeOfString:[[textField.text stringByReplacingCharactersInRange:range withString:string] lowercaseString]].location != NSNotFound){
+                
+                NSMutableDictionary *TimeDetails = [[NSMutableDictionary alloc] init];
+                NSMutableString *DayString = [@"" mutableCopy];
+                NSString *Dayval;
+                int latdayid = -1;
+                
+                for (ClassSlots *Classslots in [dataModelObj fetchAllSlotList:[Classdetails.classId stringValue]]) {
+                    
+                    switch ([Classslots.dayId intValue]) {
+                        case 0: Dayval = @"Sun"; break;
+                        case 1: Dayval = @"Mon"; break;
+                        case 2: Dayval = @"Tue"; break;
+                        case 3: Dayval = @"Wed"; break;
+                        case 4: Dayval = @"Thu"; break;
+                        case 5: Dayval = @"Fri"; break;
+                        case 6: Dayval = @"Sat"; break;
+                    }
+                    
+                    (latdayid != [Classslots.dayId intValue])?[DayString appendString:[NSString stringWithFormat:@"%@ %@ - %@, \n",Dayval,Classslots.start_time,Classslots.end_time]]:[DayString appendString:[NSString stringWithFormat:@"%@ - %@, ",Classslots.start_time,Classslots.end_time]];
+                    
+                    latdayid = [Classslots.dayId intValue];
+                }
+                
+                [TimeDetails setObject:Classdetails forKey:@"Classdetails"];
+                [TimeDetails setObject:DayString forKey:@"Timedetails"];
+                [_TableViewFilterData addObject:TimeDetails];
+            }
+        }
+        [_ClassListTableView reloadData];
     }
     else
     {
         _TableViewListingType = TableViewListTypeNormal;
+        [_ClassListTableView reloadData];
     }
-    [_ClassListTableView reloadData];
+    
     return YES;
 }
 
@@ -229,7 +264,13 @@ typedef enum {
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:ClassDetailsMenuNotification object:nil];
-    [self.navigationController pushViewController:Constant.AgendaListDayViewController animated:YES];
+    
+    ClassDetails *LocalObjectClassDetails = (_TableViewListingType == TableViewListTypeNormal)?[[_TableViewData objectAtIndex:indexPath.row] objectForKey:@"Classdetails"]:[[_TableViewFilterData objectAtIndex:indexPath.row] objectForKey:@"Classdetails"];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:LocalObjectClassDetails.classId forKey:KeychainSelectedClasskey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self.navigationController pushViewController:Constant.ClassInfoViewController animated:YES];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
