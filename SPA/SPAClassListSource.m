@@ -65,6 +65,10 @@
         [manager POST:[self prepareUrl] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
              NSDictionary* infosDictionary = [self dictionaryFromResponseData:operation.responseData jsonPatternFile:@"SPAClassListSource.json"];
+             
+             NSLog(@"infosDictionary ==> %@",infosDictionary);
+             
+             
              dispatch_async(dispatch_get_main_queue(), ^{
                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                  
@@ -77,6 +81,8 @@
                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                  
                  NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+                 
+                 NSLog(@"ErrorResponse ==> %@",ErrorResponse);
                  
                  if ([ErrorResponse length] == 0)
                      ErrorResponse = nil;

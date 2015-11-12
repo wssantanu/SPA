@@ -14,6 +14,8 @@
 #import "UserDetails.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "SPAChangePasswordSource.h"
+#import "SPAEditTeacherProfileSource.h"
+#import "SPAEditStudentProfileSource.h"
 
 #define kConfigScrollviewKey @"121"
 #define kConfigTeacherEmailTextfieldKey @"123"
@@ -778,13 +780,7 @@ typedef enum {
 {
     BOOL validate = YES;
     
-    if ([Constant CleanTextField:_TeacherEmailTextfield.text].length == 0) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10000 Message:@"Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
-        validate = NO;
-    } else if (![Constant ValidateEmail:[Constant CleanTextField:_TeacherEmailTextfield.text]]) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10001 Message:@"Proper Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
-        validate = NO;
-    } else if ([Constant CleanTextField:_TeacherNameTextfield.text].length== 0) {
+   if ([Constant CleanTextField:_TeacherNameTextfield.text].length== 0) {
         [super ShowAletviewWIthTitle:AlertTitle Tag:10002 Message:@"Name please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     } else if ([Constant CleanTextField:_TeacherSchoolTextfield.text].length == 0) {
@@ -807,13 +803,7 @@ typedef enum {
 {
     BOOL validate = YES;
     
-    if ([Constant CleanTextField:_StudentEmailTextfield.text].length == 0) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10012 Message:@"Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
-        validate = NO;
-    } else if (![Constant ValidateEmail:[Constant CleanTextField:_StudentEmailTextfield.text]]) {
-        [super ShowAletviewWIthTitle:AlertTitle Tag:10013 Message:@"Proper Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
-        validate = NO;
-    } else if ([Constant CleanTextField:_StudentNameTextfield.text].length== 0) {
+    if ([Constant CleanTextField:_StudentNameTextfield.text].length== 0) {
         [super ShowAletviewWIthTitle:AlertTitle Tag:10014 Message:@"Name please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     }
@@ -852,9 +842,71 @@ typedef enum {
         if (_SelectedUserType == userTypeTeacher) {
             if ([self ValidateTeacherTypeEditProfileForm]) {
                 
+                SPAEditTeacherProfileCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
+                    
+                    [_ActivityIndicator hide:YES];
+                    if (errorString) {
+                        if (errorString.length>0) {
+                            [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                        }
+                    } else {
+                        if ([[data objectForKey:@"error"] intValue] == 1) {
+                            [super ShowAletviewWIthTitle:@"Sorry" Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                        } else {
+                            [super ShowAletviewWIthTitle:@"Success" Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                        }
+                    }
+                    _DataSaveOption = dataSaveOptionNone;
+                };
+                
+                SPAEditTeacherProfileSource * source = [SPAEditTeacherProfileSource editTeacherProfileSource];
+                
+                [Constant CleanTextField:_TeacherNameTextfield.text];
+                
+                [source editTeacherProfile:[NSArray arrayWithObjects:[NSString stringWithFormat:@"%@",[FeatchUserdetails uid]],[self getUserType],[Constant CleanTextField:_TeacherNameTextfield.text],[Constant CleanTextField:_TeacherPhoneTextfield.text],[Constant CleanTextField:_TeacherSchoolTextfield.text],[Constant CleanTextField:_TeacherOfficeLocationTextfield.text],[Constant CleanTextField:_TeacherOfficeHoursTextfield.text],[self getLoginDeviceStatus],[self getEmailReciveStatus],[UIImageJPEGRepresentation(self.imageViewOne.image, 0.7) base64EncodedStringWithOptions:0],@"jpg", nil] withImageData:nil completion:completionBlock];
+                
+                AppDelegate *MainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                
+                _ActivityIndicator = [MBProgressHUD showHUDAddedTo:MainDelegate.window animated:YES];
+                _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
+                [_ActivityIndicator setOpacity:1.0];
+                [_ActivityIndicator show:NO];
+                _ActivityIndicator.labelText = @"Loading";
+                
             }
         } else if (_SelectedUserType == userTypeStudent) {
             if ([self ValidateStudentTypeEditProfileForm]) {
+                
+                SPAEditStudentProfileCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
+                    
+                    [_ActivityIndicator hide:YES];
+                    if (errorString) {
+                        if (errorString.length>0) {
+                            [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                        }
+                    } else {
+                        if ([[data objectForKey:@"error"] intValue] == 1) {
+                            [super ShowAletviewWIthTitle:@"Sorry" Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                        } else {
+                            [super ShowAletviewWIthTitle:@"Success" Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                        }
+                    }
+                    _DataSaveOption = dataSaveOptionNone;
+                };
+                
+                SPAEditStudentProfileSource * source = [SPAEditStudentProfileSource editStudentProfileSource];
+                
+                [Constant CleanTextField:_TeacherNameTextfield.text];
+                
+                [source editStudentProfile:[NSArray arrayWithObjects:[NSString stringWithFormat:@"%@",[FeatchUserdetails uid]],[self getUserType],[Constant CleanTextField:_StudentNameTextfield.text],@"",@"",@"",@"",[self getLoginDeviceStatus],[self getEmailReciveStatus],[UIImageJPEGRepresentation(self.imageView.image, 0.7) base64EncodedStringWithOptions:0],@"jpg", nil] withImageData:nil completion:completionBlock];
+                
+                AppDelegate *MainDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+                
+                _ActivityIndicator = [MBProgressHUD showHUDAddedTo:MainDelegate.window animated:YES];
+                _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
+                [_ActivityIndicator setOpacity:1.0];
+                [_ActivityIndicator show:NO];
+                _ActivityIndicator.labelText = @"Loading";
                 
             }
         }

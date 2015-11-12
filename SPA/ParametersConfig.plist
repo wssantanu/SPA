@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Edit_teacher_profile</key>
+	<string>uid,role_id,field_user_full_name,field_user_phone,field_user_school,field_user_office_location,field_user_office_hours,field_user_receive_emails,field_user_keep_logged_in,image_data,image_data_ext</string>
+	<key>Edit_student_profile</key>
+	<string>uid,role_id,field_user_full_name,field_user_phone,field_user_school,field_user_office_location,field_user_office_hours,field_user_receive_emails,field_user_keep_logged_in,image_data,image_data_ext</string>
 	<key>my_class_list</key>
 	<string>uid</string>
 	<key>change_user_password</key>

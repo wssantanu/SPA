@@ -12,6 +12,15 @@
 		9B2D12731BF0B18900C977F5 /* SPAClassListSource.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B2D12721BF0B18900C977F5 /* SPAClassListSource.json */; };
 		9B2D127E1BF0BE2100C977F5 /* ClassDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D127B1BF0BE2100C977F5 /* ClassDetails.m */; };
 		9B2D127F1BF0BE2100C977F5 /* ClassSlots.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2D127D1BF0BE2100C977F5 /* ClassSlots.m */; };
+		9B4945191BF4670E0026E399 /* SPAEditStudentProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4945181BF4670E0026E399 /* SPAEditStudentProfileSource.m */; };
+		9B49451C1BF4671E0026E399 /* SPAEditTeacherProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B49451B1BF4671E0026E399 /* SPAEditTeacherProfileSource.m */; };
+		9B49451E1BF467550026E399 /* SPAEditTeacherProfileSourceJsonPattern.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B49451D1BF467550026E399 /* SPAEditTeacherProfileSourceJsonPattern.json */; };
+		9B4945201BF4677A0026E399 /* SPAEditStudentProfileSourceJsonPattern.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B49451F1BF4677A0026E399 /* SPAEditStudentProfileSourceJsonPattern.json */; };
+		9B4945231BF4B4EF0026E399 /* UIColor+fromHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4945221BF4B4EF0026E399 /* UIColor+fromHex.m */; };
+		9B49452A1BF4B6030026E399 /* ClassListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4945251BF4B6030026E399 /* ClassListViewController.m */; };
+		9B49452B1BF4B6030026E399 /* ClassListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4945271BF4B6030026E399 /* ClassListTableViewCell.m */; };
+		9B49452C1BF4B6030026E399 /* ClassListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B4945281BF4B6030026E399 /* ClassListTableViewCell.xib */; };
+		9B49452D1BF4B6030026E399 /* ClassListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B4945291BF4B6030026E399 /* ClassListViewController.xib */; };
 		9B58979B1BC7DBD8000AD6B3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B58979A1BC7DBD8000AD6B3 /* main.m */; };
 		9B58979E1BC7DBD8000AD6B3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B58979D1BC7DBD8000AD6B3 /* AppDelegate.m */; };
 		9B5897A11BC7DBD8000AD6B3 /* SPA.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B58979F1BC7DBD8000AD6B3 /* SPA.xcdatamodeld */; };
@@ -103,8 +112,6 @@
 		9B939F1B1BF06309004D893D /* SPASignoutSource.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B939F1A1BF06309004D893D /* SPASignoutSource.json */; };
 		9BAAD1991BE892480006C209 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1971BE892480006C209 /* EditProfileViewController.m */; };
 		9BAAD19A1BE892480006C209 /* EditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BAAD1981BE892480006C209 /* EditProfileViewController.xib */; };
-		9BAAD19E1BE8F8F00006C209 /* ClassListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD19C1BE8F8F00006C209 /* ClassListTableViewCell.m */; };
-		9BAAD19F1BE8F8F00006C209 /* ClassListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BAAD19D1BE8F8F00006C209 /* ClassListTableViewCell.xib */; };
 		9BAAD1A51BE905EC0006C209 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1A31BE905EC0006C209 /* ScheduleViewController.m */; };
 		9BAAD1A61BE905EC0006C209 /* ScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BAAD1A41BE905EC0006C209 /* ScheduleViewController.xib */; };
 		9BAAD1BD1BE90B550006C209 /* KalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAAD1AD1BE90B550006C209 /* KalDataSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -151,8 +158,6 @@
 		9BAD9EF81BE0CEB8004E6C7C /* Roboto-Medium_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BAD9EC41BE0CDD1004E6C7C /* Roboto-Medium_0.ttf */; };
 		9BAD9EF91BE0CEB8004E6C7C /* Roboto-Regular_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9BAD9EC51BE0CDD1004E6C7C /* Roboto-Regular_0.ttf */; };
 		9BAD9EFC1BE0FA18004E6C7C /* AddMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAD9EFB1BE0FA18004E6C7C /* AddMoreView.m */; };
-		9BBBFC8E1BE353F100BBC6EF /* ClassListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBBFC8C1BE353F100BBC6EF /* ClassListViewController.m */; };
-		9BBBFC8F1BE353F100BBC6EF /* ClassListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BBBFC8D1BE353F100BBC6EF /* ClassListViewController.xib */; };
 		9BBBFC931BE3540A00BBC6EF /* AddClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BBBFC911BE3540A00BBC6EF /* AddClassViewController.m */; };
 		9BBBFC941BE3540A00BBC6EF /* AddClassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BBBFC921BE3540A00BBC6EF /* AddClassViewController.xib */; };
 		9BBBFC9B1BE3584200BBC6EF /* nko_brightness_guide.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BBBFC981BE3584200BBC6EF /* nko_brightness_guide.png */; };
@@ -203,6 +208,20 @@
 		9B2D127B1BF0BE2100C977F5 /* ClassDetails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetails.m; sourceTree = "<group>"; };
 		9B2D127C1BF0BE2100C977F5 /* ClassSlots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassSlots.h; sourceTree = "<group>"; };
 		9B2D127D1BF0BE2100C977F5 /* ClassSlots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassSlots.m; sourceTree = "<group>"; };
+		9B4945171BF4670E0026E399 /* SPAEditStudentProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAEditStudentProfileSource.h; sourceTree = "<group>"; };
+		9B4945181BF4670E0026E399 /* SPAEditStudentProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAEditStudentProfileSource.m; sourceTree = "<group>"; };
+		9B49451A1BF4671E0026E399 /* SPAEditTeacherProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAEditTeacherProfileSource.h; sourceTree = "<group>"; };
+		9B49451B1BF4671E0026E399 /* SPAEditTeacherProfileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAEditTeacherProfileSource.m; sourceTree = "<group>"; };
+		9B49451D1BF467550026E399 /* SPAEditTeacherProfileSourceJsonPattern.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SPAEditTeacherProfileSourceJsonPattern.json; sourceTree = "<group>"; };
+		9B49451F1BF4677A0026E399 /* SPAEditStudentProfileSourceJsonPattern.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SPAEditStudentProfileSourceJsonPattern.json; sourceTree = "<group>"; };
+		9B4945211BF4B4EF0026E399 /* UIColor+fromHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+fromHex.h"; sourceTree = "<group>"; };
+		9B4945221BF4B4EF0026E399 /* UIColor+fromHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+fromHex.m"; sourceTree = "<group>"; };
+		9B4945241BF4B6030026E399 /* ClassListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassListViewController.h; sourceTree = "<group>"; };
+		9B4945251BF4B6030026E399 /* ClassListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassListViewController.m; sourceTree = "<group>"; };
+		9B4945261BF4B6030026E399 /* ClassListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassListTableViewCell.h; sourceTree = "<group>"; };
+		9B4945271BF4B6030026E399 /* ClassListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassListTableViewCell.m; sourceTree = "<group>"; };
+		9B4945281BF4B6030026E399 /* ClassListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassListTableViewCell.xib; sourceTree = "<group>"; };
+		9B4945291BF4B6030026E399 /* ClassListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassListViewController.xib; sourceTree = "<group>"; };
 		9B5897951BC7DBD8000AD6B3 /* SPA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B5897991BC7DBD8000AD6B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B58979A1BC7DBD8000AD6B3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -352,9 +371,6 @@
 		9BAAD1961BE892480006C209 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		9BAAD1971BE892480006C209 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		9BAAD1981BE892480006C209 /* EditProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditProfileViewController.xib; sourceTree = "<group>"; };
-		9BAAD19B1BE8F8F00006C209 /* ClassListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassListTableViewCell.h; sourceTree = "<group>"; };
-		9BAAD19C1BE8F8F00006C209 /* ClassListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassListTableViewCell.m; sourceTree = "<group>"; };
-		9BAAD19D1BE8F8F00006C209 /* ClassListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassListTableViewCell.xib; sourceTree = "<group>"; };
 		9BAAD1A21BE905EC0006C209 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		9BAAD1A31BE905EC0006C209 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		9BAAD1A41BE905EC0006C209 /* ScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleViewController.xib; sourceTree = "<group>"; };
@@ -430,9 +446,6 @@
 		9BAD9EE51BE0CE06004E6C7C /* MenuCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuCellTableViewCell.xib; sourceTree = "<group>"; };
 		9BAD9EFA1BE0FA18004E6C7C /* AddMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMoreView.h; sourceTree = "<group>"; };
 		9BAD9EFB1BE0FA18004E6C7C /* AddMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMoreView.m; sourceTree = "<group>"; };
-		9BBBFC8B1BE353F100BBC6EF /* ClassListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassListViewController.h; sourceTree = "<group>"; };
-		9BBBFC8C1BE353F100BBC6EF /* ClassListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassListViewController.m; sourceTree = "<group>"; };
-		9BBBFC8D1BE353F100BBC6EF /* ClassListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassListViewController.xib; sourceTree = "<group>"; };
 		9BBBFC901BE3540A00BBC6EF /* AddClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassViewController.h; sourceTree = "<group>"; };
 		9BBBFC911BE3540A00BBC6EF /* AddClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClassViewController.m; sourceTree = "<group>"; };
 		9BBBFC921BE3540A00BBC6EF /* AddClassViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddClassViewController.xib; sourceTree = "<group>"; };
@@ -541,6 +554,26 @@
 			name = "Class List";
 			sourceTree = "<group>";
 		};
+		9B4945151BF466C20026E399 /* EditTeacherProfile */ = {
+			isa = PBXGroup;
+			children = (
+				9B49451A1BF4671E0026E399 /* SPAEditTeacherProfileSource.h */,
+				9B49451B1BF4671E0026E399 /* SPAEditTeacherProfileSource.m */,
+				9B49451D1BF467550026E399 /* SPAEditTeacherProfileSourceJsonPattern.json */,
+			);
+			name = EditTeacherProfile;
+			sourceTree = "<group>";
+		};
+		9B4945161BF466D50026E399 /* EditStudentProfile */ = {
+			isa = PBXGroup;
+			children = (
+				9B4945171BF4670E0026E399 /* SPAEditStudentProfileSource.h */,
+				9B4945181BF4670E0026E399 /* SPAEditStudentProfileSource.m */,
+				9B49451F1BF4677A0026E399 /* SPAEditStudentProfileSourceJsonPattern.json */,
+			);
+			name = EditStudentProfile;
+			sourceTree = "<group>";
+		};
 		9B58978C1BC7DBD8000AD6B3 = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +669,8 @@
 		9B6A687A1BCBD8F000C284CB /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				9B4945211BF4B4EF0026E399 /* UIColor+fromHex.h */,
+				9B4945221BF4B4EF0026E399 /* UIColor+fromHex.m */,
 				9B6A68E01BCBFEBD00C284CB /* NSDateFormatter+STTwitter.h */,
 				9B6A68E11BCBFEBD00C284CB /* NSDateFormatter+STTwitter.m */,
 				9B6A687B1BCBD8F800C284CB /* NSString+MD5.h */,
@@ -703,6 +738,8 @@
 		9B6A68AB1BCBDA1200C284CB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9B4945161BF466D50026E399 /* EditStudentProfile */,
+				9B4945151BF466C20026E399 /* EditTeacherProfile */,
 				9B2D126E1BF0B15800C977F5 /* Class List */,
 				9B939F161BF062D7004D893D /* Signout */,
 				9B939F0B1BF0549F004D893D /* Change Password */,
@@ -1139,12 +1176,12 @@
 		9BBBFC951BE3540F00BBC6EF /* ClassList */ = {
 			isa = PBXGroup;
 			children = (
-				9BBBFC8B1BE353F100BBC6EF /* ClassListViewController.h */,
-				9BBBFC8C1BE353F100BBC6EF /* ClassListViewController.m */,
-				9BAAD19B1BE8F8F00006C209 /* ClassListTableViewCell.h */,
-				9BAAD19C1BE8F8F00006C209 /* ClassListTableViewCell.m */,
-				9BAAD19D1BE8F8F00006C209 /* ClassListTableViewCell.xib */,
-				9BBBFC8D1BE353F100BBC6EF /* ClassListViewController.xib */,
+				9B4945241BF4B6030026E399 /* ClassListViewController.h */,
+				9B4945251BF4B6030026E399 /* ClassListViewController.m */,
+				9B4945261BF4B6030026E399 /* ClassListTableViewCell.h */,
+				9B4945271BF4B6030026E399 /* ClassListTableViewCell.m */,
+				9B4945281BF4B6030026E399 /* ClassListTableViewCell.xib */,
+				9B4945291BF4B6030026E399 /* ClassListViewController.xib */,
 			);
 			name = ClassList;
 			sourceTree = "<group>";
@@ -1295,7 +1332,9 @@
 				9BAD9EF41BE0CEB8004E6C7C /* MyriadPro-Regular.otf in Resources */,
 				9BAD9EF51BE0CEB8004E6C7C /* MyriadPro-Semibold.otf in Resources */,
 				9BAD9EF61BE0CEB8004E6C7C /* MyriadPro-SemiboldIt.otf in Resources */,
+				9B49452C1BF4B6030026E399 /* ClassListTableViewCell.xib in Resources */,
 				9BAD9EF71BE0CEB8004E6C7C /* Roboto-Bold_0.ttf in Resources */,
+				9B49451E1BF467550026E399 /* SPAEditTeacherProfileSourceJsonPattern.json in Resources */,
 				9BBD831E1BECCBA100DA7117 /* SPAsignupSourceJsonPattern.json in Resources */,
 				9BAD9EF81BE0CEB8004E6C7C /* Roboto-Medium_0.ttf in Resources */,
 				9B8C3AA61BEA0FA100BABA05 /* AgendaListDayViewController.xib in Resources */,
@@ -1325,10 +1364,10 @@
 				9B2D12731BF0B18900C977F5 /* SPAClassListSource.json in Resources */,
 				9BBBFC9B1BE3584200BBC6EF /* nko_brightness_guide.png in Resources */,
 				9B5897AC1BC7DBD8000AD6B3 /* LaunchScreen.xib in Resources */,
+				9B49452D1BF4B6030026E399 /* ClassListViewController.xib in Resources */,
 				9BBBFC941BE3540A00BBC6EF /* AddClassViewController.xib in Resources */,
 				9BAAD1A61BE905EC0006C209 /* ScheduleViewController.xib in Resources */,
 				9B6A68B51BCBE42300C284CB /* StringConfig.plist in Resources */,
-				9BAAD19F1BE8F8F00006C209 /* ClassListTableViewCell.xib in Resources */,
 				9BE351201BF1FC4000732FA9 /* TeacherDetailsTableViewCell.xib in Resources */,
 				9BAD646A1BD50F9000FF65C1 /* ParametersConfig.plist in Resources */,
 				9B8C3ACE1BEA140600BABA05 /* ClassTasksViewController.xib in Resources */,
@@ -1339,8 +1378,8 @@
 				9B5897A91BC7DBD8000AD6B3 /* Images.xcassets in Resources */,
 				9BEC2CBF1BCFAA1300360904 /* ViewController.xib in Resources */,
 				9B8C3AC81BEA13A000BABA05 /* ClassInfoViewController.xib in Resources */,
-				9BBBFC8F1BE353F100BBC6EF /* ClassListViewController.xib in Resources */,
 				9BAD9EEC1BE0CE06004E6C7C /* MenuCellTableViewCell.xib in Resources */,
+				9B4945201BF4677A0026E399 /* SPAEditStudentProfileSourceJsonPattern.json in Resources */,
 				9B6A68D31BCBF30E00C284CB /* LoginflowStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1425,6 +1464,7 @@
 				9BAAD1C31BE90B550006C209 /* KalView.m in Sources */,
 				9BE3511A1BF1FC1E00732FA9 /* ClassDetailsTableViewCell.m in Sources */,
 				9B8C3AAA1BEA0FBE00BABA05 /* AgendaListFiveDayViewController.m in Sources */,
+				9B49452B1BF4B6030026E399 /* ClassListTableViewCell.m in Sources */,
 				9B6A68BC1BCBE78400C284CB /* SPAFontConfig.m in Sources */,
 				9BAD9ED31BE0CDE9004E6C7C /* RECommonFunctions.m in Sources */,
 				9B6A68D91BCBF36800C284CB /* LoginViewController.m in Sources */,
@@ -1445,6 +1485,7 @@
 				9B8C63611BE7C2F60049705B /* PECropViewController.m in Sources */,
 				9B939F0E1BF05BD8004D893D /* SPAChangePasswordSource.m in Sources */,
 				9B8C3A9F1BE9ED7900BABA05 /* AddTaskViewController.m in Sources */,
+				9B4945231BF4B4EF0026E399 /* UIColor+fromHex.m in Sources */,
 				9B6A68931BCBD91600C284CB /* KMGillSansLabel.m in Sources */,
 				9B6A688E1BCBD8F800C284CB /* NSBundle+Loader.m in Sources */,
 				9BAAD1C01BE90B550006C209 /* KalLogic.m in Sources */,
@@ -1453,7 +1494,6 @@
 				9B8C3AD71BEA60BC00BABA05 /* AFOAuth2Manager.m in Sources */,
 				9BAD9EE71BE0CE06004E6C7C /* UINavigationBar+Customnavigation.m in Sources */,
 				9B8C3A941BE9EC1D00BABA05 /* AddScheduleViewController.m in Sources */,
-				9BBBFC8E1BE353F100BBC6EF /* ClassListViewController.m in Sources */,
 				9BAAD1CC1BE90B690006C209 /* UIViewAdditions.m in Sources */,
 				9BAD9EEB1BE0CE06004E6C7C /* MenuCellTableViewCell.m in Sources */,
 				9B6A68C51BCBEA9400C284CB /* KMActivityIndicator.m in Sources */,
@@ -1461,6 +1501,7 @@
 				9BAAD1C11BE90B550006C209 /* KalMonthView.m in Sources */,
 				9B2D127F1BF0BE2100C977F5 /* ClassSlots.m in Sources */,
 				9B8C63621BE7C2F60049705B /* PECropView.m in Sources */,
+				9B49451C1BF4671E0026E399 /* SPAEditTeacherProfileSource.m in Sources */,
 				9B6A68E51BCC02D600C284CB /* CommonReturns.m in Sources */,
 				9B6A68B11BCBDA4C00C284CB /* SPASourceConfig.m in Sources */,
 				9BAD9ED61BE0CDE9004E6C7C /* UIImage+REFrostedViewController.m in Sources */,
@@ -1476,6 +1517,7 @@
 				9B58979E1BC7DBD8000AD6B3 /* AppDelegate.m in Sources */,
 				9B8C3AB51BEA131D00BABA05 /* MaterialsListViewController.m in Sources */,
 				9BAAD1BF1BE90B550006C209 /* KalGridView.m in Sources */,
+				9B4945191BF4670E0026E399 /* SPAEditStudentProfileSource.m in Sources */,
 				9BBD83281BED05A100DA7117 /* UserDataCell.m in Sources */,
 				9BCA09F31BD0E44700A78D71 /* Constant.m in Sources */,
 				9BBD83141BEC9A3D00DA7117 /* UserDetails.m in Sources */,
@@ -1488,10 +1530,10 @@
 				9B87DEB41BEB300A00BA3424 /* KMMovie.m in Sources */,
 				9BAD9ED51BE0CDE9004E6C7C /* REFrostedViewController.m in Sources */,
 				9B6A688D1BCBD8F800C284CB /* KM_NSURL+Parameters.m in Sources */,
+				9B49452A1BF4B6030026E399 /* ClassListViewController.m in Sources */,
 				9B5897A41BC7DBD8000AD6B3 /* ViewController.m in Sources */,
 				9B58979B1BC7DBD8000AD6B3 /* main.m in Sources */,
 				9B6A68AA1BCBD9DD00C284CB /* KIImagePager.m in Sources */,
-				9BAAD19E1BE8F8F00006C209 /* ClassListTableViewCell.m in Sources */,
 				9B8C3A901BE9E84800BABA05 /* BaseViewController.m in Sources */,
 				9BBD83171BECAF1900DA7117 /* SPAForgetPasswordSource.m in Sources */,
 				9B6A688F1BCBD8F800C284CB /* UIFont+GillSansFonts.m in Sources */,

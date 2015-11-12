@@ -39,6 +39,8 @@
 #define kConfigchange_user_passwordKey @"change_user_password"
 #define kConfigMyClassListKey @"my_class_list"
 
+#define kConfigEditStudentProfileKey @"Edit_student_profile"
+#define kConfigEditTeacherProfileKey @"Edit_teacher_profile"
 
 @implementation SPASourceConfig
 
@@ -90,6 +92,8 @@
         _ParamMaterial_of_class           = [Paramconfig km_safeStringForKey:kConfigchange_user_passwordKey];
         _Paramchange_user_password        = [Paramconfig km_safeStringForKey:kConfigchange_user_passwordKey];
         _ParamMyClassList                 = [Paramconfig km_safeStringForKey:kConfigMyClassListKey];
+        _ParamEditStudentProfile          = [Paramconfig km_safeStringForKey:kConfigEditStudentProfileKey];
+        _ParamEditTeacherProfile          = [Paramconfig km_safeStringForKey:kConfigEditTeacherProfileKey];
         
         _Servicelogin_parameters          = [Serviceconfig km_safeStringForKey:kConfigLoginKey];
         _Servicerequest_newpassword       = [Serviceconfig km_safeStringForKey:kConfigrequest_newpasswordKey];
@@ -109,6 +113,8 @@
         _ServiceMaterial_of_class         = [Serviceconfig km_safeStringForKey:kConfigMaterial_of_classKey];
         _Servicechange_user_password      = [Serviceconfig km_safeStringForKey:kConfigchange_user_passwordKey];
         _ServiceMyClassList               = [Serviceconfig km_safeStringForKey:kConfigMyClassListKey];
+        _ServiceEditStudentProfile        = [Serviceconfig km_safeStringForKey:kConfigEditStudentProfileKey];
+        _ServiceEditTeacherProfile        = [Serviceconfig km_safeStringForKey:kConfigEditTeacherProfileKey];
         
     }
     return self;

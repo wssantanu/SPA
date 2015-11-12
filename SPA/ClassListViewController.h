@@ -10,4 +10,8 @@
 
 @interface ClassListViewController : BaseViewController
 
+{
+    NSString *LocalObjectTimeDetails;
+}
+
 @end

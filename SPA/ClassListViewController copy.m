@@ -22,7 +22,10 @@ typedef enum {
 } TableViewListType;
 
 @interface ClassListViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
-@property (nonatomic,retain)IBOutlet UITableView *ClassListTableView;
+{
+    NSString *LocalObjectTimeDetails;
+}
+@property (nonatomic,retain) UITableView *ClassListTableView;
 @property (nonatomic,retain) NSMutableArray *TableViewData,*TableViewFilterData;
 @property (nonatomic,retain) UITextField *SearchTextField;
 @property (nonatomic,retain) MBProgressHUD *ActivityIndicator;
@@ -45,7 +48,6 @@ typedef enum {
         
         [_ClassListTableView reloadData];
         [_ClassListTableView registerNib:[UINib nibWithNibName:@"ClassListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ClassListTableViewCell"];
-         _ClassListTableView.estimatedRowHeight = UITableViewAutomaticDimension;
         
         _SearchTextField = (UITextField *)[self.view viewWithTag:444];
         [_SearchTextField setDelegate:self];
@@ -54,40 +56,8 @@ typedef enum {
         
         _TableViewFilterData = [[NSMutableArray alloc] init];
         
-        for (id AllLabel in [self.view subviews]) {
-            if ([AllLabel isKindOfClass:[UILabel class]]) {
-                UILabel *AllLabelInView = (UILabel *)AllLabel;
-                [AllLabelInView setTextColor:Constant.ColorSPABlackColor];
-                [AllLabelInView setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:16]];
-            }
-        }
-        
-        for (id AllTextFiled in [self.view subviews]) {
-            
-            if ([AllTextFiled isKindOfClass:[UITextField class]]) {
-                
-                UITextField *AllTextFiledInView = (UITextField *)AllTextFiled;
-                [AllTextFiledInView setDelegate:self];
-                
-                UIView *LefftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, AllTextFiledInView.frame.size.height)];
-                [LefftView setBackgroundColor:[UIColor clearColor]];
-                [AllTextFiledInView setLeftView:LefftView];
-                [AllTextFiledInView setLeftViewMode:UITextFieldViewModeAlways];
-                
-                UIImageView *SearchImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
-                [SearchImage setImage:[UIImage imageNamed:@"icon_search"]];
-                [AllTextFiledInView setRightView:SearchImage];
-                [AllTextFiledInView setRightViewMode:UITextFieldViewModeAlways];
-                
-                AllTextFiledInView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"search by teacher, book, etc" attributes:@{
-                                                             NSForegroundColorAttributeName: Constant.ColorSPAGreyColor,
-                                                             NSFontAttributeName : [UIFont fontWithName:Constant.FontRobotoRegular size:14.0]
-                                                             }
-                 ];
-            }
-        }
-        
         [self ProcessFetchClassList];
+        
     }
     return self;
 }
@@ -161,16 +131,9 @@ typedef enum {
 }
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField
 {
-    [_SearchTextField resignFirstResponder];
-    return YES;
+    return NO;
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == _SearchTextField) {
-        [_SearchTextField resignFirstResponder];
-        return NO;
-    }
-    return YES;
-}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField;
 {
     [_SearchTextField resignFirstResponder];
@@ -214,8 +177,6 @@ typedef enum {
                 [TimeDetails setObject:Classdetails forKey:@"Classdetails"];
                 [TimeDetails setObject:DayString forKey:@"Timedetails"];
                 [_TableViewFilterData addObject:TimeDetails];
-                
-                NSLog(@"_TableViewFilterData ===> %@",_TableViewFilterData);
             }
         }
         [_ClassListTableView reloadData];
@@ -265,48 +226,50 @@ typedef enum {
 
 #pragma mark - Tableview Data Details
 
-- (void)setUpCell:(ClassListTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+-(void)setUpCell:(ClassListTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
     ClassDetails *LocalObjectClassDetails = (_TableViewListingType == TableViewListTypeNormal)?[[_TableViewData objectAtIndex:indexPath.row] objectForKey:@"Classdetails"]:[[_TableViewFilterData objectAtIndex:indexPath.row] objectForKey:@"Classdetails"];
     LocalObjectTimeDetails = (_TableViewListingType == TableViewListTypeNormal)?[[_TableViewData objectAtIndex:indexPath.row] objectForKey:@"Timedetails"]:[[_TableViewFilterData objectAtIndex:indexPath.row] objectForKey:@"Timedetails"];
     
+    
     cell.CellClassName.text = LocalObjectClassDetails.name;
-    [cell.CellClassName setTextAlignment:NSTextAlignmentJustified];
     [cell.CellClassName setFont:[UIFont fontWithName:Constant.FontRobotoBold size:15]];
     
     cell.classSection.text = LocalObjectClassDetails.field_semester;
-    [cell.classSection setTextAlignment:NSTextAlignmentJustified];
     [cell.classSection setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:15]];
     
     cell.TeacherName.text = LocalObjectClassDetails.teacherFullname;
-    [cell.TeacherName setTextAlignment:NSTextAlignmentJustified];
     [cell.TeacherName setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:15]];
     
     cell.CellClassLocation.text = LocalObjectClassDetails.field_location;
-    [cell.CellClassLocation setTextAlignment:NSTextAlignmentJustified];
     [cell.CellClassLocation setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:15]];
     
     cell.CellClassTime.text = LocalObjectTimeDetails;
-    [cell.CellClassTime setTextAlignment:NSTextAlignmentJustified];
     [cell.CellClassTime setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:15]];
     
     UIColor *color1 = [UIColor colorwithHexString:LocalObjectClassDetails.field_color_code alpha:1];
-    [cell.ClassColor setBackgroundColor:color1];
+    
+    UILabel *Lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 5, cell.frame.size.height-50)];
+    [Lab setBackgroundColor:color1];
+    [cell addSubview:Lab];
+    
+    //     NSLog(@"!!!!!!!!!!!%@",LocalObjectClassDetails.field_color_code);
+    
+    //    @"Helvetica"
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *alphaIdentifire = @"ClassListTableViewCell";
-    ClassListTableViewCell *cell = (ClassListTableViewCell*) [self.ClassListTableView dequeueReusableCellWithIdentifier:alphaIdentifire forIndexPath:indexPath];
+    ClassListTableViewCell *cell = (ClassListTableViewCell*) [tableView dequeueReusableCellWithIdentifier:alphaIdentifire];
     [cell setBackgroundColor:[UIColor clearColor]];
     if (cell == nil) {
         cell = (ClassListTableViewCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:alphaIdentifire];
-        
     }
     [self setUpCell:cell atIndexPath:indexPath];
+    
     return cell;
 }
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:ClassDetailsMenuNotification object:nil];
@@ -325,35 +288,14 @@ typedef enum {
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static ClassListTableViewCell *cell = nil;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        cell = (ClassListTableViewCell*) [self.ClassListTableView dequeueReusableCellWithIdentifier:@"ClassListTableViewCell" ];
-    });
-    
-    [self setUpCell:cell atIndexPath:indexPath];
-    return [self calculateHeightForConfiguredSizingCell:cell];
-}
-
-- (CGFloat)calculateHeightForConfiguredSizingCell:(ClassListTableViewCell *)sizingCell {
-    
-    CGFloat height = sizingCell.frame.size.height;
-    [sizingCell layoutIfNeeded];
-    height = sizingCell.frame.size.height;
-    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    if (size.height >= 250) {
-        height = size.height;
-    } else {
-        height = size.height-30;
-    }
-    return height;
+    return 100.0f;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return (_TableViewListingType == TableViewListTypeNormal)?[_TableViewData count]:[_TableViewFilterData count];

@@ -38,5 +38,9 @@
 	<string>user/request_new_password</string>
 	<key>login_parameters</key>
 	<string>user/login</string>
+	<key>Edit_teacher_profile</key>
+	<string>user/edit-user-profile</string>
+	<key>Edit_student_profile</key>
+	<string>user/edit-user-profile</string>
 </dict>
 </plist>
