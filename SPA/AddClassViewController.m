@@ -18,6 +18,12 @@
 #import "UserDetails.h"
 #import "AddMoreTimeObject.h"
 #import <math.h>
+#import "AppDelegate.h"
+#import "Constant.h"
+#import "SPALoginSource.h"
+#import "KMActivityIndicator.h"
+#import "CommonReturns.h"
+#import "SPAAddClassSource.h"
 
 typedef enum {
     buttonrepostiontypenone,
@@ -64,6 +70,7 @@ typedef enum {
 @property (nonatomic,retain) UILabel *ClassDaysLabel,*addAnotherLineLabel,*addLine;
 @property (nonatomic,retain) IBOutlet UIView *FooerView;
 @property (nonatomic,retain) UITapGestureRecognizer *singleFingerTap;
+@property (nonatomic,retain) MBProgressHUD *ActivityIndicator;
 @end
 
 @implementation AddClassViewController
@@ -337,12 +344,60 @@ BOOL ISValidated = YES;
     _addAnotherButton = (UIButton *)[_FooerView viewWithTag:261];
     [_addAnotherButton addTarget:self action:@selector(adddata) forControlEvents:UIControlEventTouchUpInside];
     
+    _cancelButton = (UIButton *)[_FooerView viewWithTag:262];
+    [_cancelButton addTarget:self action:@selector(CancelOperation) forControlEvents:UIControlEventTouchUpInside];
+    
+    _SaveButton = (UIButton *)[_FooerView viewWithTag:263];
+    [_SaveButton addTarget:self action:@selector(savedata) forControlEvents:UIControlEventTouchUpInside];
+    
 //    [_MainScrollView bringSubviewToFront:_FooerView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewAddedWithResponce) name:AddViewNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewDeletedWithResponceWithObject:) name:DeleteViewNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextfiledStartEditingNotificationWithObject:) name:TextfiledStartEditingNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextfiledEndEditingNotificationWithObject:) name:TextfiledEndEditingNotification object:nil];
+}
+
+-(void)CancelOperation
+{
+    NSLog(@"CancelOperation");
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)savedata
+{
+    if ([self CheckTimeValidation]) {
+        
+        if ([self ValidateLoginForm]) {
+            
+            SPAAddClassCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
+                
+                NSLog(@"data ==%@ ",data);
+                
+                [_ActivityIndicator hide:YES];
+                if (errorString) {
+                    if (errorString.length>0) {
+                        [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    }
+                } else {
+                    [super ShowAletviewWIthTitle:AlertTitle Tag:781 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                }
+            };
+            
+            SPAAddClassSource * source = [SPAAddClassSource addClassSource];
+            [source saveClassDetails:[NSArray new] completion:completionBlock];
+            
+            _ActivityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
+            [_ActivityIndicator setOpacity:1.0];
+            [_ActivityIndicator show:NO];
+            _ActivityIndicator.labelText = @"Loading";
+        }
+        
+    } else {
+        UIAlertView *ErrorAlert = [[UIAlertView alloc] initWithTitle:AlertTitle message:@"Start time and end time not valied" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [ErrorAlert show];
+    }
 }
 
 -(void)OpendatePickerDateOption
@@ -515,6 +570,31 @@ BOOL ISValidated = YES;
             lroundf(b * 255)];
 }
 
+#pragma mark - Vaidate Login Form
+
+-(BOOL)ValidateLoginForm
+{
+    BOOL validate = YES;
+    
+    if ([Constant CleanTextField:_AddClassClassNameTextField.text].length == 0) {
+        [super ShowAletviewWIthTitle:@"Sorry" Tag:777 Message:@"Class name please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if (![Constant ValidateEmail:[Constant CleanTextField:_AddClassClassLocationTextField.text]]) {
+        [super ShowAletviewWIthTitle:@"Sorry" Tag:778 Message:@"Class location please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_AddClassClassSemesterTextField.text].length== 0) {
+        [super ShowAletviewWIthTitle:@"Sorry" Tag:779 Message:@"Semester please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_AddClassClassStartDateTextField.text].length== 0) {
+        [super ShowAletviewWIthTitle:@"Sorry" Tag:779 Message:@"Start date please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    } else if ([Constant CleanTextField:_AddClassClassEndDateTextField.text].length== 0) {
+        [super ShowAletviewWIthTitle:@"Sorry" Tag:779 Message:@"End date please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        validate = NO;
+    }
+    return validate;
+}
+
 #pragma mark - Segment Control Delegate
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl{
@@ -675,50 +755,41 @@ BOOL ISValidated = YES;
 
 -(BOOL)CheckTimeValidation
 {
-//    for (id AllSubview in [_MainScrollView subviews]) {
-//        if ([AllSubview isKindOfClass:[AddMoreView class]]) {
-//            
-//            AddMoreView *LocalViewObject = (AddMoreView *)AllSubview;
-//            UITextField *StartDateTextField = (UITextField *)[LocalViewObject viewWithTag:165];
-//            UITextField *EndDateTextField = (UITextField *)[LocalViewObject viewWithTag:166];
-//            
-//            NSString *startTimeString = StartDateTextField.text;
-//            NSString *endTimeString = EndDateTextField.text;
-//            
-//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//            [formatter setDateFormat:@"hh:mm a"];
-//            NSString *nowTimeString = [formatter stringFromDate:[NSDate date]];
-//            
-//            int startTime   = [self minutesSinceMidnight:[formatter dateFromString:startTimeString]];
-//            int endTime     = [self minutesSinceMidnight:[formatter dateFromString:endTimeString]];
-//            int nowTime     = [self minutesSinceMidnight:[formatter dateFromString:nowTimeString]];;
-//            
-//            NSLog(@"startTime ==> %d  endTime ==> %d nowTime ==> %d",startTime,endTime,nowTime);
-//            
-//            if (startTime == endTime) {
-//                ISValidated = NO;
-//            }
-//            
-////            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-////            [formatter setDateFormat:@"hh:mm a"];
-////            NSString *nowTimeString = [formatter stringFromDate:[NSDate date]];
-////            
-////            int startTime   = [self minutesSinceMidnight:[formatter dateFromString:startTimeString]];
-////            int endTime     = [self minutesSinceMidnight:[formatter dateFromString:endTimeString]];
-////            int nowTime     = [self minutesSinceMidnight:[formatter dateFromString:nowTimeString]];;
-////            
-////            if (startTime <= nowTime && nowTime <= endTime)
-////            {
-////                NSLog(@"Time is between");
-////                ISValidated = YES;
-////            }
-////            else {
-////                NSLog(@"Time is not between");
-////                ISValidated = NO;
-////            }
-//        }
-//    }
-    ISValidated=YES;
+    for (id AllSubview in [_MainScrollView subviews]) {
+        if ([AllSubview isKindOfClass:[AddMoreView class]]) {
+            
+            AddMoreView *LocalViewObject = (AddMoreView *)AllSubview;
+            UITextField *StartDateTextField = (UITextField *)[LocalViewObject viewWithTag:165];
+            UITextField *EndDateTextField = (UITextField *)[LocalViewObject viewWithTag:166];
+            
+            NSString *time1 = StartDateTextField.text;
+            NSString *time2 = EndDateTextField.text;
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"hh:mm a"];
+            
+            NSDate *date1= [formatter dateFromString:time1];
+            NSDate *date2 = [formatter dateFromString:time2];
+            
+            NSComparisonResult result = [date1 compare:date2];
+            if(result == NSOrderedDescending)
+            {
+                NSLog(@"date1 is later than date2");
+                ISValidated=NO;
+            }
+            else if(result == NSOrderedAscending)
+            {
+                NSLog(@"date2 is later than date1");
+                ISValidated=YES;
+            }
+            else
+            {
+                NSLog(@"date1 is equal to date2");
+                ISValidated=NO;
+            }
+        }
+    }
+    //ISValidated=YES;
     return (ISValidated)?YES:NO;
 }
 
@@ -802,10 +873,10 @@ BOOL ISValidated = YES;
 -(void)startTimeMathodWithTextField:(NSArray *)SplitedArray
 {
     AddMoreView *AddmoreView = (AddMoreView *)[_MainScrollView viewWithTag:[[SplitedArray objectAtIndex:0] intValue]];
-    [AddmoreView setBackgroundColor:[UIColor orangeColor]];
+    //[AddmoreView setBackgroundColor:[UIColor orangeColor]];
     UITextField *StartDateTextField = (UITextField *)[AddmoreView viewWithTag:165];
     UITextField *EndDateTextField = (UITextField *)[AddmoreView viewWithTag:166];
-    _MainScrollView.backgroundColor = [UIColor redColor];
+    //_MainScrollView.backgroundColor = [UIColor redColor];
     
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
