@@ -360,7 +360,7 @@ BOOL ISValidated = YES;
 
 -(void)CancelOperation
 {
-    NSLog(@"CancelOperation");
+     NSLog(@"CancelOperation");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
