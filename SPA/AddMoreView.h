@@ -10,6 +10,9 @@
 
 @interface AddMoreView : UIView <UITextFieldDelegate>
 
+@property (nonatomic,retain) IBOutlet UITextField *StartTimeTextField,*EndTimeTextField;
+@property (nonatomic,retain) IBOutlet UIButton *DeleteButton;
+
 - (id)initWithFrame:(CGRect)frame WithTag:(int)addMoreViewTag WithDeleteButtonTag:(int)DeleteButtonTag WithSelecter:(SEL)SelecterMethod;
 
 @end

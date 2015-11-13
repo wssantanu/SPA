@@ -31,6 +31,8 @@ BOOL isFirstLoad = NO;
     NSArray *titleTireOne,*titleTireTwo,*imageClassTireOne,*imageClassTireTwo;
     AppDelegate *MainDelegate;
     UserDetails *FeatchUserdetails;
+    UIImageView *ProfileImageView;
+    UILabel *NameLabel;
 }
 
 - (void)viewDidLoad
@@ -42,7 +44,6 @@ BOOL isFirstLoad = NO;
     self.tableView.backgroundColor = [UIColor blackColor];
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.scrollEnabled = YES;
-    
     
     isFirstLoad = YES;
     _menutypeorderlabel = menutypeorderfirstlabel;
@@ -82,9 +83,14 @@ BOOL isFirstLoad = NO;
     
     UIView *bgview = [[UIView alloc] init];
     [bgview setBackgroundColor:[UIColor blackColor]];
-    UIImageView *ProfileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 14, 70, 70)];
+    
+    ProfileImageView = [[UIImageView alloc] initWithFrame:CGRectMake(6, 14, 70, 70)];
     [ProfileImageView setBackgroundColor:[UIColor clearColor]];
     [ProfileImageView setImage:[UIImage imageNamed:@"menu_profile"]];
+    [ProfileImageView.layer setCornerRadius:35.0f];
+    [ProfileImageView.layer setBorderWidth:3.0f];
+    [ProfileImageView setClipsToBounds:YES];
+    [ProfileImageView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     if (FeatchUserdetails.picture.length > 0) {
         [ProfileImageView sd_setImageWithURL:[NSURL URLWithString:FeatchUserdetails.picture] placeholderImage:[UIImage imageNamed:@"menu_profile_selected"]];
     } else {
@@ -92,7 +98,7 @@ BOOL isFirstLoad = NO;
     }
     [bgview addSubview:ProfileImageView];
     
-    UILabel *NameLabel = [[UILabel alloc] initWithFrame:CGRectMake(-5, 70, tableView.frame.size.width, 30)];
+    NameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, tableView.frame.size.width, 30)];
     NameLabel.backgroundColor = [UIColor clearColor];
     NameLabel.textColor = [UIColor whiteColor];
     [NameLabel setNumberOfLines:0];
@@ -100,9 +106,19 @@ BOOL isFirstLoad = NO;
     [NameLabel setTextAlignment:NSTextAlignmentCenter];
     NameLabel.font = [UIFont fontWithName:@"Roboto-Bold" size:14];
     NameLabel.text = FeatchUserdetails.user_full_name;
-    [ProfileImageView addSubview:NameLabel];
+    [bgview addSubview:NameLabel];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(RefreshProfileInfo:) name:@"profiledatachanged" object:nil];
     
     return bgview;
+}
+
+-(void)RefreshProfileInfo:(NSNotification*)Obj {
+    
+    NSArray *SplitedArray = [Obj.object componentsSeparatedByString:@"|**|"];
+    [ProfileImageView setImage:[UIImage imageWithData:[SplitedArray objectAtIndex:0]]];
+    
+    [NameLabel setText:[SplitedArray objectAtIndex:1]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)sectionIndex

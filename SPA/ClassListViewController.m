@@ -257,6 +257,18 @@ typedef enum {
     [TitleLabel setTextAlignment:NSTextAlignmentLeft];
     [TitleLabel setFont:[UIFont fontWithName:FontName size:Size]];
     [HeaderView addSubview:TitleLabel];
+    
+    UIButton *AddClassButton = [[UIButton alloc] initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width-45, 25, 40, 40)];
+    [AddClassButton setBackgroundColor:[UIColor clearColor]];
+    [AddClassButton setBackgroundImage:[UIImage imageNamed:@"Header_PlusIcon_White"] forState:UIControlStateNormal];
+    [AddClassButton setBackgroundImage:[UIImage imageNamed:@"Header_PlusIcon_White"] forState:UIControlStateSelected];
+    [AddClassButton setBackgroundImage:[UIImage imageNamed:@"Header_PlusIcon_White"] forState:UIControlStateHighlighted];
+    [AddClassButton addTarget:self action:@selector(AddClassView) forControlEvents:UIControlEventTouchUpInside];
+    [HeaderView addSubview:AddClassButton];
+}
+
+-(void)AddClassView {
+    [self.navigationController pushViewController:Constant.AddClassViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

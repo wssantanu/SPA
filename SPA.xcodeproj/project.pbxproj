@@ -104,6 +104,8 @@
 		9B8C63631BE7C2F60049705B /* PECropRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C635C1BE7C2F60049705B /* PECropRectView.m */; };
 		9B8C63641BE7C2F60049705B /* PEResizeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C635E1BE7C2F60049705B /* PEResizeControl.m */; };
 		9B8C63651BE7C2F60049705B /* UIImage+PECrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C63601BE7C2F60049705B /* UIImage+PECrop.m */; };
+		9B91B5861BF505B200317EDB /* AddMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B91B5851BF505B200317EDB /* AddMoreView.xib */; };
+		9B91B5891BF541BC00317EDB /* AddMoreTimeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B91B5881BF541BC00317EDB /* AddMoreTimeObject.m */; };
 		9B939F0E1BF05BD8004D893D /* SPAChangePasswordSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B939F0D1BF05BD8004D893D /* SPAChangePasswordSource.m */; };
 		9B939F111BF05BEF004D893D /* SPAEditProfileSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B939F101BF05BEF004D893D /* SPAEditProfileSource.m */; };
 		9B939F131BF05C0D004D893D /* SPAEditProfileSource.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B939F121BF05C0D004D893D /* SPAEditProfileSource.json */; };
@@ -359,6 +361,9 @@
 		9B8C635E1BE7C2F60049705B /* PEResizeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PEResizeControl.m; sourceTree = "<group>"; };
 		9B8C635F1BE7C2F60049705B /* UIImage+PECrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+PECrop.h"; sourceTree = "<group>"; };
 		9B8C63601BE7C2F60049705B /* UIImage+PECrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+PECrop.m"; sourceTree = "<group>"; };
+		9B91B5851BF505B200317EDB /* AddMoreView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddMoreView.xib; sourceTree = "<group>"; };
+		9B91B5871BF541BC00317EDB /* AddMoreTimeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMoreTimeObject.h; sourceTree = "<group>"; };
+		9B91B5881BF541BC00317EDB /* AddMoreTimeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMoreTimeObject.m; sourceTree = "<group>"; };
 		9B939F0C1BF05BD8004D893D /* SPAChangePasswordSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAChangePasswordSource.h; sourceTree = "<group>"; };
 		9B939F0D1BF05BD8004D893D /* SPAChangePasswordSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPAChangePasswordSource.m; sourceTree = "<group>"; };
 		9B939F0F1BF05BEF004D893D /* SPAEditProfileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPAEditProfileSource.h; sourceTree = "<group>"; };
@@ -1050,6 +1055,7 @@
 			children = (
 				9BAD9EFA1BE0FA18004E6C7C /* AddMoreView.h */,
 				9BAD9EFB1BE0FA18004E6C7C /* AddMoreView.m */,
+				9B91B5851BF505B200317EDB /* AddMoreView.xib */,
 			);
 			name = AddMoreView;
 			sourceTree = "<group>";
@@ -1192,6 +1198,8 @@
 				9BBBFC901BE3540A00BBC6EF /* AddClassViewController.h */,
 				9BBBFC911BE3540A00BBC6EF /* AddClassViewController.m */,
 				9BBBFC921BE3540A00BBC6EF /* AddClassViewController.xib */,
+				9B91B5871BF541BC00317EDB /* AddMoreTimeObject.h */,
+				9B91B5881BF541BC00317EDB /* AddMoreTimeObject.m */,
 			);
 			name = AddClass;
 			sourceTree = "<group>";
@@ -1373,6 +1381,7 @@
 				9B8C3ACE1BEA140600BABA05 /* ClassTasksViewController.xib in Resources */,
 				9B8C3AD01BEA50F100BABA05 /* ServiceConfig.plist in Resources */,
 				9B939F151BF05C26004D893D /* SPAChangePasswordSource.json in Resources */,
+				9B91B5861BF505B200317EDB /* AddMoreView.xib in Resources */,
 				9B8C3ABC1BEA133A00BABA05 /* StudentsViewController.xib in Resources */,
 				9BBD832E1BED05BE00DA7117 /* UserImageCell.xib in Resources */,
 				9B5897A91BC7DBD8000AD6B3 /* Images.xcassets in Resources */,
@@ -1542,6 +1551,7 @@
 				9B8C3ACD1BEA140600BABA05 /* ClassTasksViewController.m in Sources */,
 				9B6A68A51BCBD9D300C284CB /* EGOImageLoadConnection.m in Sources */,
 				9BBD832D1BED05BE00DA7117 /* UserImageCell.m in Sources */,
+				9B91B5891BF541BC00317EDB /* AddMoreTimeObject.m in Sources */,
 				9B87DEAF1BEB2E2A00BA3424 /* SPALoginSource.m in Sources */,
 				9B6A68DC1BCBF9C700C284CB /* DataModel.m in Sources */,
 				9BAD9EE61BE0CE06004E6C7C /* DEMOHomeViewController.m in Sources */,

@@ -16,6 +16,7 @@
 #import "ClassSlots.h"
 #import "ClassDetailsTableViewCell.h"
 #import "TeacherDetailsTableViewCell.h"
+#import "ClassListTableViewCell.h"
 
 @interface ClassInfoViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -38,8 +39,8 @@
         [_InformationTableView setDataSource:self];
         [_InformationTableView setBackgroundColor:[UIColor clearColor]];
         
-        [_InformationTableView registerNib:[UINib nibWithNibName:@"ClassDetailsTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ClassDetailsTableViewCell"];
-        [_InformationTableView registerNib:[UINib nibWithNibName:@"TeacherDetailsTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"TeacherDetailsTableViewCell"];
+        [_InformationTableView registerNib:[UINib nibWithNibName:@"ClassListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ClassListTableViewCell"];
+        [_InformationTableView registerNib:[UINib nibWithNibName:@"ClassListTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"ClassListTableViewCell"];
         
     }
     return self;
@@ -71,44 +72,88 @@
     [HeaderView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:HeaderView];
     
-    UILabel *TitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, HeaderView.layer.frame.size.width, HeaderView.layer.frame.size.height-10)];
+    UILabel *TitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, 10, HeaderView.layer.frame.size.width, HeaderView.layer.frame.size.height-10)];
     [TitleLabel setBackgroundColor:[UIColor clearColor]];
-    [TitleLabel setTextColor:Constant.ColorSPABlackColor];
+    [TitleLabel setTextColor:Constant.ColorSPAGreyColor];
     [TitleLabel setText:(section ==0)?@"Class information":@"Teacher Contact"];
     [TitleLabel setTextAlignment:NSTextAlignmentLeft];
-    [TitleLabel setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:18.0f]];
+    [TitleLabel setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:22.0f]];
     [HeaderView addSubview:TitleLabel];
     return HeaderView;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return (section==0)?0.0f:50.0f;
+}
+
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    return [UIView new];
-}
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    id superCell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    TeacherDetailsTableViewCell *cell = (TeacherDetailsTableViewCell*)superCell;
-    ClassDetails *LocalObject = [[dataModelObj fetchedClassListWithClassId:ClassId] objectAtIndex:0];
+    UIView *FooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width-10, 50.0f)];
+    [FooterView setBackgroundColor:[UIColor clearColor]];
     
-    return [cell configureCell:LocalObject];
+    UIButton *LeaveClassButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 10, [[UIScreen mainScreen] bounds].size.width/2, 40)];
+    [LeaveClassButton setTitle:@"leave Class" forState:UIControlStateNormal];
+    [LeaveClassButton setBackgroundColor:Constant.ColorSPAGreyColor];
+    [LeaveClassButton.titleLabel setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:22.0f]];
+    [LeaveClassButton.titleLabel setTextColor:[UIColor whiteColor]];
+    [LeaveClassButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [FooterView addSubview:LeaveClassButton];
+    [LeaveClassButton setCenter:FooterView.center];
+    return (section==0)?[UIView new]:FooterView;
 }
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    id superCell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+//    TeacherDetailsTableViewCell *cell = (TeacherDetailsTableViewCell*)superCell;
+//    ClassDetails *LocalObject = [[dataModelObj fetchedClassListWithClassId:ClassId] objectAtIndex:0];
+//
+//    return [cell configureCell:LocalObject];
+//}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     if (indexPath.section == 0) {
         
-        static NSString *alphaIdentifire = @"ClassDetailsTableViewCell";
-        ClassDetailsTableViewCell *cell = (ClassDetailsTableViewCell*) [tableView dequeueReusableCellWithIdentifier:alphaIdentifire];
+        static NSString *alphaIdentifire = @"ClassListTableViewCell";
+        ClassListTableViewCell *cell = (ClassListTableViewCell*) [self.InformationTableView dequeueReusableCellWithIdentifier:alphaIdentifire forIndexPath:indexPath];
+        [cell setBackgroundColor:[UIColor clearColor]];
         if (cell == nil) {
-            cell = (ClassDetailsTableViewCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:alphaIdentifire];
+            cell = (ClassListTableViewCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:alphaIdentifire];
+            
         }
+        [self setUpCell:cell atIndexPath:indexPath];
         
+        //        [cell configureCell:LocalObject];
+        return cell;
+        
+    } else if (indexPath.section == 1) {
+        
+        static NSString *alphaIdentifire = @"ClassListTableViewCell";
+        ClassListTableViewCell *cell = (ClassListTableViewCell*) [self.InformationTableView dequeueReusableCellWithIdentifier:alphaIdentifire forIndexPath:indexPath];
+        [cell setBackgroundColor:[UIColor clearColor]];
+        if (cell == nil) {
+            cell = (ClassListTableViewCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:alphaIdentifire];
+            
+        }
+        [self setUpCell:cell atIndexPath:indexPath];
+        
+        
+        //        [cell configureCell:LocalObject];
+        return cell;
+    }
+    return nil;
+}
+- (void)setUpCell:(ClassListTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (indexPath.section == 0)
+    {
         for (id AllLabel in [cell.contentView subviews]) {
             if ([AllLabel isKindOfClass:[UILabel class]]) {
                 UILabel *AllLabelInView = (UILabel *)AllLabel;
-                [AllLabelInView setTextColor:(AllLabel == cell.ClassName)?Constant.ColorSPABlackColor:Constant.ColorSPAGreyColor];
-                [AllLabelInView setFont:(AllLabel == cell.ClassName)?[UIFont fontWithName:Constant.FontRobotoMedium size:16]:[UIFont fontWithName:Constant.FontRobotoRegular size:14]];
+                [AllLabelInView setTextColor:(AllLabel == cell.CellClassName)?Constant.ColorSPABlackColor:Constant.ColorSPAGreyColor];
+                [AllLabelInView setFont:(AllLabel == cell.CellClassName)?[UIFont fontWithName:Constant.FontRobotoMedium size:16]:[UIFont fontWithName:Constant.FontRobotoRegular size:14]];
             }
         }
         
@@ -137,22 +182,14 @@
             latdayid = [Classslots.dayId intValue];
         }
         
-        cell.ClassName.text = [LocalObject.name capitalizedString];
-        cell.ClassTeacherName.text = [NSString stringWithFormat:@"Teacher Name: %@",LocalObject.teacherFullname];
-        cell.ClassTime.text = DayString;
-        cell.ClassLocation.text = [NSString stringWithFormat:@"Location: %@",LocalObject.field_location];
-        cell.ClassSemister.text = [NSString stringWithFormat:@"Semester: %@",LocalObject.field_semester];
-        
-        [cell configureCell:LocalObject];
-        return cell;
-        
-    } else if (indexPath.section == 1) {
-        
-        static NSString *alphaIdentifire = @"TeacherDetailsTableViewCell";
-        TeacherDetailsTableViewCell *cell = (TeacherDetailsTableViewCell*) [tableView dequeueReusableCellWithIdentifier:alphaIdentifire];
-        if (cell == nil) {
-            cell = (TeacherDetailsTableViewCell *)[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:alphaIdentifire];
-        }
+        cell.CellClassName.text = [LocalObject.name capitalizedString];
+        cell.TeacherName.text = [NSString stringWithFormat:@"Teacher Name: %@",LocalObject.teacherFullname];
+        cell.CellClassTime.text = DayString;
+        cell.CellClassLocation.text = [NSString stringWithFormat:@"Location: %@",LocalObject.field_location];
+        cell.classSection.text = [NSString stringWithFormat:@"Semester: %@",LocalObject.field_semester];
+    }
+    
+    else if (indexPath.section == 1) {
         
         for (id AllLabel in [cell.contentView subviews]) {
             if ([AllLabel isKindOfClass:[UILabel class]]) {
@@ -166,16 +203,41 @@
         ClassDetails *LocalObject = [[dataModelObj fetchedClassListWithClassId:ClassId] objectAtIndex:0];
         
         cell.TeacherName.text = [LocalObject.teacherFullname capitalizedString];
-        cell.TeacherOfficeHours.text = [NSString stringWithFormat:@"Office Hours: %@",LocalObject.teacherofficehours];
-        cell.TeacherOfficeLocation.text = [NSString stringWithFormat:@"Office Location: %@",LocalObject.teacherofficeLocation];
-        cell.TeacherPhone.text = [NSString stringWithFormat:@"Phone: %@",LocalObject.techerphoneno];
-        cell.TeacherEmail.text = [NSString stringWithFormat:@"Email: %@",LocalObject.teacheremail];
+        cell.CellClassLocation.text = [NSString stringWithFormat:@"Office Hours: %@",LocalObject.teacherofficehours];
+        cell.classSection.text = [NSString stringWithFormat:@"Office Location: %@",LocalObject.teacherofficeLocation];
+        cell.CellClassTime.text = [NSString stringWithFormat:@"Phone: %@",LocalObject.techerphoneno];
+        cell.CellClassName.text = [NSString stringWithFormat:@"Email: %@",LocalObject.teacheremail];
         
-        [cell configureCell:LocalObject];
-        return cell;
     }
-    return nil;
+    
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static ClassListTableViewCell *cell = nil;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        cell = (ClassListTableViewCell*) [self.InformationTableView dequeueReusableCellWithIdentifier:@"ClassListTableViewCell" ];
+    });
+    
+    [self setUpCell:cell atIndexPath:indexPath];
+    return [self calculateHeightForConfiguredSizingCell:cell];
+}
+
+- (CGFloat)calculateHeightForConfiguredSizingCell:(ClassListTableViewCell *)sizingCell {
+    
+    CGFloat height = sizingCell.frame.size.height;
+    [sizingCell layoutIfNeeded];
+    height = sizingCell.frame.size.height;
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    //    if (size.height >= 250) {
+    //        height = size.height;
+    //    } else {
+    //        height = size.height-30;
+    //    }
+    return size.height;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 1;

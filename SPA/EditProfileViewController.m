@@ -93,7 +93,7 @@ typedef enum {
 } dataSaveOption;
 
 
-@interface EditProfileViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, PECropViewControllerDelegate,UIAlertViewDelegate>{
+@interface EditProfileViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, PECropViewControllerDelegate,UIAlertViewDelegate,UITextFieldDelegate>{
     __weak id<UIScrollViewDelegate> _scrollViewDelegate;
     __weak id<UITextFieldDelegate> _textFieldDelegate;
     UserDetails *FeatchUserdetails;
@@ -320,7 +320,7 @@ typedef enum {
         for (id AllTextFiled in [_TeacherTypeView subviews]) {
             if ([AllTextFiled isKindOfClass:[UITextField class]]) {
                 UITextField *AllTextFiledInView = (UITextField *)AllTextFiled;
-                [AllTextFiledInView setDelegate:_textFieldDelegate];
+                [AllTextFiledInView setDelegate:self];
                 [AllTextFiledInView setBorderStyle:UITextBorderStyleLine];
                 
                 UIView *LefftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, AllTextFiledInView.frame.size.height)];
@@ -339,7 +339,7 @@ typedef enum {
         for (id AllTextFiled in [_ForgetPasswordView subviews]) {
             if ([AllTextFiled isKindOfClass:[UITextField class]]) {
                 UITextField *AllTextFiledInView = (UITextField *)AllTextFiled;
-                [AllTextFiledInView setDelegate:_textFieldDelegate];
+                [AllTextFiledInView setDelegate:self];
                 [AllTextFiledInView setBorderStyle:UITextBorderStyleLine];
                 
                 UIView *LefftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, AllTextFiledInView.frame.size.height)];
@@ -854,6 +854,7 @@ typedef enum {
                             [super ShowAletviewWIthTitle:@"Sorry" Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                         } else {
                             [super ShowAletviewWIthTitle:@"Success" Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"profiledatachanged" object:[NSString stringWithFormat:@"%@||%@",UIImageJPEGRepresentation(self.imageViewOne.image, 0.7),[Constant CleanTextField:_TeacherNameTextfield.text]]];
                         }
                     }
                     _DataSaveOption = dataSaveOptionNone;
@@ -889,6 +890,7 @@ typedef enum {
                             [super ShowAletviewWIthTitle:@"Sorry" Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                         } else {
                             [super ShowAletviewWIthTitle:@"Success" Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"profiledatachanged" object:[NSString stringWithFormat:@"%@||%@",UIImageJPEGRepresentation(self.imageView.image, 0.7),[Constant CleanTextField:_TeacherNameTextfield.text]]];
                         }
                     }
                     _DataSaveOption = dataSaveOptionNone;
@@ -949,6 +951,77 @@ typedef enum {
 }
 -(void)GotoViewProfile {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - UITextfield Delegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return YES;
+}
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    for (id AllSubview in [_TeacherTypeView subviews]) {
+        if ([AllSubview isKindOfClass:[UITextField class]]) {
+            UITextField *LocalObject = (UITextField *)AllSubview;
+            [LocalObject resignFirstResponder];
+        }
+    }
+    for (id AllSubview in [_StudentTypeView subviews]) {
+        if ([AllSubview isKindOfClass:[UITextField class]]) {
+            UITextField *LocalObject = (UITextField *)AllSubview;
+            [LocalObject resignFirstResponder];
+        }
+    }
+    for (id AllSubview in [_ForgetPasswordView subviews]) {
+        if ([AllSubview isKindOfClass:[UITextField class]]) {
+            UITextField *LocalObject = (UITextField *)AllSubview;
+            [LocalObject resignFirstResponder];
+        }
+    }
+    return YES;
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    for (id AllSubview in [_TeacherTypeView subviews]) {
+        if ([AllSubview isKindOfClass:[UITextField class]]) {
+            UITextField *LocalObject = (UITextField *)AllSubview;
+            [LocalObject resignFirstResponder];
+        }
+    }
+    for (id AllSubview in [_StudentTypeView subviews]) {
+        if ([AllSubview isKindOfClass:[UITextField class]]) {
+            UITextField *LocalObject = (UITextField *)AllSubview;
+            [LocalObject resignFirstResponder];
+        }
+    }
+    for (id AllSubview in [_ForgetPasswordView subviews]) {
+        if ([AllSubview isKindOfClass:[UITextField class]]) {
+            UITextField *LocalObject = (UITextField *)AllSubview;
+            [LocalObject resignFirstResponder];
+        }
+    }
+    return YES;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField;
+{
+    for (id AllSubview in [_TeacherTypeView subviews]) {
+        if ([AllSubview isKindOfClass:[UITextField class]]) {
+            UITextField *LocalObject = (UITextField *)AllSubview;
+            [LocalObject resignFirstResponder];
+        }
+    }
+    for (id AllSubview in [_StudentTypeView subviews]) {
+        if ([AllSubview isKindOfClass:[UITextField class]]) {
+            UITextField *LocalObject = (UITextField *)AllSubview;
+            [LocalObject resignFirstResponder];
+        }
+    }
+    for (id AllSubview in [_ForgetPasswordView subviews]) {
+        if ([AllSubview isKindOfClass:[UITextField class]]) {
+            UITextField *LocalObject = (UITextField *)AllSubview;
+            [LocalObject resignFirstResponder];
+        }
+    }
 }
 
 #pragma mark - Memory Warning
