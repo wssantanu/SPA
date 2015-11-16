@@ -558,11 +558,21 @@ BOOL ISValidated = YES;
                 AddMoreView *moreView = [[AddMoreView alloc] initWithFrame:CGRectMake(5, _MainScrollView.contentSize.height-(AddmoreViewHeight+80), _MainScrollView.contentSize.width-5, AddmoreViewHeight-15) WithTag:[[DataObjectArray objectAtIndex:rr] intValue] WithDeleteButtonTag:(int)DeleteButtonAddTag WithSelecter:@selector(deletedata:)];
                 [_MainScrollView addSubview:moreView];
                 
+                //NSLog(@"[DataObjectArray objectAtIndex:rr] ====> %@",[DataObjectArray objectAtIndex:rr]);
+                
                 UITextField *StartDateTextField = (UITextField *)[moreView viewWithTag:165];
                 UITextField *EndDateTextField = (UITextField *)[moreView viewWithTag:166];
                 
+//                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"addMoreviewTag CONTAINS[cd] %@",[NSString stringWithFormat:@"%@",[DataObjectArray objectAtIndex:rr]]];
+//                NSArray * filterdArray = [_GlobalTimeValArray filteredArrayUsingPredicate:predicate];
+                
+//                NSLog(@"filterdArray ===> %@",filterdArray);
+                
                 NSMutableDictionary *LocalObject = [[NSMutableDictionary alloc] init];
                 [LocalObject setObject:[DataObjectArray objectAtIndex:rr] forKey:@"addMoreviewTag"];
+                [LocalObject setObject:@"00:00 AM" forKey:@"startTime"];
+                [LocalObject setObject:@"00:00 AM" forKey:@"endTime"];
+                
                 [StartDateTextField setText:@"00:00 AM"];
                 [EndDateTextField setText:@"00:00 AM"];
                 [_GlobalTimeValArray addObject:LocalObject];
