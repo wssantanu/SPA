@@ -847,13 +847,13 @@ typedef enum {
                     [_ActivityIndicator hide:YES];
                     if (errorString) {
                         if (errorString.length>0) {
-                            [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                            [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                         }
                     } else {
                         if ([[data objectForKey:@"error"] intValue] == 1) {
-                            [super ShowAletviewWIthTitle:@"Sorry" Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                            [super ShowAletviewWIthTitle:AlertTitle Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                         } else {
-                            [super ShowAletviewWIthTitle:@"Success" Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                            [super ShowAletviewWIthTitle:AlertTitle Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"profiledatachanged" object:[NSString stringWithFormat:@"%@||%@",UIImageJPEGRepresentation(self.imageViewOne.image, 0.7),[Constant CleanTextField:_TeacherNameTextfield.text]]];
                         }
                     }
@@ -883,13 +883,13 @@ typedef enum {
                     [_ActivityIndicator hide:YES];
                     if (errorString) {
                         if (errorString.length>0) {
-                            [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                            [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                         }
                     } else {
                         if ([[data objectForKey:@"error"] intValue] == 1) {
-                            [super ShowAletviewWIthTitle:@"Sorry" Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                            [super ShowAletviewWIthTitle:AlertTitle Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                         } else {
-                            [super ShowAletviewWIthTitle:@"Success" Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                            [super ShowAletviewWIthTitle:AlertTitle Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"profiledatachanged" object:[NSString stringWithFormat:@"%@||%@",UIImageJPEGRepresentation(self.imageView.image, 0.7),[Constant CleanTextField:_TeacherNameTextfield.text]]];
                         }
                     }
@@ -920,13 +920,13 @@ typedef enum {
             [_ActivityIndicator hide:YES];
             if (errorString) {
                 if (errorString.length>0) {
-                    [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 }
             } else {
                 if ([[data objectForKey:@"error"] intValue] == 1) {
-                    [super ShowAletviewWIthTitle:@"Sorry" Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    [super ShowAletviewWIthTitle:AlertTitle Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 } else {
-                    [super ShowAletviewWIthTitle:@"Success" Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    [super ShowAletviewWIthTitle:AlertTitle Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 }
             }
             _DataSaveOption = dataSaveOptionNone;

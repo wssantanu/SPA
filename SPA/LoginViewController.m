@@ -172,13 +172,13 @@ bool isTesting = YES;
     BOOL validate = YES;
     
     if ([Constant CleanTextField:_LoginEmailTextFiled.text].length == 0) {
-        [super ShowAletviewWIthTitle:@"Sorry" Tag:777 Message:@"Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        [super ShowAletviewWIthTitle:AlertTitle Tag:777 Message:@"Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     } else if (![Constant ValidateEmail:[Constant CleanTextField:_LoginEmailTextFiled.text]]) {
-        [super ShowAletviewWIthTitle:@"Sorry" Tag:778 Message:@"Proper Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        [super ShowAletviewWIthTitle:AlertTitle Tag:778 Message:@"Proper Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     } else if ([Constant CleanTextField:_LoginPasswordTextFiled.text].length== 0) {
-        [super ShowAletviewWIthTitle:@"Sorry" Tag:779 Message:@"Password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        [super ShowAletviewWIthTitle:AlertTitle Tag:779 Message:@"Password please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     }
     return validate;
@@ -204,7 +204,7 @@ bool isTesting = YES;
             [_ActivityIndicator hide:YES];
             if (errorString) {
                 if (errorString.length>0) {
-                    [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 }
             } else {
                 [MainDelegate SetupAfterLoginMenu];

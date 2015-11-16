@@ -33,7 +33,7 @@
 	<key>Class_Edit</key>
 	<string>uid,cid,class_name,color_code,teacher_name,location,section,semester,start_date,end_date,time_slots </string>
 	<key>Class_Create</key>
-	<string></string>
+	<string>uid,class_name,color_code,teacher_name,location,section,semester,start_date,end_date,time_slots</string>
 	<key>User_Registration</key>
 	<string>role_id,file_image_ext,email,password,userfullname,schoolname,officelocation,phone_no,keep_login,recieve_mail,office_hours,file_image_data</string>
 	<key>logout</key>

@@ -139,10 +139,10 @@
     BOOL validate = YES;
     
     if ([Constant CleanTextField:_FPEmailTextFiled.text].length == 0) {
-        [super ShowAletviewWIthTitle:@"Sorry" Tag:777 Message:@"Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        [super ShowAletviewWIthTitle:AlertTitle Tag:777 Message:@"Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     } else if (![Constant ValidateEmail:[Constant CleanTextField:_FPEmailTextFiled.text]]) {
-        [super ShowAletviewWIthTitle:@"Sorry" Tag:778 Message:@"Proper Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        [super ShowAletviewWIthTitle:AlertTitle Tag:778 Message:@"Proper Email please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     }
     return validate;
@@ -164,13 +164,13 @@
             [_ActivityIndicator hide:YES];
             if (errorString) {
                 if (errorString.length>0) {
-                    [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 }
             } else {
                 if ([[data objectForKey:@"error"] intValue] == 1) {
-                     [super ShowAletviewWIthTitle:@"Sorry" Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                     [super ShowAletviewWIthTitle:AlertTitle Tag:781 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 } else {
-                     [super ShowAletviewWIthTitle:@"Success" Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                     [super ShowAletviewWIthTitle:AlertTitle Tag:782 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 }
             }
         };

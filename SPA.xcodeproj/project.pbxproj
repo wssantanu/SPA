@@ -1636,8 +1636,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Varun Kashiv (6VPTTFVG48)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Varun Kashiv (6VPTTFVG48)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Web Spiders Inc. (FGJKAF29S5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Web Spiders Inc. (FGJKAF29S5)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1656,10 +1656,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "79a59e7d-472c-44e8-88aa-8e131a169656";
+				PROVISIONING_PROFILE = "e24686b9-c3ce-4fe1-979a-f940393edfdc";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1681,8 +1681,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Varun Kashiv (6VPTTFVG48)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Varun Kashiv (6VPTTFVG48)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Web Spiders Inc. (FGJKAF29S5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Web Spiders Inc. (FGJKAF29S5)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1695,9 +1695,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "79a59e7d-472c-44e8-88aa-8e131a169656";
+				PROVISIONING_PROFILE = "e24686b9-c3ce-4fe1-979a-f940393edfdc";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1708,14 +1708,14 @@
 			baseConfigurationReference = 7FC3E01A75B814B54E3721EB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Varun Kashiv (6VPTTFVG48)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Varun Kashiv (6VPTTFVG48)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Web Spiders Inc. (FGJKAF29S5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Web Spiders Inc. (FGJKAF29S5)";
 				GCC_PREFIX_HEADER = SPA/PrefixHeader.pch;
 				INFOPLIST_FILE = SPA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "79a59e7d-472c-44e8-88aa-8e131a169656";
+				PROVISIONING_PROFILE = "e24686b9-c3ce-4fe1-979a-f940393edfdc";
 			};
 			name = Debug;
 		};
@@ -1724,14 +1724,14 @@
 			baseConfigurationReference = 1F1AB8C039E5FF0AD81993B2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Varun Kashiv (6VPTTFVG48)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Varun Kashiv (6VPTTFVG48)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Web Spiders Inc. (FGJKAF29S5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Web Spiders Inc. (FGJKAF29S5)";
 				GCC_PREFIX_HEADER = SPA/PrefixHeader.pch;
 				INFOPLIST_FILE = SPA/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "79a59e7d-472c-44e8-88aa-8e131a169656";
+				PROVISIONING_PROFILE = "e24686b9-c3ce-4fe1-979a-f940393edfdc";
 			};
 			name = Release;
 		};

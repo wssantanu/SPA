@@ -1,4 +1,4 @@
-//
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         //
 //  AddClassViewController.m
 //  SPA
 //
@@ -71,6 +71,7 @@ typedef enum {
 @property (nonatomic,retain) IBOutlet UIView *FooerView;
 @property (nonatomic,retain) UITapGestureRecognizer *singleFingerTap;
 @property (nonatomic,retain) MBProgressHUD *ActivityIndicator;
+@property (nonatomic,retain) NSString *TimeSlotString;
 @end
 
 @implementation AddClassViewController
@@ -102,13 +103,10 @@ BOOL ISValidated = YES;
     _FeatchUserdetails = [dataModelObj fetchCurrentUser];
     
     _GlobalTagArray = [[NSMutableArray alloc] initWithObjects:[[NSMutableArray alloc] initWithObjects:@1557, nil],[[NSMutableArray alloc] initWithObjects:@1558, nil],[[NSMutableArray alloc] initWithObjects:@1559, nil],[[NSMutableArray alloc] initWithObjects:@1560, nil],[[NSMutableArray alloc] initWithObjects:@1561, nil],[[NSMutableArray alloc] initWithObjects:@1562, nil],[[NSMutableArray alloc] initWithObjects:@1563, nil], nil];
+    
     _GlobalTimeValArray = [[NSMutableArray alloc] init];
     
-    for (int isx = 1557; isx<=1563; isx++)
-    {
-        AddMoreTimeObject *LocalTimeObject = [[AddMoreTimeObject alloc] initWithViewtag:[NSString stringWithFormat:@"%d",isx] StartTime:@"" EndTime:@""];
-        [_GlobalTimeValArray addObject:LocalTimeObject];
-    }
+    _TimeSlotString = @"sun=>00:00 AM*00:00 AM||mon=>00:00 AM*00:00 AM||tues=>00:00 AM*00:00 AM||wed=>00:00 AM*00:00 AM||th=>00:00 AM*00:00 AM||fri=>00:00 AM*00:00 AM||sat=>00:00 AM*00:00 AM";
     
     [self CustomizeHeaderwithTitle:@"add class" WithFontName:Constant.FontRobotoMedium WithFontSize:32 withButton:NO withSelecter:nil WithButtonBgImage:nil];
     
@@ -202,7 +200,6 @@ BOOL ISValidated = YES;
     
     NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *color){
         [UIView animateWithDuration:1.2 animations:^(void){
-            NSLog(@"color ===> %@",[self hexStringFromColor:color]);
             [_ColorView setBackgroundColor:color];
         } completion:nil];
     };
@@ -217,45 +214,9 @@ BOOL ISValidated = YES;
     _singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
     [_singleFingerTap setNumberOfTapsRequired:1];
     [_MainScrollView setUserInteractionEnabled:YES];
-   // [self.view addGestureRecognizer:_singleFingerTap];
     
     [_FooerView setFrame:CGRectMake(0, _MainScrollView.frame.size.height-115, _AddClassClassTeacherNameTextField.frame.size.width+20, 180)];
     [_MainScrollView addSubview:_FooerView];
-    
-    
-//    _addAnotherButton = [[UIButton alloc] initWithFrame:CGRectMake(10, _MainScrollView.frame.size.height-115, [[UIScreen mainScreen] bounds].size.width-(MenuWidth+10), 40)];
-//    [_addAnotherButton setBackgroundColor:[UIColor clearColor]];
-//    [_addAnotherButton addTarget:self action:@selector(adddata) forControlEvents:UIControlEventTouchUpInside];
-//    [_MainScrollView addSubview:_addAnotherButton];
-//    
-//    _addAnotherLineLabel=[[UILabel alloc]initWithFrame:CGRectMake(40, _MainScrollView.frame.size.height-115,[[UIScreen mainScreen] bounds].size.width-(MenuWidth+40),26)];
-//    [_addAnotherLineLabel setBackgroundColor:[UIColor clearColor]];
-//    [_addAnotherLineLabel setText:@"Add another time?"];
-//    [_addAnotherLineLabel setTextColor:[UIColor blackColor]];
-//    [_addAnotherLineLabel setTextAlignment:NSTextAlignmentLeft];
-//    [_MainScrollView addSubview:_addAnotherLineLabel];
-////
-//    _checkBox =[[UIImageView alloc] initWithFrame:CGRectMake(0,7,15,15)];
-//    _checkBox.image=[UIImage imageNamed:@"checkbox_normal"];
-//    [_addAnotherButton addSubview:_checkBox];
-////
-//    _addLine=[[UILabel alloc]initWithFrame:CGRectMake(10, _MainScrollView.frame.size.height-70, [[UIScreen mainScreen] bounds].size.width-(MenuWidth+20), 1)];
-//    [_addLine setBackgroundColor:[UIColor blackColor]];
-//    [_MainScrollView addSubview:_addLine];
-////
-//    _SaveButton = [[UIButton alloc] initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width/2-35, _MainScrollView.frame.size.height-50, ([[UIScreen mainScreen] bounds].size.width-MenuWidth)/2-10, 50)];
-//    [_SaveButton setBackgroundColor:[UIColor blackColor]];
-//    [_SaveButton setTitle:@"Save" forState:UIControlStateNormal];
-//    [_SaveButton addTarget:self action:@selector(saveButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [_MainScrollView addSubview:_SaveButton];
-//    
-//    NSLog(@"_MainScrollView.contentSize.width ===%f ====== %f",_MainScrollView.contentSize.width,[[UIScreen mainScreen] bounds].size.width);
-////
-//    _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(10, _MainScrollView.frame.size.height-50,([[UIScreen mainScreen] bounds].size.width-MenuWidth)/2-10, 50)];
-//    [_cancelButton setBackgroundColor:[UIColor blackColor]];
-//    [_cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
-//    [_cancelButton addTarget:self action:@selector(cancelButton:) forControlEvents:UIControlEventTouchUpInside];
-//    [_MainScrollView addSubview:_cancelButton];
     
     segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Sun", @"Mon", @"Tues",@"Wed",@"Th",@"Fri",@"Sat"]];
     [segmentedControl1 setBackgroundColor:[UIColor blackColor]];
@@ -278,69 +239,6 @@ BOOL ISValidated = YES;
     
     [self segmentedControlChangedValue:segmentedControl1];
     
-   /** SaveButton = [[UIButton alloc] initWithFrame:CGRectMake(10, _MainScrollView.frame.size.height-50, _MainScrollView.frame.size.width-20, 40)];
-    [SaveButton setBackgroundColor:[UIColor greenColor]];
-    [SaveButton setTitle:@"Save" forState:UIControlStateNormal];
-    [_MainScrollView addSubview:SaveButton];
-    
-    segmentedControl1 = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Sun", @"Mon", @"Tues",@"Wed",@"Th",@"Fri",@"Sat"]];
-    [segmentedControl1 setBackgroundColor:[UIColor blackColor]];
-    segmentedControl1.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleWidth;
-    segmentedControl1.frame = CGRectMake(0, 0, _MainScrollView.frame.size.width, 40);
-    segmentedControl1.segmentEdgeInset = UIEdgeInsetsMake(0, 10, 0, 10);
-    segmentedControl1.selectionStyle = HMSegmentedControlSelectionStyleBox;
-    segmentedControl1.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationNone;
-    segmentedControl1.verticalDividerEnabled = YES;
-    segmentedControl1.selectionIndicatorColor = [UIColor yellowColor];
-    segmentedControl1.selectionIndicatorBoxOpacity = 0.8f;
-    segmentedControl1.verticalDividerColor = [UIColor whiteColor];
-    segmentedControl1.verticalDividerWidth = 1.0f;
-    [segmentedControl1 setTitleFormatter:^NSAttributedString *(HMSegmentedControl *segmentedControl, NSString *title, NSUInteger index, BOOL selected) {
-        NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-        return attString;
-    }];
-    [segmentedControl1 addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-    [_MainScrollView addSubview:segmentedControl1];
-    [self segmentedControlChangedValue:segmentedControl1];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewAddedWithResponce) name:AddViewNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewDeletedWithResponceWithObject:) name:DeleteViewNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextfiledStartEditingNotificationWithObject:) name:TextfiledStartEditingNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextfiledEndEditingNotificationWithObject:) name:TextfiledEndEditingNotification object:nil];
-    
-    scrollViewBasicHeight   = _MainScrollView.contentSize.height;
-    saveButtonYposition     = SaveButton.frame.origin.y;
-    
-    //Color did change block declaration
-   
-    NKOColorPickerDidChangeColorBlock colorDidChangeBlock = ^(UIColor *color){
-        
-        [UIView animateWithDuration:1.2 animations:^(void){
-            
-            NSLog(@"color ===> %@",[self hexStringFromColor:color]);
-            [_ColorView setBackgroundColor:color];
-            
-        } completion:nil];
-    };
-    
-    _colorPickerView = [[NKOColorPickerView alloc] initWithFrame:CGRectMake(80, _MainScrollView.frame.origin.y+100, _MainScrollView.contentSize.width, 390) color:[UIColor redColor] andDidChangeColorBlock:colorDidChangeBlock];
-    [self.view addSubview:_colorPickerView];
-    
-    _ColorView = [[UIView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width-60, _MainScrollView.frame.origin.y+60,40, 40)];
-    [_ColorView setBackgroundColor:[UIColor blueColor]];
-    [self.view addSubview:_ColorView];
-    //[_ColorView setHidden:YES];
-    [_colorPickerView setHidden:YES];
-    
-    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openDateSelectionController:)];
-    [singleFingerTap setNumberOfTapsRequired:1];
-    [_ColorView setUserInteractionEnabled:YES];
-    [_ColorView addGestureRecognizer:singleFingerTap];
-    
-    UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"popup test" message:@"popup test mesage" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-    [a show];
-    **/
-    
     _addAnotherButton = (UIButton *)[_FooerView viewWithTag:261];
     [_addAnotherButton addTarget:self action:@selector(adddata) forControlEvents:UIControlEventTouchUpInside];
     
@@ -350,8 +248,6 @@ BOOL ISValidated = YES;
     _SaveButton = (UIButton *)[_FooerView viewWithTag:263];
     [_SaveButton addTarget:self action:@selector(savedata) forControlEvents:UIControlEventTouchUpInside];
     
-//    [_MainScrollView bringSubviewToFront:_FooerView];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewAddedWithResponce) name:AddViewNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewDeletedWithResponceWithObject:) name:DeleteViewNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(TextfiledStartEditingNotificationWithObject:) name:TextfiledStartEditingNotification object:nil];
@@ -360,16 +256,18 @@ BOOL ISValidated = YES;
 
 -(void)CancelOperation
 {
-     NSLog(@"CancelOperation");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)savedata
 {
-    if ([self CheckTimeValidation]) {
-        
-        if ([self ValidateLoginForm]) {
-            
+   // NSString *ConvertTimeToString = [self ConvertTimeToString];
+    
+    
+//    if ([self CheckTimeValidation]) {
+//        
+//        if ([self ValidateLoginForm]) {
+    
             SPAAddClassCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
                 
                 NSLog(@"data ==%@ ",data);
@@ -384,25 +282,40 @@ BOOL ISValidated = YES;
                 }
             };
             
+            // uid,cid,class_name,color_code,teacher_name,location,section,semester,start_date,end_date,time_slots
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+    
+            NSDate *Startdate = [dateFormatter dateFromString: [Constant CleanTextField:_AddClassClassStartDateTextField.text]];
+            NSDate *Enddate = [dateFormatter dateFromString: [Constant CleanTextField:_AddClassClassEndDateTextField.text]];
+            dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            
+            NSString *convertedStringStartdate = [dateFormatter stringFromDate:Startdate];
+            NSString *convertedStringEnddate = [dateFormatter stringFromDate:Enddate];
+            
             SPAAddClassSource * source = [SPAAddClassSource addClassSource];
-            [source saveClassDetails:[NSArray new] completion:completionBlock];
+            [source saveClassDetails:[[NSArray alloc] initWithObjects:[NSString stringWithFormat:@"%@",[_FeatchUserdetails uid]],[Constant CleanTextField:_AddClassClassNameTextField.text],[NSString stringWithFormat:@"#%@",[self hexStringFromColor:_ColorView.backgroundColor]],[_FeatchUserdetails uid],[Constant CleanTextField:_AddClassClassLocationTextField.text],[Constant CleanTextField:_AddClassClassSectionTextField.text],[Constant CleanTextField:_AddClassClassSemesterTextField.text],convertedStringStartdate,convertedStringEnddate,@"sun- 8:00 AM -9:00 PM,2:30 AM-9:30 PM|| mon -6:00 AM - 9:00PM", nil] completion:completionBlock];
             
             _ActivityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
             [_ActivityIndicator setOpacity:1.0];
             [_ActivityIndicator show:NO];
             _ActivityIndicator.labelText = @"Loading";
-        }
-        
-    } else {
-        UIAlertView *ErrorAlert = [[UIAlertView alloc] initWithTitle:AlertTitle message:@"Start time and end time not valied" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [ErrorAlert show];
-    }
+       // }
+//        
+//    } else {
+//        UIAlertView *ErrorAlert = [[UIAlertView alloc] initWithTitle:AlertTitle message:@"Start time and end time not valied" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//        [ErrorAlert show];
+//    }
 }
+
 
 -(void)OpendatePickerDateOption
 {
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
+        
         NSLog(@"Successfully selected date: %@", ((UIDatePicker *)controller.contentView).date);
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -577,19 +490,19 @@ BOOL ISValidated = YES;
     BOOL validate = YES;
     
     if ([Constant CleanTextField:_AddClassClassNameTextField.text].length == 0) {
-        [super ShowAletviewWIthTitle:@"Sorry" Tag:777 Message:@"Class name please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        [super ShowAletviewWIthTitle:AlertTitle Tag:777 Message:@"Class name please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
-    } else if (![Constant ValidateEmail:[Constant CleanTextField:_AddClassClassLocationTextField.text]]) {
-        [super ShowAletviewWIthTitle:@"Sorry" Tag:778 Message:@"Class location please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+    } else if ([Constant CleanTextField:_AddClassClassLocationTextField.text].length== 0) {
+        [super ShowAletviewWIthTitle:AlertTitle Tag:778 Message:@"Class location please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     } else if ([Constant CleanTextField:_AddClassClassSemesterTextField.text].length== 0) {
-        [super ShowAletviewWIthTitle:@"Sorry" Tag:779 Message:@"Semester please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        [super ShowAletviewWIthTitle:AlertTitle Tag:779 Message:@"Semester please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     } else if ([Constant CleanTextField:_AddClassClassStartDateTextField.text].length== 0) {
-        [super ShowAletviewWIthTitle:@"Sorry" Tag:779 Message:@"Start date please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:@"Start date please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     } else if ([Constant CleanTextField:_AddClassClassEndDateTextField.text].length== 0) {
-        [super ShowAletviewWIthTitle:@"Sorry" Tag:779 Message:@"End date please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+        [super ShowAletviewWIthTitle:AlertTitle Tag:781 Message:@"End date please" CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
         validate = NO;
     }
     return validate;
@@ -638,13 +551,21 @@ BOOL ISValidated = YES;
         {
             for (int rr = 0 ; rr<[[_GlobalTagArray objectAtIndex:_Weakdaytype] count]; rr++)
             {
-                
                 NSMutableArray *DataObjectArray = [_GlobalTagArray objectAtIndex:_Weakdaytype];
                 
                 _AditionType = aditionTypeSegment;
                 
                 AddMoreView *moreView = [[AddMoreView alloc] initWithFrame:CGRectMake(5, _MainScrollView.contentSize.height-(AddmoreViewHeight+80), _MainScrollView.contentSize.width-5, AddmoreViewHeight-15) WithTag:[[DataObjectArray objectAtIndex:rr] intValue] WithDeleteButtonTag:(int)DeleteButtonAddTag WithSelecter:@selector(deletedata:)];
                 [_MainScrollView addSubview:moreView];
+                
+                UITextField *StartDateTextField = (UITextField *)[moreView viewWithTag:165];
+                UITextField *EndDateTextField = (UITextField *)[moreView viewWithTag:166];
+                
+                NSMutableDictionary *LocalObject = [[NSMutableDictionary alloc] init];
+                [LocalObject setObject:[DataObjectArray objectAtIndex:rr] forKey:@"addMoreviewTag"];
+                [StartDateTextField setText:@"00:00 AM"];
+                [EndDateTextField setText:@"00:00 AM"];
+                [_GlobalTimeValArray addObject:LocalObject];
                 
                 CGRect frame         = _FooerView.frame;
                 frame.origin.y       = _MainScrollView.contentSize.height-AddmoreViewHeight;
@@ -653,6 +574,7 @@ BOOL ISValidated = YES;
                 [_MainScrollView setContentSize:CGSizeMake(_MainScrollView.contentSize.width,_MainScrollView.contentSize.height+AddmoreViewHeight)];
             }
         }
+    
         _AditionType = aditionTypenormal;
 //    } else {
 //        UIAlertView *ErrorAlert = [[UIAlertView alloc] initWithTitle:AlertTitle message:@"Start time and end time not valied" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
@@ -699,8 +621,6 @@ BOOL ISValidated = YES;
 {
     _Buttonrepostiontype = buttonrepostiontypeup;
     
-    NSLog(@"ObjectArray after deletion %@",_GlobalTagArray);
-    
     for (id AllsubView in [_MainScrollView subviews])
     {
         if ([AllsubView isKindOfClass:[AddMoreView class]])
@@ -722,9 +642,22 @@ BOOL ISValidated = YES;
     _Buttonrepostiontype = buttonrepostiontypeup;
     
     NSMutableArray *ObjectArray = [_GlobalTagArray objectAtIndex:_Weakdaytype];
-    [ObjectArray removeObject:[NSString stringWithFormat:@"%d",(int)Selecter.tag-(int)DeleteButtonAddTag]];
     
-    NSLog(@"ObjectArray after deletion %@",_GlobalTagArray);
+    NSString *deleteViewTag = [NSString stringWithFormat:@"%d",(int)Selecter.tag-(int)DeleteButtonAddTag];
+    
+    NSMutableArray *tempArray = [_GlobalTimeValArray mutableCopy];
+    
+    for (id ChildDictionary in _GlobalTimeValArray) {
+        
+        if ([[ChildDictionary objectForKey:@"addMoreviewTag"] intValue] == (int)Selecter.tag-(int)DeleteButtonAddTag) {
+            
+            [tempArray removeObject:ChildDictionary];
+        }
+    }
+    
+    _GlobalTimeValArray = tempArray;
+    
+    [ObjectArray removeObject:deleteViewTag];
     
     for (id AllsubView in [_MainScrollView subviews])
     {
@@ -744,13 +677,13 @@ BOOL ISValidated = YES;
 
 -(void)adddata
 {
-    if ([self CheckTimeValidation]) {
+    //if ([self CheckTimeValidation]) {
         _Buttonrepostiontype = buttonrepostiontypedown;
         [self RepositioningScroollView];
-    } else {
-        UIAlertView *ErrorAlert = [[UIAlertView alloc] initWithTitle:AlertTitle message:@"Start time and end time not valied" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [ErrorAlert show];
-    }
+//    } else {
+//        UIAlertView *ErrorAlert = [[UIAlertView alloc] initWithTitle:AlertTitle message:@"Start time and end time not valied" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+//        [ErrorAlert show];
+//    }
 }
 
 -(BOOL)CheckTimeValidation
@@ -789,12 +722,12 @@ BOOL ISValidated = YES;
             }
         }
     }
-    //ISValidated=YES;
     return (ISValidated)?YES:NO;
 }
 
 -(void)RepositioningScroollView
 {
+    
     if (_Buttonrepostiontype == buttonrepostiontypedown)
     {
         [_MainScrollView addSubview:[self AddMoreViewWithYpostion:_MainScrollView.contentSize.height-(AddmoreViewHeight+85)]];
@@ -806,31 +739,6 @@ BOOL ISValidated = YES;
     
      [_MainScrollView setContentSize:CGSizeMake(_MainScrollView.frame.size.width, (_Buttonrepostiontype == buttonrepostiontypedown)?(_MainScrollView.contentSize.height+AddmoreViewHeight):(_MainScrollView.contentSize.height-AddmoreViewHeight))];
     
-    /**CGRect frame_addAnotherButton         = _addAnotherButton.frame;
-    frame_addAnotherButton.origin.y       = (_Buttonrepostiontype == buttonrepostiontypedown)?frame_addAnotherButton.origin.y+AddmoreViewHeight:frame_addAnotherButton.origin.y-AddmoreViewHeight;
-    _addAnotherButton.frame     = frame_addAnotherButton;
-    
-    CGRect frame_addAnotherLineLabel         = _addAnotherLineLabel.frame;
-    frame_addAnotherLineLabel.origin.y       = (_Buttonrepostiontype == buttonrepostiontypedown)?frame_addAnotherLineLabel.origin.y+AddmoreViewHeight:frame_addAnotherLineLabel.origin.y-AddmoreViewHeight;
-    _addAnotherLineLabel.frame     = frame_addAnotherLineLabel;
-    
-    CGRect frame_checkBox         = _checkBox.frame;
-    frame_checkBox.origin.y       = (_Buttonrepostiontype == buttonrepostiontypedown)?frame_checkBox.origin.y+AddmoreViewHeight:frame_checkBox.origin.y-AddmoreViewHeight;
-    _checkBox.frame     = frame_checkBox;
-    
-    CGRect frame_addLine         = _addLine.frame;
-    frame_addLine.origin.y       = (_Buttonrepostiontype == buttonrepostiontypedown)?frame_addLine.origin.y+AddmoreViewHeight:frame_addLine.origin.y-AddmoreViewHeight;
-    _addLine.frame     = frame_addLine;
-    
-    CGRect frame_SaveButton         = _SaveButton.frame;
-    frame_SaveButton.origin.y       = (_Buttonrepostiontype == buttonrepostiontypedown)?frame_SaveButton.origin.y+AddmoreViewHeight:frame_SaveButton.origin.y-AddmoreViewHeight;
-    _SaveButton.frame     = frame_SaveButton;
-    
-    CGRect frame_cancelButton         = _cancelButton.frame;
-    frame_cancelButton.origin.y       = (_Buttonrepostiontype == buttonrepostiontypedown)?frame_cancelButton.origin.y+AddmoreViewHeight:frame_cancelButton.origin.y-AddmoreViewHeight;
-    _cancelButton.frame     = frame_cancelButton;
-     **/
-    
     _Buttonrepostiontype = buttonrepostiontypenone;
     
 }
@@ -838,23 +746,31 @@ BOOL ISValidated = YES;
 -(UIView *)AddMoreViewWithYpostion:(float)Yposition
 {
     AddMoreView *moreView = [[AddMoreView alloc] initWithFrame:CGRectMake(0, Yposition, _MainScrollView.contentSize.width, AddmoreViewHeight-15) WithTag:(int)addMoreViewTag WithDeleteButtonTag:(int)DeleteButtonAddTag WithSelecter:@selector(deletedata:)];
+    
+    /**
+     *  Add more data in object
+     */
+    
+    NSMutableDictionary *LocalObject = [[NSMutableDictionary alloc] init];
+    [LocalObject setObject:[NSString stringWithFormat:@"%d",addMoreViewTag-1] forKey:@"addMoreviewTag"];
+    [LocalObject setObject:@"00:00 AM" forKey:@"startTime"];
+    [LocalObject setObject:@"00:00 AM" forKey:@"endTime"];
+    
+    [_GlobalTimeValArray addObject:LocalObject];
+    
     return moreView;
 }
 
 -(void)ViewAddedWithResponce
 {
-    
     if (_AditionType == aditionTypenormal) {
         
         NSMutableArray *ObjectArray = [_GlobalTagArray objectAtIndex:_Weakdaytype];
         [ObjectArray addObject:[NSString stringWithFormat:@"%d",addMoreViewTag]];
         
-         NSLog(@"ObjectArray after addition %@",_GlobalTagArray);
-        
         addMoreViewTag = addMoreViewTag +1;
     } else {
         _AditionType = aditionTypenormal;
-        NSLog(@"ObjectArray after addition %@",_GlobalTagArray);
     }
 }
 
@@ -873,10 +789,9 @@ BOOL ISValidated = YES;
 -(void)startTimeMathodWithTextField:(NSArray *)SplitedArray
 {
     AddMoreView *AddmoreView = (AddMoreView *)[_MainScrollView viewWithTag:[[SplitedArray objectAtIndex:0] intValue]];
-    //[AddmoreView setBackgroundColor:[UIColor orangeColor]];
+    
     UITextField *StartDateTextField = (UITextField *)[AddmoreView viewWithTag:165];
     UITextField *EndDateTextField = (UITextField *)[AddmoreView viewWithTag:166];
-    //_MainScrollView.backgroundColor = [UIColor redColor];
     
     RMAction *selectAction = [RMAction actionWithTitle:@"Select" style:RMActionStyleDone andHandler:^(RMActionController *controller) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -884,10 +799,26 @@ BOOL ISValidated = YES;
         NSString *selectedDate = [formatter stringFromDate:((UIDatePicker *)controller.contentView).date];
         if ([[SplitedArray objectAtIndex:1] intValue] == 165) { [StartDateTextField setText:selectedDate]; } else { [EndDateTextField setText:selectedDate]; };
         
-        NSLog(@"StartDateTextField text %@ and EndDateTextField text %@",StartDateTextField.text,EndDateTextField.text);
+        NSString *startTimeString = StartDateTextField.text;
+        NSString *endTimeString = EndDateTextField.text;
         
-        NSString *startTimeString = StartDateTextField.text;//@"08:00 AM";
-        NSString *endTimeString = EndDateTextField.text;//@"06:00 PM";
+        NSMutableArray *tempArray = [_GlobalTimeValArray mutableCopy];
+        
+        for (id ChildDictionary in _GlobalTimeValArray) {
+            
+            if ([[ChildDictionary objectForKey:@"addMoreviewTag"] intValue] == (int)AddmoreView.tag) {
+                
+                NSMutableDictionary *subchildDictionary = (NSMutableDictionary *)ChildDictionary;
+                
+                [subchildDictionary setObject:endTimeString forKey:@"endTime"];
+                [subchildDictionary setObject:startTimeString forKey:@"startTime"];
+                
+                [tempArray removeObject:ChildDictionary];
+                [tempArray addObject:subchildDictionary];
+            }
+        }
+        
+        _GlobalTimeValArray = tempArray;
         
         NSString *nowTimeString = [formatter stringFromDate:[NSDate date]];
         
@@ -942,31 +873,48 @@ BOOL ISValidated = YES;
 {
     NSArray *SplitedArray = [Obj.object componentsSeparatedByString:@"||"];
     [self startTimeMathodWithTextField:SplitedArray];
+}
+
+-(NSString *)ConvertTimeToString
+{
+    // "sun=>5:12 PM*5:17 PM||mon=>5:12 PM*5:24 PM"
     
-//    AddMoreView *AddmoreView = (AddMoreView *)[_MainScrollView viewWithTag:[[SplitedArray objectAtIndex:0] intValue]];
-//    UITextField *StartDateTextField = (UITextField *)[AddmoreView viewWithTag:165];
-//    UITextField *EndDateTextField = (UITextField *)[AddmoreView viewWithTag:166];
-//    if ([[SplitedArray objectAtIndex:1] intValue] == 165) {
-//        [self startTimeMathodWithTextField:SplitedArray];
-//    } else {
-//        [self endTimeMathodWithTextField:EndDateTextField];
-//    }
+    NSString *ConvertTimeToString = @"";
+    
+    for (int GlobalInitialize = 0 ; GlobalInitialize<[_GlobalTagArray count];GlobalInitialize++)
+    {
+        for (int Gini = 0; Gini<[[_GlobalTagArray objectAtIndex:GlobalInitialize] count];Gini++) {
+            
+            NSArray *LocalObject = [_GlobalTagArray objectAtIndex:GlobalInitialize];
+            AddMoreView *AddmoreView = (AddMoreView *)[_MainScrollView viewWithTag:(int)[LocalObject objectAtIndex:Gini]];
+            
+            UITextField *StartDateTextField             = (UITextField *)[AddmoreView viewWithTag:165];
+            UITextField *EndDateTextField               = (UITextField *)[AddmoreView viewWithTag:166];
+            
+            NSLog(@"StartDate -- %@ EndDate ---%@",StartDateTextField.text,EndDateTextField.text);
+        }
+    }
+    return ConvertTimeToString;
+}
+
+-(int)ReturnDaytypeFromString:(NSInteger)DayType
+{
+    int Daytype = 0;
+    
+    for (int Irt =0; Irt<7; Irt++) {
+       
+        NSUInteger isTheObjectThere = [[_GlobalTagArray objectAtIndex:Irt] indexOfObject:[NSString stringWithFormat:@"%ld",(long)DayType]];
+        NSLog(@"isTheObjectThere ==> %lu",(unsigned long)isTheObjectThere);
+    }
+    return Daytype;
 }
 
 -(void)TextfiledEndEditingNotificationWithObject:(NSNotification*)Obj
 {
-    NSArray *SplitedArray = [Obj.object componentsSeparatedByString:@"||"];
-    NSLog(@"SplitedArray ==> %@",SplitedArray);
-    
-    AddMoreView *AddmoreView = (AddMoreView *)[_MainScrollView viewWithTag:[Obj.object intValue]];
-    UITextField *StartDateTextField = (UITextField *)[AddmoreView viewWithTag:165];
-    UITextField *EndDateTextField = (UITextField *)[AddmoreView viewWithTag:166];
-    
-    NSLog(@"StartDateTextField taxt  => %@",StartDateTextField.text);
-    NSLog(@"EndDateTextField taxt  => %@",EndDateTextField.text);
-    
-    //UITextField *EndDateTextField = (UITextField *)[AddmoreView viewWithTag:166];
-    //[UIView animateWithDuration:1.2 animations:^{_MainScrollView.contentOffset = CGPointMake(0, AddmoreView.frame.origin.y-500);}];
+//    NSArray *SplitedArray             = [Obj.object componentsSeparatedByString:@"||"];
+//    AddMoreView *AddmoreView          = (AddMoreView *)[_MainScrollView viewWithTag:[Obj.object intValue]];
+//    UITextField *StartDateTextField   = (UITextField *)[AddmoreView viewWithTag:165];
+//    UITextField *EndDateTextField     = (UITextField *)[AddmoreView viewWithTag:166];
 }
 
 -(void)viewDidDisappear:(BOOL)animated

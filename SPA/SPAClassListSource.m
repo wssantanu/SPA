@@ -131,8 +131,8 @@
             ClassDetailsObj.field_color_code         = (NSString *)field_color_code;
             ClassDetailsObj.field_end_date           = (NSString *)field_end_date;
             ClassDetailsObj.field_location           = (NSString *)field_location;
-            ClassDetailsObj.field_section            = (NSString *)field_section;
-            ClassDetailsObj.field_semester           = (NSString *)field_semester;
+            ClassDetailsObj.field_section            = removeNull((NSString *)field_section);
+            ClassDetailsObj.field_semester           = removeNull((NSString *)field_semester);
             ClassDetailsObj.field_start_date         = (NSString *)field_start_date;
             ClassDetailsObj.classId                  = classidCov;
             ClassDetailsObj.name                     = (NSString *)classname;
@@ -144,23 +144,32 @@
             
             [mainDelegate saveContext];
             
-            for (id slotsDetailsObject in [DataObject objectForKey:@"slots"]) {
-                
-                NSString *KeyVal = nil;
-                for( NSString *aKey in [slotsDetailsObject allKeys] ) { KeyVal = aKey; }
-                
-                for (id dataObject in [slotsDetailsObject objectForKey:KeyVal]) {
+            NSLog(@"===========%@",[DataObject objectForKey:@"slots"]);
+            
+            if ([DataObject objectForKey:@"slots"]!=NULL) {
+                for (id slotsDetailsObject in [DataObject objectForKey:@"slots"]) {
                     
-                    ClassSlots *ClassSlotObject = (ClassSlots *)[NSEntityDescription insertNewObjectForEntityForName:@"ClassSlots" inManagedObjectContext:mainDelegate.managedObjectContext];
+                    NSString *KeyVal = nil;
                     
-                    ClassSlotObject.classId             = classidCov;
-                    ClassSlotObject.end_time            = [dataObject objectForKey:@"end_time"];
-                    ClassSlotObject.start_time          = [dataObject objectForKey:@"start_time"];
-                    ClassSlotObject.dayId               = [self ConvertKeyToDateVal:KeyVal];
-                    
-                    [mainDelegate saveContext];
-                    
+                    if (slotsDetailsObject!=nil) {
+                        
+                        for( NSString *aKey in [slotsDetailsObject allKeys] ) { KeyVal = aKey; }
+                        
+                        for (id dataObject in [slotsDetailsObject objectForKey:KeyVal]) {
+                            
+                            ClassSlots *ClassSlotObject = (ClassSlots *)[NSEntityDescription insertNewObjectForEntityForName:@"ClassSlots" inManagedObjectContext:mainDelegate.managedObjectContext];
+                            
+                            ClassSlotObject.classId             = classidCov;
+                            ClassSlotObject.end_time            = [dataObject objectForKey:@"end_time"];
+                            ClassSlotObject.start_time          = [dataObject objectForKey:@"start_time"];
+                            ClassSlotObject.dayId               = [self ConvertKeyToDateVal:KeyVal];
+                            
+                            [mainDelegate saveContext];
+                            
+                        }
+                    }
                 }
+                    
             }
         }
     

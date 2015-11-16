@@ -100,7 +100,7 @@ typedef enum {
     [HeaderView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:HeaderView];
     
-    UILabel *TitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, HeaderView.layer.frame.size.width-20, HeaderView.layer.frame.size.height)];
+    UILabel *TitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, HeaderView.layer.frame.size.width-20, HeaderView.layer.frame.size.height)];
     [TitleLabel setBackgroundColor:[UIColor clearColor]];
     [TitleLabel setTextColor:Constant.ColorSPABlackColor];
     [TitleLabel setText:(_LogedinUserType == userTypeTeacher)?[_dataSourceTeacherheader objectAtIndex:section]:[_dataSourceStudentheader objectAtIndex:section]];
@@ -115,6 +115,7 @@ typedef enum {
     
     return HeaderView;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 23.0f;
@@ -182,6 +183,8 @@ typedef enum {
             [ProfileImage sd_setImageWithURL:[NSURL URLWithString:@"http://studentplanner.dev.webspiders.com/sites/all/themes/studentplanner/images/profile-img.jpg"] placeholderImage:[UIImage imageNamed:@"menu_profile_selected"]];
         }
     }
+    
+    [InfoListTableViewCell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     [InfoListTableViewCell.textLabel setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:15]];
     return InfoListTableViewCell;

@@ -687,10 +687,10 @@ typedef enum {
                 [_ActivityIndicator hide:YES];
                 if (errorString) {
                     if (errorString.length>0) {
-                        [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                        [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                     }
                 } else {
-                    [super ShowAletviewWIthTitle:@"Success" Tag:780 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 }
             };
             
@@ -723,10 +723,10 @@ typedef enum {
                 [_ActivityIndicator hide:YES];
                 if (errorString) {
                     if (errorString.length>0) {
-                        [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                        [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                     }
                 } else {
-                    [super ShowAletviewWIthTitle:@"Success" Tag:780 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[data objectForKey:@"message"] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 }
             };
             

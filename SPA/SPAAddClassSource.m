@@ -59,9 +59,15 @@
         
         NSDictionary* parameters = [[NSDictionary alloc] initWithObjects:saveClassParam forKeys:[[SPASourceConfig config].ParamClass_Create componentsSeparatedByString:[SPASourceConfig config].SeperatorKey]];
         
+        DataModel *dataModelObj = [DataModel sharedEngine];
+        UserDetails *FeatchUserdetails = [dataModelObj fetchCurrentUser];
+        
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        [manager.requestSerializer setValue: @"application/json" forHTTPHeaderField: @"Accept"];
+        [manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [manager.requestSerializer setValue:FeatchUserdetails.token forHTTPHeaderField:@"X-CSRF-TOKEN"];
+        [manager.requestSerializer setValue:[NSString stringWithFormat:@"%@=%@",FeatchUserdetails.session_name,FeatchUserdetails.sessid] forHTTPHeaderField:@"Cookie"];
         
         [manager POST:[self prepareUrl] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject)
          {
@@ -78,6 +84,7 @@
                  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                  
                  NSString* ErrorResponse = [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding];
+                 NSLog(@"ErrorResponse ==> %@",ErrorResponse);
                  if ([ErrorResponse length] == 0)
                      ErrorResponse = nil;
                  completionBlock(nil, ErrorResponse);

@@ -101,7 +101,7 @@ typedef enum {
             [_ActivityIndicator hide:YES];
             if (errorString) {
                 if (errorString.length>0) {
-                    [super ShowAletviewWIthTitle:@"Sorry" Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
+                    [super ShowAletviewWIthTitle:AlertTitle Tag:780 Message:[[errorString substringToIndex:[errorString length] - 2] substringFromIndex:2] CancelButtonTitle:@"Ok" OtherButtonTitle:nil];
                 }
             } else {
                 
@@ -127,7 +127,7 @@ typedef enum {
                             case 6: Dayval = @"Sat"; break;
                         }
                         
-                        (latdayid != [Classslots.dayId intValue])?[DayString appendString:[NSString stringWithFormat:@"%@ %@ - %@, \n",Dayval,Classslots.start_time,Classslots.end_time]]:[DayString appendString:[NSString stringWithFormat:@"%@ - %@, ",Classslots.start_time,Classslots.end_time]];
+                        (latdayid != [Classslots.dayId intValue])?[DayString appendString:[NSString stringWithFormat:@"%@ %@ - %@, \n",Dayval,Classslots.start_time,Classslots.end_time]]:[DayString appendString:[NSString stringWithFormat:@"%@ - %@, \n",Classslots.start_time,Classslots.end_time]];
                         
                         latdayid = [Classslots.dayId intValue];
                     }
@@ -284,23 +284,26 @@ typedef enum {
     
     cell.CellClassName.text = LocalObjectClassDetails.name;
     [cell.CellClassName setTextAlignment:NSTextAlignmentJustified];
-    [cell.CellClassName setFont:[UIFont fontWithName:Constant.FontRobotoBold size:15]];
+    cell.CellClassName.lineBreakMode = NSLineBreakByCharWrapping;
+    [cell.CellClassName setFont:[UIFont fontWithName:Constant.FontRobotoBold size:14]];
     
-    cell.classSection.text = LocalObjectClassDetails.field_semester;
-    [cell.classSection setTextAlignment:NSTextAlignmentJustified];
-    [cell.classSection setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:15]];
+    cell.classSection.text = [NSString stringWithFormat:@"Section %@",LocalObjectClassDetails.field_section];
+    [cell.classSection setTextAlignment:NSTextAlignmentLeft];
+    cell.classSection.lineBreakMode = NSLineBreakByCharWrapping;
+    [cell.classSection setFont:[UIFont fontWithName:Constant.FontRobotoMedium size:16]];
     
     cell.TeacherName.text = LocalObjectClassDetails.teacherFullname;
-    [cell.TeacherName setTextAlignment:NSTextAlignmentJustified];
-    [cell.TeacherName setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:15]];
+    [cell.TeacherName setTextAlignment:NSTextAlignmentLeft];
+    [cell.TeacherName setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:14]];
     
     cell.CellClassLocation.text = LocalObjectClassDetails.field_location;
-    [cell.CellClassLocation setTextAlignment:NSTextAlignmentJustified];
-    [cell.CellClassLocation setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:15]];
+    [cell.CellClassLocation setTextAlignment:NSTextAlignmentLeft];
+    [cell.CellClassLocation setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:14]];
     
     cell.CellClassTime.text = LocalObjectTimeDetails;
-    [cell.CellClassTime setTextAlignment:NSTextAlignmentJustified];
-    [cell.CellClassTime setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:15]];
+    [cell.CellClassTime setTextAlignment:NSTextAlignmentLeft];
+    cell.CellClassTime.lineBreakMode = NSLineBreakByCharWrapping;
+    [cell.CellClassTime setFont:[UIFont fontWithName:Constant.FontRobotoRegular size:14]];
     
     UIColor *color1 = [UIColor colorwithHexString:LocalObjectClassDetails.field_color_code alpha:1];
     [cell.ClassColor setBackgroundColor:color1];
@@ -341,7 +344,7 @@ typedef enum {
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        cell = (ClassListTableViewCell*) [self.ClassListTableView dequeueReusableCellWithIdentifier:@"ClassListTableViewCell" ];
+        cell = (ClassListTableViewCell*) [self.ClassListTableView dequeueReusableCellWithIdentifier:@"ClassListTableViewCell"];
     });
     
     [self setUpCell:cell atIndexPath:indexPath];
@@ -354,12 +357,12 @@ typedef enum {
     [sizingCell layoutIfNeeded];
     height = sizingCell.frame.size.height;
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    if (size.height >= 250) {
-        height = size.height;
-    } else {
-        height = size.height-30;
-    }
-    return height;
+//    if (size.height >= 250) {
+//        height = size.height;
+//    } else {
+//        height = size.height;
+//    }
+    return height = size.height;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
