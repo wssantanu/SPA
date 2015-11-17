@@ -55,7 +55,7 @@ typedef enum {
 @interface AddClassViewController ()<UIScrollViewDelegate,UITextFieldDelegate>
 
 @property (nonatomic,retain) UIScrollView *MainScrollView;
-@property (nonatomic,retain) NSMutableArray *GlobalTagArray,*GlobalTimeValArray;
+@property (nonatomic,retain) NSMutableArray *GlobalTagArray,*GlobalTimeValArray,*TempTagArray;
 @property (assign) buttonrepostiontype Buttonrepostiontype;
 @property (assign) weakdaytype Weakdaytype;
 @property (assign) aditionType AditionType;
@@ -102,9 +102,22 @@ BOOL ISValidated = YES;
     DataModel *dataModelObj = [DataModel sharedEngine];
     _FeatchUserdetails = [dataModelObj fetchCurrentUser];
     
-    _GlobalTagArray = [[NSMutableArray alloc] initWithObjects:[[NSMutableArray alloc] initWithObjects:@1557, nil],[[NSMutableArray alloc] initWithObjects:@1558, nil],[[NSMutableArray alloc] initWithObjects:@1559, nil],[[NSMutableArray alloc] initWithObjects:@1560, nil],[[NSMutableArray alloc] initWithObjects:@1561, nil],[[NSMutableArray alloc] initWithObjects:@1562, nil],[[NSMutableArray alloc] initWithObjects:@1563, nil], nil];
-    
+    _GlobalTagArray = [[NSMutableArray alloc] init];
     _GlobalTimeValArray = [[NSMutableArray alloc] init];
+    
+//    _GlobalTagArray = [[NSMutableArray alloc] initWithObjects:[[NSMutableArray alloc] initWithObjects:@1557, nil],[[NSMutableArray alloc] initWithObjects:@1558, nil],[[NSMutableArray alloc] initWithObjects:@1559, nil],[[NSMutableArray alloc] initWithObjects:@1560, nil],[[NSMutableArray alloc] initWithObjects:@1561, nil],[[NSMutableArray alloc] initWithObjects:@1562, nil],[[NSMutableArray alloc] initWithObjects:@1563, nil], nil];
+    
+    for (int tagval = 1157; tagval < 1164; tagval++) {
+        
+        [_GlobalTagArray addObject:[[NSMutableArray alloc] initWithObjects:[NSString stringWithFormat:@"%d",tagval], nil]];
+        
+        NSMutableDictionary *LocalObject = [[NSMutableDictionary alloc] init];
+        [LocalObject setObject:[NSString stringWithFormat:@"%d",tagval] forKey:@"addMoreviewTag"];
+        [LocalObject setObject:@"" forKey:@"startTime"];
+        [LocalObject setObject:@"" forKey:@"endTime"];
+        
+        [_GlobalTimeValArray addObject:LocalObject];
+    }
     
     _TimeSlotString = @"sun=>00:00 AM*00:00 AM||mon=>00:00 AM*00:00 AM||tues=>00:00 AM*00:00 AM||wed=>00:00 AM*00:00 AM||th=>00:00 AM*00:00 AM||fri=>00:00 AM*00:00 AM||sat=>00:00 AM*00:00 AM";
     
@@ -238,6 +251,7 @@ BOOL ISValidated = YES;
     [_MainScrollView bringSubviewToFront:segmentedControl1];
     
     [self segmentedControlChangedValue:segmentedControl1];
+    _TempTagArray = [[NSMutableArray alloc] init];
     
     _addAnotherButton = (UIButton *)[_FooerView viewWithTag:261];
     [_addAnotherButton addTarget:self action:@selector(adddata) forControlEvents:UIControlEventTouchUpInside];
@@ -246,7 +260,7 @@ BOOL ISValidated = YES;
     [_cancelButton addTarget:self action:@selector(CancelOperation) forControlEvents:UIControlEventTouchUpInside];
     
     _SaveButton = (UIButton *)[_FooerView viewWithTag:263];
-    [_SaveButton addTarget:self action:@selector(savedata) forControlEvents:UIControlEventTouchUpInside];
+    [_SaveButton addTarget:self action:@selector(ConvertDateDatatoString) forControlEvents:UIControlEventTouchUpInside];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewAddedWithResponce) name:AddViewNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ViewDeletedWithResponceWithObject:) name:DeleteViewNotification object:nil];
@@ -264,9 +278,9 @@ BOOL ISValidated = YES;
    // NSString *ConvertTimeToString = [self ConvertTimeToString];
     
     
-//    if ([self CheckTimeValidation]) {
-//        
-//        if ([self ValidateLoginForm]) {
+    if ([self CheckTimeValidation]) {
+        
+        if ([self ValidateLoginForm]) {
     
             SPAAddClassCompletionBlock completionBlock = ^(NSDictionary* data, NSString* errorString) {
                 
@@ -296,19 +310,144 @@ BOOL ISValidated = YES;
             NSString *convertedStringEnddate = [dateFormatter stringFromDate:Enddate];
             
             SPAAddClassSource * source = [SPAAddClassSource addClassSource];
-            [source saveClassDetails:[[NSArray alloc] initWithObjects:[NSString stringWithFormat:@"%@",[_FeatchUserdetails uid]],[Constant CleanTextField:_AddClassClassNameTextField.text],[NSString stringWithFormat:@"#%@",[self hexStringFromColor:_ColorView.backgroundColor]],[_FeatchUserdetails uid],[Constant CleanTextField:_AddClassClassLocationTextField.text],[Constant CleanTextField:_AddClassClassSectionTextField.text],[Constant CleanTextField:_AddClassClassSemesterTextField.text],convertedStringStartdate,convertedStringEnddate,@"sun- 8:00 AM -9:00 PM,2:30 AM-9:30 PM|| mon -6:00 AM - 9:00PM", nil] completion:completionBlock];
+            [source saveClassDetails:[[NSArray alloc] initWithObjects:[NSString stringWithFormat:@"%@",[_FeatchUserdetails uid]],[Constant CleanTextField:_AddClassClassNameTextField.text],[NSString stringWithFormat:@"#%@",[self hexStringFromColor:_ColorView.backgroundColor]],[_FeatchUserdetails uid],[Constant CleanTextField:_AddClassClassLocationTextField.text],[Constant CleanTextField:_AddClassClassSectionTextField.text],[Constant CleanTextField:_AddClassClassSemesterTextField.text],convertedStringStartdate,convertedStringEnddate,[self ConvertDateDatatoString], nil] completion:completionBlock];
             
             _ActivityIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             _ActivityIndicator.mode = MBProgressHUDModeIndeterminate;
             [_ActivityIndicator setOpacity:1.0];
             [_ActivityIndicator show:NO];
             _ActivityIndicator.labelText = @"Loading";
-       // }
-//        
-//    } else {
-//        UIAlertView *ErrorAlert = [[UIAlertView alloc] initWithTitle:AlertTitle message:@"Start time and end time not valied" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-//        [ErrorAlert show];
+        }
+        
+    } else {
+        UIAlertView *ErrorAlert = [[UIAlertView alloc] initWithTitle:AlertTitle message:@"Start time and end time not valied" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [ErrorAlert show];
+    }
+}
+
+-(NSString *)ReturnDaytype:(int)DateType
+{
+    NSString *ReturnString = @"";
+    switch (DateType) {
+        case 0:
+            ReturnString = @"sun=>";
+            break;
+        case 1:
+            ReturnString= @"||mon=>";
+            break;
+        case 2:
+            ReturnString= @"||tues=>";
+            break;
+        case 3:
+            ReturnString= @"||wed=>";
+            break;
+        case 4:
+            ReturnString= @"||th=>";
+            break;
+        case 5:
+            ReturnString= @"||fri=>";
+            break;
+        case 6:
+            ReturnString= @"||sat=>";
+            break;
+    }
+    return ReturnString;
+}
+
+-(NSString *)ConvertDateDatatoString
+{
+    
+    // "sun=>5:12 PM*5:17 PM||mon=>5:12 PM*5:24 PM"
+    
+    // sun=>00:00 AM*00:00 AM||mon=>00:00 AM*00:00 AM||tues=>00:00 AM*00:00 AM||wed=>00:00 AM*00:00 AM||th=>00:00 AM*00:00 AM||fri=>00:00 AM*00:00 AM||sat=>00:00 AM*00:00 AM
+    
+    NSMutableString *ConvertedString = [@"" mutableCopy];
+    
+    for (int datetype =0; datetype<7; datetype++) {
+        
+        NSMutableString *weakdaytypesunday = [[self ReturnDaytype:datetype] mutableCopy];
+        
+        for (int rr = 0 ; rr<[[_GlobalTagArray objectAtIndex:_Weakdaytype] count]; rr++)
+        {
+            NSArray *DataTagArray        = [_GlobalTagArray objectAtIndex:_Weakdaytype];
+            
+            for (id ChildDictionary in _GlobalTimeValArray) {
+                
+                if ([[ChildDictionary objectForKey:@"addMoreviewTag"] intValue] == [[DataTagArray objectAtIndex:rr] intValue]) {
+                    
+                    NSArray *DataArray = [weakdaytypesunday componentsSeparatedByString:[self ReturnDaytype:datetype]];
+                    
+                    if ([(NSString *)[DataArray objectAtIndex:1] length]>0) {
+                        [weakdaytypesunday appendString:[NSString stringWithFormat:@",%@*%@",[ChildDictionary objectForKey:@"startTime"],[ChildDictionary objectForKey:@"endTime"]]];
+                    } else {
+                        [weakdaytypesunday appendString:[NSString stringWithFormat:@"%@*%@",[ChildDictionary objectForKey:@"startTime"],[ChildDictionary objectForKey:@"endTime"]]];
+                    }
+                }
+            }
+        }
+        [ConvertedString appendString:weakdaytypesunday];
+
+    }
+    
+//    switch (_Weakdaytype) {
+//        case weakdaytypesunday:
+//        {
+//            NSMutableString *weakdaytypesunday = [@"sun=>" mutableCopy];
+//            for (int rr = 0 ; rr<[[_GlobalTagArray objectAtIndex:_Weakdaytype] count]; rr++)
+//            {
+//                NSArray *DataTagArray        = [_GlobalTagArray objectAtIndex:_Weakdaytype];
+//                
+//                for (id ChildDictionary in _GlobalTimeValArray) {
+//                    
+//                    if ([[ChildDictionary objectForKey:@"addMoreviewTag"] intValue] == [[DataTagArray objectAtIndex:rr] intValue]) {
+//                        
+//                        NSArray *DataArray = [weakdaytypesunday componentsSeparatedByString:@"sun=>"];
+//                        
+//                        if ([(NSString *)[DataArray objectAtIndex:1] length]>0) {
+//                            [weakdaytypesunday appendString:[NSString stringWithFormat:@",%@*%@",[ChildDictionary objectForKey:@"startTime"],[ChildDictionary objectForKey:@"endTime"]]];
+//                        } else {
+//                            [weakdaytypesunday appendString:[NSString stringWithFormat:@"%@*%@",[ChildDictionary objectForKey:@"startTime"],[ChildDictionary objectForKey:@"endTime"]]];
+//                        }
+//                    }
+//                }
+//            }
+//            [ConvertedString appendString:weakdaytypesunday];
+//        }
+//            break;
+//        case weakdaytypemonday:
+//        {
+//            
+//        }
+//            break;
+//        case weakdaytypetuesday:
+//        {
+//            
+//        }
+//            break;
+//        case weakdaytypewednesday:
+//        {
+//            
+//        }
+//            break;
+//        case weakdaytypethirsday:
+//        {
+//            
+//        }
+//            break;
+//        case weakdaytypefriday:
+//        {
+//            
+//        }
+//            break;
+//        case weakdaytypesaturday:
+//        {
+//            
+//        }
+//            break;
 //    }
+    
+    NSLog(@"ConvertedString details as follows %@",ConvertedString);
+    return ConvertedString;
 }
 
 
@@ -546,7 +685,7 @@ BOOL ISValidated = YES;
                 [_MainScrollView setContentSize:CGSizeMake(_MainScrollView.contentSize.width,_MainScrollView.contentSize.height-AddmoreViewHeight)];
             }
         }
-        
+    
         if ([[_GlobalTagArray objectAtIndex:_Weakdaytype] count]>0)
         {
             for (int rr = 0 ; rr<[[_GlobalTagArray objectAtIndex:_Weakdaytype] count]; rr++)
@@ -558,24 +697,17 @@ BOOL ISValidated = YES;
                 AddMoreView *moreView = [[AddMoreView alloc] initWithFrame:CGRectMake(5, _MainScrollView.contentSize.height-(AddmoreViewHeight+80), _MainScrollView.contentSize.width-5, AddmoreViewHeight-15) WithTag:[[DataObjectArray objectAtIndex:rr] intValue] WithDeleteButtonTag:(int)DeleteButtonAddTag WithSelecter:@selector(deletedata:)];
                 [_MainScrollView addSubview:moreView];
                 
-                //NSLog(@"[DataObjectArray objectAtIndex:rr] ====> %@",[DataObjectArray objectAtIndex:rr]);
-                
                 UITextField *StartDateTextField = (UITextField *)[moreView viewWithTag:165];
                 UITextField *EndDateTextField = (UITextField *)[moreView viewWithTag:166];
                 
-//                NSPredicate *predicate = [NSPredicate predicateWithFormat:@"addMoreviewTag CONTAINS[cd] %@",[NSString stringWithFormat:@"%@",[DataObjectArray objectAtIndex:rr]]];
-//                NSArray * filterdArray = [_GlobalTimeValArray filteredArrayUsingPredicate:predicate];
-                
-//                NSLog(@"filterdArray ===> %@",filterdArray);
-                
-                NSMutableDictionary *LocalObject = [[NSMutableDictionary alloc] init];
-                [LocalObject setObject:[DataObjectArray objectAtIndex:rr] forKey:@"addMoreviewTag"];
-                [LocalObject setObject:@"00:00 AM" forKey:@"startTime"];
-                [LocalObject setObject:@"00:00 AM" forKey:@"endTime"];
-                
-                [StartDateTextField setText:@"00:00 AM"];
-                [EndDateTextField setText:@"00:00 AM"];
-                [_GlobalTimeValArray addObject:LocalObject];
+                for (id ChildDictionary in _GlobalTimeValArray) {
+                    
+                    if ([[ChildDictionary objectForKey:@"addMoreviewTag"] intValue] == (int)moreView.tag) {
+                        
+                        [StartDateTextField setText:[ChildDictionary objectForKey:@"startTime"]];
+                        [EndDateTextField setText:[ChildDictionary objectForKey:@"endTime"]];
+                    }
+                }
                 
                 CGRect frame         = _FooerView.frame;
                 frame.origin.y       = _MainScrollView.contentSize.height-AddmoreViewHeight;
@@ -687,13 +819,13 @@ BOOL ISValidated = YES;
 
 -(void)adddata
 {
-    //if ([self CheckTimeValidation]) {
+    if ([self CheckTimeValidation]) {
         _Buttonrepostiontype = buttonrepostiontypedown;
         [self RepositioningScroollView];
-//    } else {
-//        UIAlertView *ErrorAlert = [[UIAlertView alloc] initWithTitle:AlertTitle message:@"Start time and end time not valied" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-//        [ErrorAlert show];
-//    }
+    } else {
+        UIAlertView *ErrorAlert = [[UIAlertView alloc] initWithTitle:AlertTitle message:@"Start time and end time not valied" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [ErrorAlert show];
+    }
 }
 
 -(BOOL)CheckTimeValidation
@@ -763,8 +895,8 @@ BOOL ISValidated = YES;
     
     NSMutableDictionary *LocalObject = [[NSMutableDictionary alloc] init];
     [LocalObject setObject:[NSString stringWithFormat:@"%d",addMoreViewTag-1] forKey:@"addMoreviewTag"];
-    [LocalObject setObject:@"00:00 AM" forKey:@"startTime"];
-    [LocalObject setObject:@"00:00 AM" forKey:@"endTime"];
+    [LocalObject setObject:@"" forKey:@"startTime"];
+    [LocalObject setObject:@"" forKey:@"endTime"];
     
     [_GlobalTimeValArray addObject:LocalObject];
     
